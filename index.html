@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>beeNEO biz | Engineering. Energy. Mobility.</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/6.6.6/css/flag-icons.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Noto+Sans+SC:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --bee-orange: #FF6600; --bee-dark: #0F1214; --lama-gold: #D4AF37; --radius: 16px; --blur: blur(12px); }
+        body { font-family: 'Inter', sans-serif; margin: 0; background: #FAFAFA; color: #333; }
+        body.lang-zh { font-family: 'Noto Sans SC', sans-serif; }
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        .container { width: 92%; max-width: 1280px; margin: 0 auto; padding: 0 20px; }
+
+        header { background: rgba(255,255,255,0.95); backdrop-filter: var(--blur); position: sticky; top: 0; z-index: 1000; padding: 15px 0; border-bottom: 1px solid rgba(0,0,0,0.05); }
+        nav { display: flex; justify-content: space-between; align-items: center; }
+        .logo-container { display: flex; align-items: center; gap: 10px; }
+        .logo-img { height: 40px; }
+        
+        .nav-link { font-weight: 600; margin: 0 15px; color: var(--bee-dark); font-size: 0.95rem; }
+        .nav-link:hover { color: var(--bee-orange); }
+        
+        .lang-switch { display: flex; gap: 8px; background: #f0f0f0; padding: 4px; border-radius: 30px; }
+        .lang-btn { width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; opacity: 0.6; font-size: 1.1rem; }
+        .lang-btn.active, .lang-btn:hover { background: white; opacity: 1; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+
+        .hero {
+            background: linear-gradient(135deg, rgba(15, 18, 20, 0.9) 0%, rgba(15, 18, 20, 0.7) 100%), url('banner_beeNEO-biz_linkedin2.jpg') center/cover no-repeat;
+            padding: 180px 0 140px; color: white; border-radius: 0 0 40px 40px; text-align: center; position: relative;
+        }
+        .hero h1 { font-size: 3.8rem; margin-bottom: 20px; line-height: 1.1; letter-spacing: -1px; }
+        
+        .bento-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; padding: 80px 0; }
+        .card { background: white; border-radius: var(--radius); padding: 40px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); transition: 0.4s; display: flex; flex-direction: column; justify-content: space-between; border: 1px solid rgba(0,0,0,0.03); }
+        .card:hover { transform: translateY(-10px); box-shadow: 0 25px 50px rgba(0,0,0,0.1); border-color: rgba(255, 102, 0, 0.2); }
+        .card-icon { font-size: 2.5rem; color: var(--bee-orange); margin-bottom: 20px; }
+
+        .btn { background: var(--bee-orange); color: white; padding: 14px 35px; border-radius: 8px; font-weight: 700; display: inline-block; box-shadow: 0 4px 15px rgba(255, 102, 0, 0.3); }
+        .btn:hover { background: #e55b00; transform: translateY(-2px); }
+        
+        .lama-badge { 
+            background: linear-gradient(45deg, #1A1E21, #2c3e50); 
+            color: var(--lama-gold); padding: 5px 15px; border-radius: 20px; 
+            font-size: 0.8rem; font-weight: bold; display: inline-flex; align-items: center; gap: 8px; margin-bottom: 15px;
+        }
+
+        footer { background: #111; color: #888; padding: 80px 0 30px; text-align: center; }
+
+        @media(max-width:768px){ .nav-link { display:none; } .hero h1 { font-size: 2.5rem; } }
+    </style>
+</head>
+<body class="lang-tr">
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo-container">
+                    <img src="beeNEO_Logo2026beebgd.png" alt="beeNEO Logo" class="logo-img">
+                </div>
+                <div>
+                    <a href="engineering.html" class="nav-link" data-i18n="nav_eng">Akıllı Mühendislik</a>
+                    <a href="products.html" class="nav-link" data-i18n="nav_prod">Lvkon Donanım</a>
+                    <a href="hub.html" class="nav-link" data-i18n="nav_hub">Hub Hizmetleri</a>
+                </div>
+                <div class="lang-switch">
+                    <span class="lang-btn active" onclick="setLang('tr')"><span class="fi fi-tr"></span></span>
+                    <span class="lang-btn" onclick="setLang('de')"><span class="fi fi-de"></span></span>
+                    <span class="lang-btn" onclick="setLang('en')"><span class="fi fi-gb"></span></span>
+                    <span class="lang-btn" onclick="setLang('zh')"><span class="fi fi-cn"></span></span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <div class="lama-badge"><i class="fa-solid fa-bolt"></i> POWERED BY SMART LAMA</div>
+            <h1 data-i18n="hero_title">Akıllı Yalın Çevik.<br><span style="color:#FF6600">0€ Lisans Maliyeti.</span></h1>
+            <p data-i18n="hero_sub" style="color:#ddd; max-width:800px; margin:0 auto 40px; font-size: 1.2rem;">
+                Sistem düzeyinde Endüstri Standartlarını (ISO 29110, ASPICE) ücretsiz Açık Kaynak araç zincirleriyle karşılıyoruz. 
+                Artı: Ekibiniz için Koçluk & Eğitim.
+            </p>
+            <a href="engineering.html" class="btn" data-i18n="btn_more">Çözümleri Keşfet</a>
+        </div>
+    </section>
+
+    <div class="container">
+        <div class="bento-grid">
+            <div class="card" style="border-top: 4px solid var(--bee-orange);">
+                <div>
+                    <div class="card-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+                    <h3 data-i18n="c1_title">Koçluk & Eğitim</h3>
+                    <p data-i18n="c1_text">Tasarım Odaklı Düşünmeden ISO sertifikasyonuna. Ekiplerinizi çevik yöntemler ve araç destekli süreçler konusunda eğitiyoruz.</p>
+                </div>
+                <a href="engineering.html#coaching" style="margin-top:20px; font-weight:bold; color:var(--bee-orange);" data-i18n="learn_more">Daha Fazla Bilgi →</a>
+            </div>
+
+            <div class="card" style="border-top: 4px solid var(--lama-gold);">
+                <div>
+                    <div class="card-icon" style="color:var(--lama-gold)"><i class="fa-solid fa-layer-group"></i></div>
+                    <h3 data-i18n="c2_title">0€ Araç Zinciri (Sistem Düzeyi)</h3>
+                    <p data-i18n="c2_text">Lisans ücreti olmayan profesyonel geliştirme ortamı. ISO/ASPICE Uyumluluğu için Odoo, Linux, Google Araçları ve Açık Kaynak.</p>
+                </div>
+                <a href="engineering.html#toolchain" style="margin-top:20px; font-weight:bold; color:var(--lama-gold);" data-i18n="to_arch">Mimariye Git →</a>
+            </div>
+
+            <div class="card" style="border-top: 4px solid #2c3e50;">
+                <div>
+                    <div class="card-icon" style="color:#2c3e50"><i class="fa-solid fa-truck-fast"></i></div>
+                    <h3 data-i18n="c3_title">Lvkon Donanım</h3>
+                    <p data-i18n="c3_text">Elektrikli güç aktarma organları ortağınız. Dünya çapında 160.000'den fazla araçta çalışan E-Akslar ve Hibrit sistemler.</p>
+                </div>
+                <a href="products.html" style="margin-top:20px; font-weight:bold; color:#2c3e50;" data-i18n="to_catalog">Kataloğa Git →</a>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 beeNEO biz. Engineering. Energy. Mobility. | <a href="impressum.html" style="color: inherit; text-decoration: underline;" data-i18n="imprint">Yasal Bilgiler & Gizlilik</a></p>
+    </footer>
+
+    <script>
+        const translations = {
+            tr: {
+                nav_eng: "Akıllı Mühendislik", nav_prod: "Donanım", nav_hub: "Hub",
+                hero_title: "Akıllı Yalın Çevik.<br><span style='color:#FF6600'>0€ Lisans Maliyeti.</span>",
+                hero_sub: "Sistem düzeyinde Endüstri Standartlarını (ISO 29110, ASPICE) ücretsiz Açık Kaynak araç zincirleriyle karşılıyoruz. Artı: Koçluk & Eğitim.",
+                btn_more: "Çözümleri Keşfet",
+                c1_title: "Koçluk & Eğitim", c1_text: "Tasarım Odaklı Düşünmeden ISO sertifikasyonuna. Ekiplerinizi çevik yöntemlerde eğitiyoruz.",
+                c2_title: "0€ Araç Zinciri", c2_text: "Lisans ücreti olmayan profesyonel geliştirme ortamı. Odoo, Linux & Açık Kaynak.",
+                c3_title: "Lvkon Donanım", c3_text: "Elektrikli güç aktarma organları ortağı. Dünya çapında 160.000+ araç.",
+                learn_more: "Daha Fazla Bilgi →", to_arch: "Mimariye Git →", to_catalog: "Kataloğa Git →", imprint: "Yasal Bilgiler & Gizlilik"
+            },
+            de: {
+                nav_eng: "Smart Engineering", nav_prod: "Hardware", nav_hub: "Hub",
+                hero_title: "Smart Lean Agile.<br><span style='color:#FF6600'>0€ Lizenzkosten.</span>",
+                hero_sub: "Wir erfüllen Industriestandards (ISO 29110, ASPICE) auf Systemebene mit kostenlosen Open-Source-Toolchains. Plus: Coaching & Training.",
+                btn_more: "Lösungen entdecken",
+                c1_title: "Coaching & Training", c1_text: "Von Design Thinking bis zur ISO-Zertifizierung. Wir trainieren Ihre Teams in agilen Methoden.",
+                c2_title: "0€ Toolchain", c2_text: "Professionelle Entwicklungsumgebung ohne Lizenzgebühren. Odoo, Linux & Open Source.",
+                c3_title: "Lvkon Hardware", c3_text: "Partner für elektrische Antriebsstränge. Über 160.000 Fahrzeuge weltweit.",
+                learn_more: "Mehr erfahren →", to_arch: "Zur Architektur →", to_catalog: "Zum Katalog →", imprint: "Impressum & Datenschutz"
+            },
+            en: {
+                nav_eng: "Smart Engineering", nav_prod: "Hardware", nav_hub: "Hub",
+                hero_title: "Smart Lean Agile.<br><span style='color:#FF6600'>0€ License Cost.</span>",
+                hero_sub: "Meeting Industry Standards (ISO 29110, ASPICE) at system level with free Open Source toolchains. Plus: Coaching & Training.",
+                btn_more: "Discover Solutions",
+                c1_title: "Coaching & Training", c1_text: "From Design Thinking to ISO certification. We train your teams in agile methods.",
+                c2_title: "0€ Toolchain", c2_text: "Professional development environment without license fees. Odoo, Linux & Open Source.",
+                c3_title: "Lvkon Hardware", c3_text: "Partner for electric powertrains. Over 160,000 vehicles worldwide.",
+                learn_more: "Learn More →", to_arch: "To Architecture →", to_catalog: "To Catalog →", imprint: "Legal & Privacy"
+            },
+            zh: {
+                nav_eng: "智能工程", nav_prod: "硬件", nav_hub: "Hub",
+                hero_title: "智能精益敏捷。<br><span style='color:#FF6600'>0€ 许可成本。</span>",
+                hero_sub: "使用免费的开源工具链在系统级别满足行业标准（ISO 29110，ASPICE）。加上：辅导和培训。",
+                btn_more: "发现解决方案",
+                c1_title: "辅导与培训", c1_text: "从设计思维到 ISO 认证。我们培训您的团队采用敏捷方法。",
+                c2_title: "0€ 工具链", c2_text: "无许可费用的专业开发环境。Odoo，Linux 和开源。",
+                c3_title: "Lvkon 硬件", c3_text: "电动动力总成合作伙伴。全球超过 160,000 辆汽车。",
+                learn_more: "了解更多 →", to_arch: "去架构 →", to_catalog: "去目录 →", imprint: "法律与隐私"
+            }
+        };
+        function setLang(lang) {
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[lang][key]) el.innerHTML = translations[lang][key];
+            });
+            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+            event.currentTarget.classList.add('active');
+            if(lang === 'zh') document.body.className = "lang-zh"; else document.body.className = "";
+        }
+    </script>
+</body>
+</html>

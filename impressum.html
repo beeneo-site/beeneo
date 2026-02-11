@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yasal Bilgiler & İletişim | beeNEO</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/6.6.6/css/flag-icons.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Noto+Sans+SC:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --bee-orange: #FF6600; --bee-dark: #0F1214; --radius: 16px; }
+        body { font-family: 'Inter', sans-serif; margin: 0; background: #FAFAFA; color: #333; line-height: 1.6; }
+        body.lang-zh { font-family: 'Noto Sans SC', sans-serif; }
+        .container { max-width: 1000px; margin: 0 auto; padding: 20px; }
+        
+        /* Header */
+        header { background: rgba(255,255,255,0.95); position: sticky; top: 0; z-index: 1000; padding: 15px 0; border-bottom: 1px solid #eee; }
+        nav { display: flex; justify-content: space-between; align-items: center; }
+        .logo-img { height: 35px; }
+        .lang-btn { cursor: pointer; opacity: 0.5; font-size: 1.2rem; margin-left: 5px; }
+        .lang-btn.active { opacity: 1; }
+
+        /* Content */
+        .legal-box { background: white; padding: 40px; border-radius: var(--radius); margin-bottom: 30px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+        h1, h2 { color: var(--bee-dark); }
+        h2 { border-bottom: 2px solid var(--bee-orange); display: inline-block; padding-bottom: 5px; margin-top: 30px;}
+        
+        .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+        .contact-form input, .contact-form textarea { width: 100%; padding: 12px; margin-bottom: 15px; border: 1px solid #ddd; border-radius: 8px; }
+        .btn { background: var(--bee-orange); color: white; padding: 12px 30px; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; }
+        
+        @media(max-width:768px){ .contact-grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body class="lang-tr">
+
+<header>
+    <div class="container">
+        <nav>
+            <a href="index.html"><img src="beeNEO_Logo2026beebgd.png" alt="beeNEO" class="logo-img"></a>
+            <div>
+                <span class="lang-btn active" onclick="setLang('tr')"><span class="fi fi-tr"></span></span>
+                <span class="lang-btn" onclick="setLang('de')"><span class="fi fi-de"></span></span>
+                <span class="lang-btn" onclick="setLang('en')"><span class="fi fi-gb"></span></span>
+                <span class="lang-btn" onclick="setLang('zh')"><span class="fi fi-cn"></span></span>
+            </div>
+        </nav>
+    </div>
+</header>
+
+<div class="container" style="padding-top: 50px;">
+    
+    <h1 data-i18n="page_title">İletişim & Yasal Bilgiler</h1>
+
+    <div class="legal-box">
+        <h2 data-i18n="contact_title">Bize Ulaşın</h2>
+        <div class="contact-grid">
+            <form class="contact-form">
+                <label data-i18n="lbl_name">İsim / Firma</label>
+                <input type="text" placeholder="...">
+                <label data-i18n="lbl_email">E-Posta</label>
+                <input type="email" placeholder="...">
+                <label data-i18n="lbl_msg">Mesajınız</label>
+                <textarea rows="4" placeholder="..."></textarea>
+                <button type="button" class="btn" data-i18n="btn_send">Gönder</button>
+            </form>
+            <div>
+                <p><strong>Ayhan Önal</strong><br>Geschäftsführer / Genel Müdür / CEO</p>
+                <p><i class="fa-solid fa-phone"></i> TR: +90 540 008 94 44</p>
+                <p><i class="fa-solid fa-phone"></i> DE: +49 160 9684 40 35</p>
+                <p><i class="fa-solid fa-envelope"></i> ayhan.onal@beeneo.biz</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="legal-box">
+        <h2 data-i18n="imp_title">Künye (Impressum)</h2>
+        
+        <div class="contact-grid">
+            <div>
+                <h3>Türkiye (Merkez & Ar-Ge)</h3>
+                <p><strong>BERRİN ERDEN NEO MÜH. DAN. GIDA SAN. VE TİC. LTD. ŞTİ.</strong></p>
+                <p>Güzeltepe Mh. Pembegül Sk. No:7, 34680 Üsküdar / İstanbul</p>
+                <p><strong>Teknopark:</strong> Bilişim Vadisi, 41400 Gebze / Kocaeli</p>
+                <p><strong>Vergi Dairesi:</strong> Üsküdar</p>
+            </div>
+            <div>
+                <h3>Deutschland (AB & UK)</h3>
+                <p><strong>UNEO.TECH UG (Haftungsbeschränkt)</strong></p>
+                <p>Kalkumer Str. 127, 40468 Düsseldorf, Deutschland</p>
+                <p><strong>Registergericht:</strong> Amtsgericht Düsseldorf</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="legal-box">
+        <h2 data-i18n="legal_title">Yasal Uyarılar & KVKK</h2>
+        <div style="font-size: 0.9rem; color: #555;">
+            <h4 data-i18n="kvkk_head">Kişisel Verilerin Korunması (KVKK)</h4>
+            <p data-i18n="kvkk_text">Bu web sitesi üzerinden paylaşılan kişisel verileriniz, 6698 sayılı Kişisel Verilerin Korunması Kanunu (KVKK) kapsamında sadece iş ilişkisi kurmak amacıyla işlenmektedir. Üçüncü şahıslarla paylaşılmaz.</p>
+            
+            <h4 data-i18n="disclaimer_head">Sorumluluk Reddi (Disclaimer)</h4>
+            <p data-i18n="disclaimer_text">Bu sitedeki bilgiler (özellikle Lvkon ürün verileri) genel bilgilendirme amaçlıdır. Teknik özellikler üretici tarafından haber verilmeksizin değiştirilebilir. Bağlantı verilen dış sitelerin (örn. lvkon.com) içeriğinden beeNEO sorumlu değildir.</p>
+            
+            <h4 data-i18n="copyright_head">Telif Hakkı</h4>
+            <p data-i18n="copyright_text">"beeNEO", "Smart Lama" ve ilgili logolar Berrin Erden Neo Müh. Dan. Ltd. Şti.'nin tescilli markalarıdır. Lvkon görselleri Lv

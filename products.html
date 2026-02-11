@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lvkon Product Center | beeNEO</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/6.6.6/css/flag-icons.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Noto+Sans+SC:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --bee-orange: #FF6600; --bee-dark: #0F1214; --radius: 12px; --light-bg: #f8f9fa; }
+        body { font-family: 'Inter', sans-serif; margin: 0; background: #fff; color: #333; }
+        body.lang-zh { font-family: 'Noto Sans SC', sans-serif; }
+        .container { width: 92%; max-width: 1280px; margin: 0 auto; padding: 0 20px; }
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+
+        /* Header */
+        header { background: rgba(255,255,255,0.95); position: sticky; top: 0; z-index: 1000; padding: 15px 0; border-bottom: 1px solid #eee; backdrop-filter: blur(10px); }
+        nav { display: flex; justify-content: space-between; align-items: center; }
+        .logo-img { height: 40px; }
+        .nav-link { font-weight: 600; margin: 0 15px; color: var(--bee-dark); font-size: 0.95rem; }
+        .nav-link:hover { color: var(--bee-orange); }
+        .lang-btn { cursor: pointer; opacity: 0.5; margin-left:5px; font-size:1.1rem; } .lang-btn.active{opacity:1;}
+
+        /* Hero */
+        .hero-sec { text-align: center; padding: 80px 0 60px; background: var(--light-bg); border-radius: 0 0 40px 40px; }
+        .hero-sec h1 { font-size: 2.8rem; margin-bottom: 15px; color: var(--bee-dark); }
+        .hero-sec p { max-width: 800px; margin: 0 auto; color: #666; font-size: 1.1rem; }
+        
+        /* Stats Bar */
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 30px; padding: 50px 0; border-bottom: 1px solid #eee; text-align: center; }
+        .stat-num { font-size: 2.5rem; font-weight: 900; color: var(--bee-orange); display: block; line-height: 1; }
+        .stat-lbl { font-size: 0.95rem; color: #555; font-weight: 600; margin-top: 5px; display: block; }
+
+        /* Category Section */
+        .cat-section { margin-bottom: 80px; scroll-margin-top: 100px; }
+        .cat-header { border-left: 6px solid var(--bee-orange); padding-left: 20px; margin-bottom: 30px; background: linear-gradient(90deg, #fff3e0 0%, transparent 100%); padding-top: 10px; padding-bottom: 10px; }
+        .cat-title { font-size: 2rem; margin: 0; color: var(--bee-dark); }
+        .cat-desc { color: #666; margin-top: 8px; max-width: 900px; font-size: 1.05rem; }
+
+        /* Accordion Product */
+        .prod-btn {
+            background: #fff; border: 1px solid #eee; width: 100%; text-align: left; padding: 20px 25px;
+            font-size: 1.1rem; font-weight: 700; cursor: pointer; display: flex; justify-content: space-between;
+            align-items: center; border-radius: 8px; margin-bottom: 10px; transition: 0.3s;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.03); color: #333;
+        }
+        .prod-btn:hover { border-color: var(--bee-orange); background: #fffcf8; }
+        .prod-btn.active { background: var(--bee-orange); color: white; border-color: var(--bee-orange); box-shadow: 0 5px 15px rgba(255, 102, 0, 0.3); }
+        .prod-btn:after { content: '+'; font-size: 1.5rem; font-weight: 300; }
+        .prod-btn.active:after { content: '-'; }
+
+        .prod-panel {
+            max-height: 0; overflow: hidden; transition: max-height 0.4s ease-out;
+            background: #fff; border-radius: 0 0 8px 8px; margin-bottom: 20px; border: 1px solid #eee; border-top: none;
+        }
+        
+        .prod-content { display: grid; grid-template-columns: 350px 1fr; gap: 40px; padding: 30px; }
+        
+        /* Image Placeholder */
+        .prod-img-placeholder {
+            width: 100%; height: 300px; background: #f0f0f0; border-radius: 8px;
+            display: flex; flex-direction: column; align-items: center; justify-content: center; 
+            color: #999; font-weight: 600; border: 2px dashed #ccc; text-align: center; padding: 20px;
+        }
+        .prod-img-placeholder i { font-size: 3rem; margin-bottom: 10px; color: #bbb; }
+
+        /* Table */
+        .spec-table { width: 100%; border-collapse: collapse; font-size: 0.95rem; }
+        .spec-table th, .spec-table td { padding: 12px 15px; border-bottom: 1px solid #eee; text-align: left; vertical-align: top; }
+        .spec-table th { width: 35%; background: #f9f9f9; color: #555; font-weight: 600; }
+        .spec-table tr:last-child th, .spec-table tr:last-child td { border-bottom: none; }
+
+        .company-info { background: #1a1e21; color: white; padding: 60px 0; margin-top: 60px; }
+        .company-info h2 { color: var(--bee-orange); margin-bottom: 20px; }
+        .company-info p { color: #ccc; line-height: 1.8; margin-bottom: 20px; max-width: 900px; }
+
+        @media(max-width:900px){ .prod-content { grid-template-columns: 1fr; } .nav-link { display: none; } }
+    </style>
+</head>
+<body class="lang-tr">
+
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo-container">
+                    <a href="index.html"><img src="beeNEO_Logo2026beebgd.png" alt="beeNEO" class="logo-img"></a>
+                </div>
+                <div>
+                    <a href="index.html" class="nav-link" data-i18n="nav_home">Ana Sayfa</a>
+                    <a href="#drive-assembly" class="nav-link" data-i18n="nav_drive">Sürüş Sistemi</a>
+                    <a href="#e-axle" class="nav-link" data-i18n="nav_axle">E-Aks</a>
+                    <a href="#transmission" class="nav-link" data-i18n="nav_trans">Şanzıman</a>
+                </div>
+                <div>
+                    <span class="lang-btn active" onclick="setLang('tr')"><span class="fi fi-tr"></span></span>
+                    <span class="lang-btn" onclick="setLang('de')"><span class="fi fi-de"></span></span>
+                    <span class="lang-btn" onclick="setLang('en')"><span class="fi fi-gb"></span></span>
+                    <span class="lang-btn" onclick="setLang('zh')"><span class="fi fi-cn"></span></span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <div class="hero-sec">
+        <div class="container">
+            <h1 data-i18n="page_title">Lvkon Ürün Merkezi</h1>
+            <p data-i18n="page_sub">Yeni Enerji Ticari Araçlar İçin Güç Aktarma Sistemleri Çözüm Sağlayıcısı. 2011'den beri inovasyon lideri.</p>
+            <img src="lvkon_green.png" alt="Lvkon Logo" style="max-height: 60px; margin-top: 20px;">
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="stats-grid">
+            <div><span class="stat-num">24</span><span class="stat-lbl" data-i18n="st_country">Ülke / Bölge</span></div>
+            <div><span class="stat-num">160k+</span><span class="stat-lbl" data-i18n="st_veh">Uygulanan Araç</span></div>
+            <div><span class="stat-num">20+</span><span class="stat-lbl" data-i18n="st_truck">Kamyon Ortağı</span></div>
+            <div><span class="stat-num">20+</span><span class="stat-lbl" data-i18n="st_bus">Otobüs Ortağı</span></div>
+            <div><span class="stat-num">10+</span><span class="stat-lbl" data-i18n="st_cons">İş Makinesi Ortağı</span></div>
+        </div>
+
+        <div class="cat-section" id="drive-assembly">
+            <div class="cat-header">
+                <h2 class="cat-title" data-i18n="cat_drive">Sürüş Sistemi (Drive Assembly)</h2>
+                <p class="cat-desc" data-i18n="desc_drive">Üç teknik rotaya odaklanma: saf elektrik, yakıt hücresi ve hibrit. Kamyon, otobüs, özel araç ve iş makinelerinde yaygın kullanım.</p>
+            </div>
+
+            <button class="prod-btn">TED1020 / 1360 / 2330S (Light Truck)</button>
+            <div class="prod-panel">
+                <div class="prod-content">
+                    <div class="prod-img-placeholder"><i class="fa-solid fa-image"></i>TED Series Image</div>
+                    <table class="spec-table">
+                        <tr><th>TED1020 (4.5-6t)</th><td>55/120 kW, 1026 Nm, 2-Speed (2.7/1)</td></tr>
+                        <tr><th>TED1360 (4.5-7t)</th><td>60/120 kW, 1365 Nm, 2-Speed (2.73/1)</td></tr>
+                        <tr><th>TED2330S (7-12t)</th><td>75/120 kW, 2330 Nm, 2-Speed (2.741/1)</td></tr>
+                    </table>
+                </div>
+            </div>
+
+            <button class="prod-btn">TED3010S / 3380S (Bus & Truck)</button>
+            <div class="prod-panel">
+                <div class="prod-content">
+                    <div class="prod-img-placeholder"><i class="fa-solid fa-bus"></i>TED Bus Series</div>
+                    <table class="spec-table">
+                        <tr><th>TED3010S</th><td>8-10m Bus / 11-14t Truck. 80/160 kW, 3015 Nm.</td></tr>
+                        <tr><th>TED3380S</th><td>10-12m Bus. 120/185 kW, 3380 Nm.</td></tr>
+                    </table>
+                </div>
+            </div>
+
+            <button class="prod-btn">HTED Series (Heavy Duty 25t - 100t)</button>
+            <div class="prod-panel">
+                <div class="prod-content">
+                    <div class="prod-img-placeholder"><i class="fa-solid fa-truck-monster"></i>HTED Series</div>
+                    <table class="spec-table">
+                        <tr><th>HTED16000 (25-30t)</th><td>180/300 kW, 16360 Nm, 4-Speed</td></tr>
+                        <tr><th>HTED20000L/H (35-90t)</th><td>270-300 kW / 405-450 kW, 20136 Nm, 4-Speed</td></tr>
+                        <tr><th>HTED24000L/H (70-100t)</th><td>315-360 kW / 510-550 kW, 24276 Nm, 4-Speed</td></tr>
+                    </table>
+                </div>
+            </div>
+
+            <button class="prod-btn">Hybrid & Mining (PHD / MHD / CED / CHD)</button>
+            <div class="prod-panel">
+                <div class="prod-content">
+                    <div class="prod-img-placeholder"><i class="fa-solid fa-industry"></i>Hybrid & Mining</div>
+                    <table class="spec-table">
+                        <tr><th>CED20000 (55-90t)</th><td>150/270 kW, 20136 Nm, Dual Input</td></tr>
+                        <tr><th>CHD36000 (130-160t)</th><td>200/350 kW + ISG 140/310 kW, 36080 Nm</td></tr>
+                        <tr><th>MHD4500 (18m Bus)</th><td>130/210 kW + ISG 65/115 kW, 4500 Nm</td></tr>
+                        <tr><th>PHD29000 (Heavy)</th><td>P2 Hybrid, 12-Speed AMT, 29040 Nm</td></tr>
+                        <tr><th>PHD6300 (Bus/Truck)</th><td>80/135 kW, 1000 Nm, 6-Speed AMT</td></tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="cat-section" id="e-axle">
+            <div class="cat-header">
+                <h2 class="cat-title" data-i18n="cat_axle">Elektrikli Tahrik Aksı (Electric Drive Axle)</h2>
+                <p class="cat-desc" data-i18n="desc_axle">4.5t - 49t arası hafif ve ağır kamyonlar için merkezi entegre e-aks çözümleri. 5.000+ ünite stok.</p>
+            </div>
+
+            <button class="prod-btn">STEA45000Z (Heavy Duty Dual Motor)</button>
+            <div class="prod-panel">
+                <div class="prod-content">
+                    <div class="prod-img-placeholder"><i class="fa-solid fa-gears"></i>STEA45000Z</div>
+                    <table class="spec-table">
+                        <tr><th>Uygulama</th><td>6*4, 4*2 Ağır Kamyon</td></tr>
+                        <tr><th>Şanzıman</th><td>Çift Motorlu, 6 Vites (Ana + Yardımcı)</td></tr>
+                        <tr><th>Güç (Nom/Max)</th><td>144x2 / 320x2 kW</td></tr>
+                        <tr><th>Tork (Nom/Max)</th><td>156x2 / 380x2 Nm</td></tr>
+                        <tr><th>Çıkış Torku</th><td>45.000 Nm</td></tr>
+                    </table>
+                </div>
+            </div>
+
+            <button class="prod-btn">STEA40000Z / 39000Z (Heavy Duty Single)</button>
+            <div class="prod-panel">
+                <div class="prod-content">
+                    <div class="prod-img-placeholder"><i class="fa-solid fa-gear"></i>STEA Single Motor</div>
+                    <table class="spec-table">
+                        <tr><th>STEA40000Z</th><td>121/250 kW, 40000 Nm, 2-Speed</td></tr>
+                        <tr><th>STEA39000Z</th><td>150/252 kW, 39089 Nm, 4-Speed</td></tr>
+                    </table>
+                </div>
+            </div>
+
+            <button class="prod-btn">STEA16000Z (Bus/Trailer)</button>
+            <div class="prod-panel">
+                <div class="prod-content">
+                    <div class="prod-img-placeholder"><i class="fa-solid fa-truck"></i>STEA16000Z</div>
+                    <table class="spec-table">
+                        <tr><th>Uygulama</th><td>Treyler, Otobüs</td></tr>
+                        <tr><th>Şanzıman</th><td>2 Vites (33/13 veya 44/15)</td></tr>
+                        <tr><th>Güç (Nom/Max)</th><td>100 / 218 kW</td></tr>
+                        <tr><th>Çıkış Torku</th><td>16.500 Nm</td></tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="cat-section" id="transmission">
+            <div class="cat-header">
+                <h2 class="cat-title" data-i18n="cat_trans">Şanzıman (Transmission)</h2>
+                <p class="cat-desc" data-i18n="desc_trans">Yüksek verimli, güçlü güvenilirlik ve kolay bakım sunan ticari araç ve maden kamyonu şanzımanları.</p>
+            </div>
+
+            <button class="prod-btn">J8S Series (Mining 80-125t)</button>
+            <div class="prod-panel">
+                <div class="prod-content">
+                    <div class="prod-img-placeholder"><i class="fa-solid fa-gem"></i>J8S Mining</div>
+                    <table class="spec-table">
+                        <tr><th>J8S260A (80-115t)</th><td>400 kW, 2600 Nm Input, 544 kg</td></tr>
+                        <tr><th>J8S240A (80-105t)</th><td>400 kW, 2400 Nm Input, 544 kg</td></tr>
+                        <tr><th>J8S280A (125t)</th><td>480 kW, 2800 Nm Input, 705 kg</td></tr>
+                    </table>
+                </div>
+            </div>
+
+            <button class="prod-btn">J12S / J6S (Heavy Truck/Bus)</button>
+            <div class="prod-panel">
+                <div class="prod-content">
+                    <div class="prod-img-placeholder"><i class="fa-solid fa-cogs"></i>Heavy Transmissions</div>
+                    <table class="spec-table">
+                        <tr><th>J12S240 (Towing)</th><td>12-Speed, 2400 Nm Input, 302 kg</td></tr>
+                        <tr><th>J6S95 (Bus/Truck)</th><td>6-Speed, 950 Nm Input, 164 kg</td></tr>
+                    </table>
+                </div>
+            </div>
+
+            <button class="prod-btn">J5S / J6S (Light Truck)</button>
+            <div class="prod-panel">
+                <div class="prod-content">
+                    <div class="prod-img-placeholder"><i class="fa-solid fa-truck-pickup"></i>Light Transmissions</div>
+                    <table class="spec-table">
+                        <tr><th>J5S20 (2.5t)</th><td>5-Speed, 196 Nm Input</td></tr>
+                        <tr><th>J6S46 (4.5t)</th><td>6-Speed, 450 Nm Input</td></tr>
+                        <tr><th>J6S54 (6-9t)</th><td>6-Speed, 540 Nm Input</td></tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="cat-section">
+            <div class="cat-header">
+                <h2 class="cat-title" data-i18n="cat_motor">Sürüş Motorları (Drive Motor)</h2>
+                <p class="cat-desc" data-i18n="desc_motor">Geniş uygulama yelpazesi için yüksek tork güç yoğunluğu sunan motorlar ve jeneratörler.</p>
+            </div>
+
+            <button class="prod-btn">DM Series (DM500 - DM5000)</button>
+            <div class="prod-panel">
+                <div class="prod-content">
+                    <div class="prod-img-placeholder"><i class="fa-solid fa-bolt"></i>Motors & Generators</div>
+                    <table class="spec-table">
+                        <tr><th>DM500-5000</th><td>3.5t Kamyondan 45t İş Makinesine kadar çözümler.</td></tr>
+                        <tr><th>UD120-1000</th><td>336V - 540V Jeneratörler.</td></tr>
+                        <tr><th>IM Series</th><td>540V - 600V Yüksek Güçlü Motorlar.</td></tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="company-info">
+        <div class="container">
+            <h2 data-i18n="about_title">Lvkon Hakkında</h2>
+            <p data-i18n="about_text">2011 yılında kurulan Suzhou Lvkon Transmission Technology Co., Ltd., yeni enerji ticari araçlar için güç aktarım sistemlerine odaklanan yenilikçi bir lider işletmedir. Şirket, 5 temel teknolojiye sahiptir. Müşterilerimiz arasında XCMG, SANY, Dongfeng, FAW gibi devler bulunmaktadır.</p>
+            <p style="color:var(--bee-orange); font-weight:bold;" data-i18n="about_partner">Nisan 2025'ten bu yana beeNEO, Lvkon'un stratejik partneri olarak Ar-Ge, satış, entegrasyon ve satış sonrası hizmetler sunmaktadır.</p>
+        </div>
+    </div>
+
+    <footer style="text-align: center; padding: 20px; color: #888; background:#111;">
+        &copy; 2026 LVKON & beeNEO Partnership. | <a href="impressum.html" style="color:inherit;" data-i18n="imprint">Yasal Bilgiler</a>
+    </footer>
+
+    <script>
+        // Accordion Logic
+        const acc = document.getElementsByClassName("prod-btn");
+        for (let i = 0; i < acc.length; i++) {
+            acc[i].addEventListener("click", function() {
+                this.classList.toggle("active");
+                const panel = this.nextElementSibling;
+                if (panel.style.maxHeight) { panel.style.maxHeight = null; } 
+                else { panel.style.maxHeight = panel.scrollHeight + "px"; }
+            });
+        }
+
+        // Translation Data
+        const translations = {
+            tr: {
+                nav_home: "Ana Sayfa", nav_eng: "Mühendislik", nav_hub: "Hub", nav_drive: "Sürüş Sis.", nav_axle: "E-Aks", nav_trans: "Şanzıman",
+                page_title: "Lvkon Ürün Merkezi", page_sub: "Yeni Nesil Ticari Araçlar İçin Güç Aktarma Sistemleri",
+                st_country: "Ülke / Bölge", st_veh: "Araç Uygulaması", st_truck: "Kamyon OEM", st_bus: "Otobüs OEM", st_cons: "İş Makinesi OEM",
+                cat_drive: "Sürüş Sistemi (Assembly)", desc_drive: "Tam elektrikli, yakıt hücresi ve hibrit rotalar.",
+                cat_axle: "Elektrikli Tahrik Aksı", desc_axle: "4.5t - 49t kamyonlar için merkezi entegre çözüm.",
+                cat_trans: "Şanzıman", desc_trans: "Yüksek verimli, maden ve ağır hizmet şanzımanları.",
+                cat_motor: "Sürüş Motorları", desc_motor: "Yüksek tork yoğunluklu motorlar ve jeneratörler.",
+                about_title: "Lvkon Hakkında", about_text: "2011'den beri lider. XCMG, SANY, Dongfeng referansları.",
+                about_partner: "Nisan 2025'ten bu yana beeNEO, Lvkon'un stratejik partneri olarak Ar-Ge, satış, entegrasyon ve satış sonrası hizmetler sunmaktadır.",
+                imprint: "Yasal Bilgiler"
+            },
+            de: {
+                nav_home: "Startseite", nav_eng: "Engineering", nav_hub: "Hub", nav_drive: "Antrieb", nav_axle: "E-Achse", nav_trans: "Getriebe",
+                page_title: "Lvkon Produktzentrum", page_sub: "Antriebssysteme für neue Energie-Nutzfahrzeuge",
+                st_country: "Länder", st_veh: "Fahrzeuge", st_truck: "LKW-Partner", st_bus: "Bus-Partner", st_cons: "Baumaschinen",
+                cat_drive: "Antriebsbaugruppe", desc_drive: "Vollelektrisch, Brennstoffzelle und Hybrid.",
+                cat_axle: "Elektrische Antriebsachse", desc_axle: "Zentrale integrierte E-Achsen für 4.5t - 49t.",
+                cat_trans: "Getriebe", desc_trans: "Hocheffiziente Getriebe für Bergbau und Schwerlast.",
+                cat_motor: "Antriebsmotoren", desc_motor: "Motoren mit hoher Drehmomentdichte.",
+                about_title: "Über Lvkon", about_text: "Seit 2011 führend. Referenzen: XCMG, SANY, Dongfeng.",
+                about_partner: "Seit April 2025 ist beeNEO strategischer Partner von Lvkon für F&E, Vertrieb, Integration und After-Sales-Service.",
+                imprint: "Impressum"
+            },
+            en: {
+                nav_home: "Home", nav_eng: "Engineering", nav_hub: "Hub", nav_drive: "Drive Sys", nav_axle: "E-Axle", nav_trans: "Transmission",
+                page_title: "Lvkon Product Center", page_sub: "Powertrain Systems for New Energy Commercial Vehicles",
+                st_country: "Countries", st_veh: "Vehicles", st_truck: "Truck OEMs", st_bus: "Bus OEMs", st_cons: "Machinery OEMs",
+                cat_drive: "Drive Assembly", desc_drive: "Pure electric, fuel cell, and hybrid routes.",
+                cat_axle: "Electric Drive Axle", desc_axle: "Central integrated e-axles for 4.5t - 49t.",
+                cat_trans: "Transmission", desc_trans: "High-efficiency transmissions for mining and heavy duty.",
+                cat_motor: "Drive Motors", desc_motor: "High torque density motors and generators.",
+                about_title: "About Lvkon", about_text: "Leader since 2011. References: XCMG, SANY, Dongfeng.",
+                about_partner: "Since April 2025, beeNEO has been Lvkon's strategic partner providing R&D, sales, integration, and after-sales services.",
+                imprint: "Legal"
+            },
+            zh: {
+                nav_home: "首页", nav_eng: "工程", nav_hub: "Hub", nav_drive: "驱动系统", nav_axle: "电驱动桥", nav_trans: "变速箱",
+                page_title: "Lvkon 产品中心", page_sub: "新能源商用车动力总成系统",
+                st_country: "个国家", st_veh: "应用车辆", st_truck: "合作卡车厂商", st_bus: "合作客车厂商", st_cons: "合作工程机械企业",
+                cat_drive: "驱动组件", desc_drive: "纯电动、燃料电池和混合动力技术路线。",
+                cat_axle: "电驱动桥", desc_axle: "适用于 4.5-49 吨卡车的中央集成电驱动桥。",
+                cat_trans: "变速箱", desc_trans: "用于采矿和重型卡车的高效变速箱。",
+                cat_motor: "驱动电机", desc_motor: "高扭矩功率密度的电机和发电机。",
+                about_title: "关于绿控", about_text: "自2011年以来的领导者。客户包括徐工、三一、东风。",
+                about_partner: "自 2025 年 4 月起，beeNEO 作为 Lvkon 的战略合作伙伴，提供研发、销售、集成和售后服务。",
+                imprint: "法律信息"
+            }
+        };
+
+        function setLang(lang) {
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[lang][key]) el.textContent = translations[lang][key];
+            });
+            document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+            event.target.closest('.lang-btn').classList.add('active');
+            if(lang === 'zh') document.body.className = "lang-zh"; else document.body.className = "";
+        }
+    </script>
+</body>
+</html>
