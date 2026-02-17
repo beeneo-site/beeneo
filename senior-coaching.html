@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head></head>
+<body>
+<div class="header-content">
+    <div class="container">
+        <h1 data-i18n="title">Senior Coaching</h1>
+        <p data-i18n="subtitle">Wissenstransfer von Experten für Experten.</p>
+    </div>
+</div>
+
+<div class="container">
+    <div class="service-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 40px;">
+        <div style="background:#fff; padding:30px; border-radius:12px; border:1px solid #eee;">
+            <h2 data-i18n="coach_1_title">Methoden-Coaching</h2>
+            <p data-i18n="coach_1_desc">Begleitung Ihrer Teams bei der Einführung agiler Methoden im Engineering-Umfeld. Hands-on und praxisnah.</p>
+        </div>
+        <div style="background:#fff; padding:30px; border-radius:12px; border:1px solid #eee;">
+            <h2 data-i18n="coach_2_title">Interim Management</h2>
+            <p data-i18n="coach_2_desc">Überbrückung von Vakanzen in kritischen Rollen wie Configuration Manager oder Quality Manager.</p>
+        </div>
+    </div>
+
+    <div style="margin-top: 50px; text-align: center;">
+        <h3 data-i18n="ready">Bereit für den nächsten Schritt?</h3>
+        <a href="mailto:info@beeneo.biz" style="background:var(--bee-orange); color:#fff; padding:15px 30px; border-radius:8px; display:inline-block; font-weight:bold;" data-i18n="btn">Jetzt Kontakt aufnehmen</a>
+    </div>
+</div>
+
+<script>
+    const translations = {
+        tr: {
+            title: "Kıdemli Koçluk", subtitle: "Uzmanlardan uzmanlara bilgi transferi.",
+            coach_1_title: "Metot Koçluğu", coach_1_desc: "Ekiplerinizin mühendislik ortamında çevik yöntemleri benimsemesine destek oluyoruz. Uygulamalı ve pratik.",
+            coach_2_title: "Geçici Yönetim", coach_2_desc: "Konfigürasyon Yöneticisi veya Kalite Yöneticisi gibi kritik rollerdeki boşlukları dolduruyoruz.",
+            ready: "Bir sonraki adıma hazır mısınız?", btn: "Şimdi İletişime Geçin"
+        },
+        de: {
+            title: "Senior Coaching", subtitle: "Wissenstransfer von Experten für Experten.",
+            coach_1_title: "Methoden-Coaching", coach_1_desc: "Begleitung Ihrer Teams bei der Einführung agiler Methoden im Engineering-Umfeld. Hands-on und praxisnah.",
+            coach_2_title: "Interim Management", coach_2_desc: "Überbrückung von Vakanzen in kritischen Rollen wie Configuration Manager oder Quality Manager.",
+            ready: "Bereit für den nächsten Schritt?", btn: "Jetzt Kontakt aufnehmen"
+        },
+        en: {
+            title: "Senior Coaching", subtitle: "Knowledge transfer from experts to experts.",
+            coach_1_title: "Methods Coaching", coach_1_desc: "Guiding your teams in adopting agile methods in engineering environments. Hands-on and practical.",
+            coach_2_title: "Interim Management", coach_2_desc: "Filling vacancies in critical roles such as Configuration Manager or Quality Manager.",
+            ready: "Ready for the next step?", btn: "Contact Us Now"
+        },
+        zh: {
+            title: "资深辅导", subtitle: "专家对专家的知识转移。",
+            coach_1_title: "方法辅导", coach_1_desc: "指导您的团队在工程环境中采用敏捷方法。注重实操。",
+            coach_2_title: "过渡管理", coach_2_desc: "填补配置经理或质量经理等关键角色的职位空缺。",
+            ready: "准备好迈出下一步了吗？", btn: "立即联系"
+        }
+    };
+    // ... setLang JS wie oben ...
+</script>
+</body>
+</html>
