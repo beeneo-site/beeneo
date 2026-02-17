@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Engineering Solutions | beeNEO</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/6.6.6/css/flag-icons.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Noto+Sans+SC:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --bee-orange: #FF6600; --bee-dark: #0F1214; --radius: 16px; --blur: blur(12px); }
+        body { font-family: 'Inter', sans-serif; margin: 0; background: #FAFAFA; color: #333; scroll-behavior: smooth; }
+        body.lang-zh { font-family: 'Noto Sans SC', sans-serif; }
+        .container { width: 92%; max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        
+        /* Navigation */
+        nav { background: rgba(15, 18, 20, 0.9); backdrop-filter: var(--blur); padding: 15px 0; position: sticky; top: 0; z-index: 1000; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .nav-content { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-weight: 800; font-size: 1.5rem; color: #fff; }
+        .lang-switch { display: flex; gap: 10px; }
+        .lang-btn { cursor: pointer; opacity: 0.6; transition: 0.3s; color: #fff; font-size: 1.2rem; }
+        .lang-btn.active { opacity: 1; color: var(--bee-orange); }
+
+        /* Hero */
+        .hero { padding: 100px 0 60px; text-align: center; background: radial-gradient(circle at top right, #1a1a1a, #0F1214); color: white; }
+        .hero h1 { font-size: 3.5rem; font-weight: 800; margin-bottom: 20px; color: var(--bee-orange); }
+
+        /* Main Section Styling */
+        .section-padding { padding: 80px 0; border-bottom: 1px solid #eee; }
+        .white-card { background: white; padding: 50px; border-radius: var(--radius); box-shadow: 0 10px 40px rgba(0,0,0,0.03); margin-bottom: 40px; }
+        
+        .expert-info { border-left: 4px solid var(--bee-orange); padding-left: 20px; margin: 25px 0; background: #fff9f5; padding: 25px; border-radius: 0 var(--radius) var(--radius) 0; }
+        
+        .service-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 40px; }
+        .problem-solution-card { padding: 30px; border: 1px solid #eee; border-radius: var(--radius); transition: 0.3s; }
+        .problem-solution-card:hover { border-color: var(--bee-orange); transform: translateY(-5px); }
+
+        /* Lists */
+        .bullet-list { list-style: none; padding: 0; margin-top: 20px; }
+        .bullet-list li { margin-bottom: 15px; padding-left: 35px; position: relative; font-size: 1.05rem; }
+        .bullet-list li::before { content: "\f058"; font-family: "Font Awesome 6 Free"; font-weight: 900; position: absolute; left: 0; color: var(--bee-orange); }
+
+        .tag { background: #eee; padding: 5px 12px; border-radius: 4px; font-size: 0.8rem; font-weight: bold; margin-right: 5px; text-transform: uppercase; }
+        footer { background: var(--bee-dark); color: white; padding: 40px 0; text-align: center; }
+    </style>
+</head>
+<body>
+
+<nav>
+    <div class="container nav-content">
+        <a href="index.html" class="logo">beeNEO<span style="color:var(--bee-orange)">.</span></a>
+        <div class="lang-switch">
+            <span class="lang-btn fi fi-tr" onclick="setLang('tr')"></span>
+            <span class="lang-btn fi fi-de" onclick="setLang('de')"></span>
+            <span class="lang-btn fi fi-gb" onclick="setLang('en')"></span>
+            <span class="lang-btn fi fi-cn" onclick="setLang('zh')"></span>
+        </div>
+    </div>
+</nav>
+
+<section class="hero">
+    <div class="container">
+        <h1 data-i18n="hero_t">State of the Art Engineering</h1>
+        <p data-i18n="hero_st" style="font-size: 1.3rem; opacity: 0.9;">Probleme lösen. Standards setzen. Werte schaffen.</p>
+    </div>
+</section>
+
+<section class="container section-padding">
+    <h2 style="text-align:center; font-size: 2.5rem; margin-bottom: 50px;" data-i18n="ps_title">Herausforderungen & Lösungen</h2>
+    <div class="service-grid">
+        <div class="problem-solution-card">
+            <h4 style="color:#e74c3c;"><i class="fas fa-bolt"></i> PROBLEM</h4>
+            <p data-i18n="p1">Unternehmen ersticken an IATF 16949 / AS9100 Bürokratie.</p>
+            <h4 style="color:#27ae60; margin-top:20px;"><i class="fas fa-check"></i> beeNEO LÖSUNG</h4>
+            <p data-i18n="s1">ISO 29110 – Schlankes Engineering speziell für kleine Teams.</p>
+        </div>
+        <div class="problem-solution-card">
+            <h4 style="color:#e74c3c;"><i class="fas fa-bolt"></i> PROBLEM</h4>
+            <p data-i18n="p2">Tool-Wildwuchs & fehlende Traceability (Excel-Chaos).</p>
+            <h4 style="color:#27ae60; margin-top:20px;"><i class="fas fa-check"></i> beeNEO LÖSUNG</h4>
+            <p data-i18n="s2">Vorkonfigurierte Siemens Polarion & Teamcenter Umgebungen.</p>
+        </div>
+    </div>
+</section>
+
+<section id="lean" class="container section-padding">
+    <div class="white-card">
+        <h2 data-i18n="lean_t">Lean Consulting & ISO 29110</h2>
+        <div class="expert-info">
+            <strong data-i18n="expert_ao">Lead: Ayhan Önal (Senior Principal Consultant)</strong>
+            <p data-i18n="expert_ao_d">Experte für Compliance-Transformationen (ASPICE L3, ISO 21434) bei BMW, Audi und TOGG.</p>
+        </div>
+        <ul class="bullet-list">
+            <li data-i18n="lean_l1">Prozessdefinition ohne administrativen Overhead.</li>
+            <li data-i18n="lean_l2">Vorbereitung auf OEM-Audits & Lieferanten-Zertifizierung.</li>
+            <li data-i18n="lean_l3">Agile Methoden im Hardware- & System-Engineering.</li>
+        </ul>
+    </div>
+</section>
+
+<section id="toolchain" class="container section-padding">
+    <div class="white-card">
+        <h2 data-i18n="tool_t">Digital Toolchain (ALM/PLM)</h2>
+        <div class="expert-info">
+            <strong data-i18n="expert_us">Lead: Ulli Schmehl (Senior Expert CMII-P)</strong>
+            <p data-i18n="expert_us_d">Spezialist für Siemens DISW Toolchains, Migrationen und Konfigurationsmanagement.</p>
+        </div>
+        <div style="margin-bottom: 20px;">
+            <span class="tag">Siemens Polarion</span><span class="tag">Teamcenter</span><span class="tag">Odoo</span>
+        </div>
+        <ul class="bullet-list">
+            <li data-i18n="tool_l1">Durchgängige Traceability vom Requirement bis zum Test-Report.</li>
+            <li data-i18n="tool_l2">Vorkonfigurierte Workflows für sofortige Einsatzbereitschaft.</li>
+            <li data-i18n="tool_l3">0€ Lizenzkosten-Strategien für KMU durch Hybrid-Modelle.</li>
+        </ul>
+    </div>
+</section>
+
+<section id="coaching" class="container section-padding">
+    <div class="white-card">
+        <h2 data-i18n="coach_t">Senior Coaching & Interim Management</h2>
+        <p data-i18n="coach_p">Wir liefern keine Papiertiger. Wir begleiten Ihr Team direkt im Projektalltag.</p>
+        <div class="service-grid">
+            <div class="problem-solution-card">
+                <h3 data-i18n="coach_s1">On-the-job Mentoring</h3>
+                <p data-i18n="coach_s1_d">Direkte Ausbildung Ihrer Product Owner und Scrum Master.</p>
+            </div>
+            <div class="problem-solution-card">
+                <h3 data-i18n="coach_s2">Interim Management</h3>
+                <p data-i18n="coach_s2_d">Übernahme kritischer Rollen (QM, CM) zur Absicherung von Meilensteinen.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <div class="container">
+        <p>&copy; 2026 beeNEO Business Hub | <a href="impressum.html">Impressum</a></p>
+    </div>
+</footer>
+
+<script>
+    const translations = {
+        tr: {
+            hero_t: "En Modern Mühendislik", hero_st: "Sorunları çözün. Standartları belirleyin. Değer yaratın.",
+            ps_title: "Zorluklar ve Çözümler",
+            p1: "Şirketler IATF 16949 / AS9100 bürokrasisi altında eziliyor.", s1: "ISO 29110 – Küçük ekipler için yalın mühendislik.",
+            p2: "Araç karmaşası ve izlenebilirlik eksikliği (Excel kaosu).", s2: "Siem
