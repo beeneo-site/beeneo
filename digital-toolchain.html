@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <style>
+        /* ... Styles wie oben ... */
+        .tool-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 30px; }
+        .tool-card { background: white; border: 1px solid #ddd; padding: 20px; border-radius: 8px; }
+    </style>
+</head>
+<body>
+<div class="header-content">
+    <div class="container">
+        <h1 data-i18n="title">Digital Toolchain</h1>
+        <p data-i18n="subtitle">Siemens Polarion & Teamcenter – Optimiert für kleine Einheiten.</p>
+    </div>
+</div>
+
+<div class="container">
+    <div class="expert-box">
+        <i class="fas fa-microchip"></i>
+        <div>
+            <strong data-i18n="expert_label">Expertise: Ulli Schmehl</strong>
+            <p data-i18n="expert_desc">Senior Experte für Prozess- & Konfigurationsmanagement (CMII-P) und Siemens Toolchain-Architektur.</p>
+        </div>
+    </div>
+
+    <p data-i18n="p1">Wir implementieren ALM- und PLM-Lösungen, die mit Ihrem Unternehmen wachsen. Durch vorkonfigurierte Templates verkürzen wir die Einführungszeit drastisch.</p>
+
+    <div class="tool-grid">
+        <div class="tool-card">
+            <h3>Siemens Polarion</h3>
+            <p data-i18n="tool1">Vollständiges Requirement- und Testmanagement für ISO 29110 / ASPICE.</p>
+        </div>
+        <div class="tool-card">
+            <h3>Siemens Teamcenter</h3>
+            <p data-i18n="tool2">Produkt-Lebenszyklus-Management, das Hardware und Software vereint.</p>
+        </div>
+    </div>
+</div>
+
+<script>
+    const translations = {
+        tr: {
+            title: "Dijital Araç Zinciri", subtitle: "Siemens Polarion & Teamcenter – Küçük birimler için optimize edilmiştir.",
+            expert_label: "Uzman: Ulli Schmehl", expert_desc: "Süreç ve Konfigürasyon Yönetimi (CMII-P) ve Siemens araç zinciri mimarisi kıdemli uzmanı.",
+            p1: "Şirketinizle birlikte büyüyen ALM ve PLM çözümleri uyguluyoruz. Önceden yapılandırılmış şablonlarla kurulum süresini önemli ölçüde azaltıyoruz.",
+            tool1: "ISO 29110 / ASPICE için tam gereksinim ve test yönetimi.", tool2: "Donanım ve yazılımı birleştiren Ürün Yaşam Döngüsü Yönetimi."
+        },
+        de: {
+            title: "Digital Toolchain", subtitle: "Siemens Polarion & Teamcenter – Optimiert für kleine Einheiten.",
+            expert_label: "Expertise: Ulli Schmehl", expert_desc: "Senior Experte für Prozess- & Konfigurationsmanagement (CMII-P) und Siemens Toolchain-Architektur.",
+            p1: "Wir implementieren ALM- und PLM-Lösungen, die mit Ihrem Unternehmen wachsen. Durch vorkonfigurierte Templates verkürzen wir die Einführungszeit.",
+            tool1: "Vollständiges Requirement- und Testmanagement für ISO 29110 / ASPICE.", tool2: "Produkt-Lebenszyklus-Management, das Hardware und Software vereint."
+        },
+        en: {
+            title: "Digital Toolchain", subtitle: "Siemens Polarion & Teamcenter – Optimized for small units.",
+            expert_label: "Expert: Ulli Schmehl", expert_desc: "Senior Expert for Process & Configuration Management (CMII-P) and Siemens toolchain architecture.",
+            p1: "We implement ALM and PLM solutions that grow with your company. Using pre-configured templates, we drastically reduce setup time.",
+            tool1: "Complete requirement and test management for ISO 29110 / ASPICE.", tool2: "Product Lifecycle Management integrating hardware and software."
+        },
+        zh: {
+            title: "数字化工具链", subtitle: "西门子 Polarion 和 Teamcenter – 针对小型团队优化。",
+            expert_label: "专家：Ulli Schmehl", expert_desc: "过程与配置管理 (CMII-P) 及西门子工具链架构高级专家。",
+            p1: "我们实施随您的公司共同成长的 ALM 和 PLM 解决方案。通过预配置模板，我们大幅缩短了导入时间。",
+            tool1: "适用于 ISO 29110 / ASPICE 的完整需求和测试管理。", tool2: "整合硬件和软件的产品生命周期管理。"
+        }
+    };
+    // ... setLang JS wie oben ...
+</script>
+</body>
+</html>
