@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lean Consulting | beeNEO</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/6.6.6/css/flag-icons.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Noto+Sans+SC:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --bee-orange: #FF6600; --bee-dark: #0F1214; --radius: 16px; }
+        body { font-family: 'Inter', sans-serif; margin: 0; background: #FAFAFA; color: #333; line-height: 1.6; }
+        body.lang-zh { font-family: 'Noto Sans SC', sans-serif; }
+        .container { width: 92%; max-width: 1100px; margin: 0 auto; padding: 40px 20px; }
+        nav { background: var(--bee-dark); padding: 15px 0; color: white; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; }
+        .logo { font-weight: 800; font-size: 1.5rem; margin-left: 5%; }
+        .lang-switch { margin-right: 5%; display: flex; gap: 10px; }
+        .lang-btn { cursor: pointer; opacity: 0.6; font-size: 1.2rem; }
+        .lang-btn.active { opacity: 1; color: var(--bee-orange); }
+        .header-content { padding: 80px 0 40px; text-align: center; background: #fff; border-bottom: 1px solid #eee; }
+        .header-content h1 { font-size: 2.5rem; color: var(--bee-dark); }
+        .expert-box { background: #fdfdfd; border: 1px solid var(--bee-orange); padding: 25px; border-radius: var(--radius); margin: 30px 0; display: flex; align-items: center; gap: 20px; }
+        .expert-box i { font-size: 3rem; color: var(--bee-orange); }
+        footer { background: var(--bee-dark); color: white; text-align: center; padding: 20px 0; margin-top: 50px; }
+    </style>
+</head>
+<body>
+
+<nav>
+    <div class="logo">beeNEO<span style="color:var(--bee-orange)">.</span></div>
+    <div class="lang-switch">
+        <span class="lang-btn fi fi-tr" onclick="setLang('tr')"></span>
+        <span class="lang-btn fi fi-de" onclick="setLang('de')"></span>
+        <span class="lang-btn fi fi-gb" onclick="setLang('en')"></span>
+        <span class="lang-btn fi fi-cn" onclick="setLang('zh')"></span>
+    </div>
+</nav>
+
+<div class="header-content">
+    <div class="container">
+        <h1 data-i18n="title">Lean Consulting</h1>
+        <p data-i18n="subtitle" style="font-size: 1.2rem; opacity: 0.7;">Prozessdefinition ohne Overhead. Wertschöpfung statt Bürokratie.</p>
+    </div>
+</div>
+
+<div class="container">
+    <div class="expert-box">
+        <i class="fas fa-user-tie"></i>
+        <div>
+            <strong data-i18n="expert_label">Expertise: Ayhan Önal</strong>
+            <p data-i18n="expert_desc">Spezialist für die Einführung schlanker Management-Systeme in regulierten Industrien (ISO 29110, ASPICE).</p>
+        </div>
+    </div>
+
+    <h2 data-i18n="h2_1">Unser Ansatz</h2>
+    <p data-i18n="p1">Wir unterstützen KMU dabei, die Anforderungen großer OEMs zu erfüllen, ohne die eigene Agilität zu opfern. Unser Fokus liegt auf der Implementierung der ISO/IEC 29110, die speziell für sehr kleine Einheiten (VSE) entwickelt wurde.</p>
+    
+    <ul style="list-style: none; padding: 0;">
+        <li style="margin-bottom: 15px;"><i class="fas fa-check-circle" style="color:var(--bee-orange)"></i> <span data-i18n="li1">Analyse bestehender Prozesse & Waste-Eliminierung</span></li>
+        <li style="margin-bottom: 15px;"><i class="fas fa-check-circle" style="color:var(--bee-orange)"></i> <span data-i18n="li2">Schlanke Dokumentationsstrategien</span></li>
+        <li style="margin-bottom: 15px;"><i class="fas fa-check-circle" style="color:var(--bee-orange)"></i> <span data-i18n="li3">Vorbereitung auf OEM-Audits</span></li>
+    </ul>
+</div>
+
+<footer>&copy; 2025 beeNEO Business Hub</footer>
+
+<script>
+    const translations = {
+        tr: {
+            title: "Yalın Danışmanlık", subtitle: "Bürokrasi yerine değer yaratmaya odaklanan süreç tanımı.",
+            expert_label: "Uzman: Ayhan Önal", expert_desc: "Regüle endüstrilerde (ISO 29110, ASPICE) yalın yönetim sistemleri kurulumu uzmanı.",
+            h2_1: "Yaklaşımımız", p1: "KOBİ'lerin kendi çevikliğini feda etmeden büyük OEM gereksinimlerini karşılamasına destek oluyoruz.",
+            li1: "Mevcut süreç analizi ve israfın önlenmesi", li2: "Yalın dokümantasyon stratejileri", li3: "OEM denetimlerine hazırlık"
+        },
+        de: {
+            title: "Lean Consulting", subtitle: "Prozessdefinition ohne Overhead. Wertschöpfung statt Bürokratie.",
+            expert_label: "Expertise: Ayhan Önal", expert_desc: "Spezialist für die Einführung schlanker Management-Systeme in regulierten Industrien (ISO 29110, ASPICE).",
+            h2_1: "Unser Ansatz", p1: "Wir unterstützen KMU dabei, die Anforderungen großer OEMs zu erfüllen, ohne die eigene Agilität zu opfern.",
+            li1: "Analyse bestehender Prozesse & Waste-Eliminierung", li2: "Schlanke Dokumentationsstrategien", li3: "Vorbereitung auf OEM-Audits"
+        },
+        en: {
+            title: "Lean Consulting", subtitle: "Process definition without overhead. Value over bureaucracy.",
+            expert_label: "Expert: Ayhan Önal", expert_desc: "Specialist for implementing lean management systems in regulated industries (ISO 29110, ASPICE).",
+            h2_1: "Our Approach", p1: "We help SMEs meet large OEM requirements without sacrificing their own agility.",
+            li1: "Analysis of existing processes & waste elimination", li2: "Lean documentation strategies", li3: "Preparation for OEM audits"
+        },
+        zh: {
+            title: "精益咨询", subtitle: "摒弃官僚主义的过程定义。价值高于繁琐文档。",
+            expert_label: "专家：Ayhan Önal", expert_desc: "在受监管行业（ISO 29110, ASPICE）引入精益管理系统的专家。",
+            h2_1: "我们的方法", p1: "我们帮助中小企业在不牺牲自身敏捷性的情况下满足大型 OEM 的要求。",
+            li1: "现有流程分析与消除浪费", li2: "精益文档策略", li3: "OEM 审计准备"
+        }
+    };
+    function setLang(lang){
+        document.body.className = lang === 'zh' ? 'lang-zh' : '';
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+            const key = el.getAttribute('data-i18n');
+            if(translations[lang][key]) el.innerText = translations[lang][key];
+        });
+        localStorage.setItem('preferredLang', lang);
+    }
+    window.onload = () => setLang(localStorage.getItem('preferredLang') || 'tr');
+</script>
+</body>
+</html>
