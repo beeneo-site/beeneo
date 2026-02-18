@@ -9,16 +9,36 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Noto+Sans+SC:wght@400;700&display=swap" rel="stylesheet">
     <style>
         :root { --bee-orange: #FF6600; --bee-dark: #0F1214; --radius: 16px; }
-        body { font-family: 'Inter', sans-serif; margin: 0; background: #FAFAFA; color: #333; line-height: 1.6; }
+        body { font-family: 'Inter', sans-serif; margin: 0; background: #FAFAFA; color: #333; line-height: 1.6; padding-top: 80px; }
         body.lang-zh { font-family: 'Noto Sans SC', sans-serif; }
         .container { max-width: 1000px; margin: 0 auto; padding: 20px; }
         
-        /* Header */
-        header { background: rgba(255,255,255,0.95); position: sticky; top: 0; z-index: 1000; padding: 15px 0; border-bottom: 1px solid #eee; }
-        nav { display: flex; justify-content: space-between; align-items: center; }
-        .logo-img { height: 35px; }
-        .lang-btn { cursor: pointer; opacity: 0.5; font-size: 1.2rem; margin-left: 5px; }
-        .lang-btn.active { opacity: 1; }
+        /* Neuer Header */
+        header { 
+            background: rgba(255,255,255,0.95); 
+            backdrop-filter: blur(10px);
+            position: fixed; 
+            top: 0; left: 0; right: 0; 
+            z-index: 1000; 
+            border-bottom: 1px solid #eee;
+            height: 80px;
+            display: flex;
+            align-items: center;
+        }
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        .logo-group { display: flex; align-items: center; gap: 20px; }
+        .logo-img { height: 40px; width: auto; object-fit: contain; } /* Optimiert für beide Logos */
+        .logo-divider { height: 30px; width: 1px; background: #ddd; }
+        .nav-links { display: flex; gap: 24px; font-weight: 600; font-size: 0.95rem; }
+        .nav-links a:hover { color: var(--bee-orange); }
 
         /* Content */
         .legal-box { background: white; padding: 40px; border-radius: var(--radius); margin-bottom: 30px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
@@ -33,26 +53,43 @@
         .disclaimer-text { font-size: 0.85rem; color: #555; text-align: justify; }
         .disclaimer-text h4 { color: #333; margin-top: 20px; margin-bottom: 5px; font-size: 0.95rem; }
 
-        @media(max-width:768px){ .contact-grid { grid-template-columns: 1fr; } }
+        .floating-lang { position: fixed; bottom: 20px; right: 20px; background: white; padding: 10px 20px; border-radius: 50px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); z-index: 100; display: flex; gap: 15px; }
+        .floating-lang i { cursor: pointer; transition: 0.2s; font-size: 1.2rem; }
+        .floating-lang i.active { transform: scale(1.2); }
+
+        @media(max-width:768px){ 
+            .contact-grid { grid-template-columns: 1fr; } 
+            .nav-links { display: none; }
+        }
     </style>
 </head>
 <body class="lang-tr">
 
 <header>
-    <div class="container">
-        <nav>
-            <a href="index.html"><img src="beeNEO_Logo2026beebgd.png" alt="beeNEO" class="logo-img"></a>
-            <div>
-                <span class="lang-btn active" onclick="setLang('tr')"><span class="fi fi-tr"></span></span>
-                <span class="lang-btn" onclick="setLang('de')"><span class="fi fi-de"></span></span>
-                <span class="lang-btn" onclick="setLang('en')"><span class="fi fi-gb"></span></span>
-                <span class="lang-btn" onclick="setLang('zh')"><span class="fi fi-cn"></span></span>
-            </div>
+    <div class="nav-container">
+        <div class="logo-group">
+            <a href="index.html">
+                <img src="beeNEO_Logo2026beebgd.png" alt="beeNEO" class="logo-img">
+            </a>
+            
+            <div class="logo-divider"></div>
+            
+            <a href="products.html">
+                <img src="lvkonlogo.png" alt="Lvkon" class="logo-img" style="opacity: 0.8;">
+            </a>
+        </div>
+        
+        <nav class="nav-links">
+            <a href="index.html" data-i18n="nav_home">Startseite</a>
+            <a href="engineering.html" data-i18n="nav_eng">Ingenieurwesen</a>
+            <a href="hub.html" data-i18n="nav_hub">Hub</a>
+            <a href="impressum.html" data-i18n="nav_imp">Kontakt</a>
         </nav>
     </div>
 </header>
 
 <div class="container" style="padding-top: 50px;">
+    <a href="index.html" style="display:inline-block; margin-bottom:20px; font-weight:600;" data-i18n="back">← Zurück zur Startseite</a>
     
     <h1 data-i18n="page_title">İletişim & Yasal Bilgiler</h1>
 
@@ -127,9 +164,18 @@
     </div>
 </div>
 
+<div class="floating-lang">
+    <i class="fi fi-tr" onclick="setLang('tr')"></i>
+    <i class="fi fi-de active" onclick="setLang('de')"></i>
+    <i class="fi fi-gb" onclick="setLang('en')"></i>
+    <i class="fi fi-cn" onclick="setLang('zh')"></i>
+</div>
+
 <script>
     const translations = {
         tr: {
+            nav_home: "Ana Sayfa", nav_eng: "Mühendislik", nav_prod: "Ürünler", nav_hub: "Ofis/Hub", nav_imp: "İletişim",
+            back: "← Ana Sayfaya Dön",
             page_title: "İletişim & Yasal Bilgiler",
             contact_title: "Bize Ulaşın",
             lbl_name: "İsim / Firma", lbl_email: "E-Posta", lbl_msg: "Mesajınız", btn_send: "Gönder",
@@ -166,6 +212,8 @@
             `
         },
         de: {
+            nav_home: "Startseite", nav_eng: "Ingenieurwesen", nav_prod: "Produkte", nav_hub: "Hub", nav_imp: "Kontakt",
+            back: "← Zurück zur Startseite",
             page_title: "Kontakt & Impressum",
             contact_title: "Kontaktieren Sie uns",
             lbl_name: "Name / Firma", lbl_email: "E-Mail", lbl_msg: "Ihre Nachricht", btn_send: "Senden",
@@ -199,6 +247,8 @@
             `
         },
         en: {
+            nav_home: "Home", nav_eng: "Engineering", nav_prod: "Products", nav_hub: "Hub", nav_imp: "Contact",
+            back: "← Back to Home",
             page_title: "Contact & Legal Information",
             contact_title: "Contact Us",
             lbl_name: "Name / Company", lbl_email: "Email", lbl_msg: "Your Message", btn_send: "Send",
@@ -232,6 +282,8 @@
             `
         },
         zh: {
+            nav_home: "首页", nav_eng: "工程", nav_prod: "产品", nav_hub: "Hub", nav_imp: "联系",
+            back: "← 返回首页",
             page_title: "联系方式与法律信息",
             contact_title: "联系我们",
             lbl_name: "姓名/公司", lbl_email: "电子邮件", lbl_msg: "留言", btn_send: "发送",
