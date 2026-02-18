@@ -9,20 +9,40 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Noto+Sans+SC:wght@400;700&display=swap" rel="stylesheet">
     <style>
         :root { --bee-orange: #FF6600; --bee-dark: #0F1214; --lama-gold: #D4AF37; --radius: 16px; --blur: blur(12px); }
-        body { font-family: 'Inter', sans-serif; margin: 0; background: #FAFAFA; color: #333; }
+        body { font-family: 'Inter', sans-serif; margin: 0; background: #FAFAFA; color: #333; padding-top: 80px; }
         body.lang-zh { font-family: 'Noto Sans SC', sans-serif; }
         a { text-decoration: none; color: inherit; transition: 0.3s; }
         .container { width: 92%; max-width: 1280px; margin: 0 auto; padding: 0 20px; }
         
-        /* Nav */
-        nav { display: flex; justify-content: space-between; align-items: center; padding: 20px 0; }
-        .logo { font-weight: 800; font-size: 1.5rem; letter-spacing: -1px; }
-        .nav-links { display: flex; gap: 24px; background: rgba(255,255,255,0.8); padding: 12px 24px; border-radius: 100px; backdrop-filter: var(--blur); border: 1px solid rgba(0,0,0,0.05); }
-        .lang-switch i { cursor: pointer; margin-left: 10px; opacity: 0.6; transition: 0.2s; }
-        .lang-switch i:hover, .lang-switch i.active { opacity: 1; transform: scale(1.1); }
+        /* Neuer Header */
+        header { 
+            background: rgba(255,255,255,0.95); 
+            backdrop-filter: blur(10px);
+            position: fixed; 
+            top: 0; left: 0; right: 0; 
+            z-index: 1000; 
+            border-bottom: 1px solid #eee;
+            height: 80px;
+            display: flex;
+            align-items: center;
+        }
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        .logo-group { display: flex; align-items: center; gap: 20px; }
+        .logo-img { height: 40px; width: auto; object-fit: contain; }
+        .logo-divider { height: 30px; width: 1px; background: #ddd; }
+        .nav-links { display: flex; gap: 24px; font-weight: 600; font-size: 0.95rem; }
+        .nav-links a:hover { color: var(--bee-orange); }
 
         /* Hero */
-        .hero { text-align: center; padding: 100px 20px 60px; }
+        .hero { text-align: center; padding: 60px 20px 60px; }
         .hero h1 { font-size: 3.5rem; line-height: 1.1; margin-bottom: 20px; letter-spacing: -1.5px; color: var(--bee-dark); }
         .lama-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(212, 175, 55, 0.1); color: var(--lama-gold); padding: 6px 16px; border-radius: 100px; font-weight: 600; font-size: 0.9rem; margin-bottom: 24px; border: 1px solid rgba(212, 175, 55, 0.2); }
         .btn { display: inline-block; background: var(--bee-dark); color: white; padding: 16px 32px; border-radius: 100px; font-weight: 600; margin-top: 30px; }
@@ -39,27 +59,41 @@
         /* Footer */
         footer { border-top: 1px solid #eee; padding: 40px 0; text-align: center; color: #888; font-size: 0.9rem; }
         
-        @media (max-width: 768px) { .hero h1 { font-size: 2.5rem; } .nav-links { display: none; } }
+        .floating-lang { position: fixed; bottom: 20px; right: 20px; background: white; padding: 10px 20px; border-radius: 50px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); z-index: 100; display: flex; gap: 15px; }
+        .floating-lang i { cursor: pointer; transition: 0.2s; font-size: 1.2rem; }
+        .floating-lang i.active { transform: scale(1.2); }
+
+        @media (max-width: 900px) { 
+            .hero h1 { font-size: 2.5rem; } 
+            .nav-links { display: none; }
+            .logo-group { gap: 10px; }
+        }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <nav>
-        <div class="logo">beeNEO<span style="color:var(--bee-orange)">.biz</span></div>
-        <div class="nav-links">
-            <a href="engineering.html" data-i18n="nav_eng">Engineering</a>
-            <a href="products.html" data-i18n="nav_prod">Produkte</a>
-            <a href="hub.html" data-i18n="nav_hub">Hub</a>
+<header>
+    <div class="nav-container">
+        <div class="logo-group">
+            <a href="index.html">
+                <img src="beeNEO_Logo2026beebgd.png" alt="beeNEO" class="logo-img">
+            </a>
+            <div class="logo-divider"></div>
+            <a href="products.html">
+                <img src="lvkonlogo.png" alt="Lvkon" class="logo-img" style="opacity: 0.8;">
+            </a>
         </div>
-        <div class="lang-switch">
-            <i class="fi fi-tr" onclick="setLang('tr')"></i>
-            <i class="fi fi-de active" onclick="setLang('de')"></i>
-            <i class="fi fi-gb" onclick="setLang('en')"></i>
-            <i class="fi fi-cn" onclick="setLang('zh')"></i>
-        </div>
-    </nav>
 
+        <nav class="nav-links">
+            <a href="index.html" data-i18n="nav_home">Startseite</a>
+            <a href="engineering.html" data-i18n="nav_eng">Ingenieurwesen</a>
+            <a href="hub.html" data-i18n="nav_hub">Hub</a>
+            <a href="impressum.html" data-i18n="nav_imp">Kontakt</a>
+        </nav>
+    </div>
+</header>
+
+<div class="container">
     <section class="hero">
         <div class="lama-badge"><i class="fa-solid fa-bolt"></i> POWERED BY SMART LAMA</div>
         <h1 data-i18n="hero_title">Agiles Lean Management<br>Normenkonform.</h1>
@@ -106,10 +140,17 @@
     </footer>
 </div>
 
+<div class="floating-lang">
+    <i class="fi fi-tr" onclick="setLang('tr')"></i>
+    <i class="fi fi-de active" onclick="setLang('de')"></i>
+    <i class="fi fi-gb" onclick="setLang('en')"></i>
+    <i class="fi fi-cn" onclick="setLang('zh')"></i>
+</div>
+
 <script>
     const translations = {
         de: {
-            nav_eng: "Ingenieurwesen", nav_prod: "Produkte", nav_hub: "Hub",
+            nav_home: "Startseite", nav_eng: "Ingenieurwesen", nav_prod: "Produkte", nav_hub: "Hub", nav_imp: "Kontakt",
             hero_title: "Agiles Lean Management<br><span style='color:#FF6600'>Normenkonform.</span>",
             hero_sub: "Wir lösen den Widerspruch zwischen strengen Normen und agiler Geschwindigkeit. Mit Disciplined Agile finden wir Ihren individuellen Weg der Zusammenarbeit – vollständig zertifizierbar nach den Normen der Internationalen Organisation für Normung.",
             btn_more: "Lösungen entdecken",
@@ -122,7 +163,7 @@
             learn_more: "Mehr erfahren →", to_arch: "Zur Architektur →", to_catalog: "Zum Katalog →", imprint: "Rechtliches & Datenschutz"
         },
         en: {
-            nav_eng: "Engineering", nav_prod: "Products", nav_hub: "Hub",
+            nav_home: "Home", nav_eng: "Engineering", nav_prod: "Products", nav_hub: "Hub", nav_imp: "Contact",
             hero_title: "Agile Lean Management<br><span style='color:#FF6600'>Compliant with Standards.</span>",
             hero_sub: "We resolve the conflict between rigid standards and agile speed. With Disciplined Agile, we find your unique Way of Working – fully certifiable according to International Organization for Standardization standards.",
             btn_more: "Discover Solutions",
@@ -135,7 +176,7 @@
             learn_more: "Learn More →", to_arch: "To Architecture →", to_catalog: "To Catalog →", imprint: "Legal & Privacy"
         },
         tr: {
-            nav_eng: "Mühendislik", nav_prod: "Ürünler", nav_hub: "Ofis/Hub",
+            nav_home: "Ana Sayfa", nav_eng: "Mühendislik", nav_prod: "Ürünler", nav_hub: "Ofis/Hub", nav_imp: "İletişim",
             hero_title: "Endüstri Standartlarına Uygun<br><span style='color:#FF6600'>Çevik Yalın Yönetim.</span>",
             hero_sub: "Sert standartlar ile çevik hız arasındaki çelişkiyi çözüyoruz. Disciplined Agile ile size özel Çalışma Yolu'nuzu buluyoruz – Uluslararası Standartlar Teşkilatı normlarına tam uyumlu.",
             btn_more: "Çözümleri Keşfet",
@@ -148,7 +189,7 @@
             learn_more: "Daha Fazla →", to_arch: "Mimariye Git →", to_catalog: "Kataloğa Git →", imprint: "Yasal & Gizlilik"
         },
         zh: {
-            nav_eng: "工程", nav_prod: "硬件", nav_hub: "Hub",
+            nav_home: "首页", nav_eng: "工程", nav_prod: "硬件", nav_hub: "Hub", nav_imp: "联系",
             hero_title: "符合工业标准的<br><span style='color:#FF6600'>敏捷精益管理。</span>",
             hero_sub: "我们解决了严格标准与敏捷速度之间的矛盾。通过规范敏捷方法，我们找到您独特的工作方式 —— 完全符合国际标准化组织的标准。",
             btn_more: "发现解决方案",
