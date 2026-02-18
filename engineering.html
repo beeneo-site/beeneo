@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="de">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,170 +12,199 @@
         body { font-family: 'Inter', sans-serif; margin: 0; background: #FAFAFA; color: #333; }
         body.lang-zh { font-family: 'Noto Sans SC', sans-serif; }
         .container { width: 92%; max-width: 1280px; margin: 0 auto; padding: 0 20px; }
-        a { text-decoration: none; color: inherit; transition: 0.3s; }
-
-        /* Navigation */
-        nav { background: rgba(15, 18, 20, 0.8); backdrop-filter: var(--blur); padding: 15px 0; position: sticky; top: 0; z-index: 1000; border-bottom: 1px solid rgba(255,255,255,0.1); }
-        .nav-content { display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-weight: 800; font-size: 1.5rem; color: #fff; letter-spacing: -1px; }
-        .lang-switch { display: flex; gap: 10px; }
-        .lang-btn { cursor: pointer; opacity: 0.6; transition: 0.3s; color: #fff; font-size: 1.2rem; }
-        .lang-btn:hover, .lang-btn.active { opacity: 1; color: var(--bee-orange); }
-
-        /* Hero */
-        .hero { padding: 100px 0 60px; text-align: center; background: radial-gradient(circle at top right, #1a1a1a, #0F1214); color: white; }
-        .hero h1 { font-size: 3.5rem; font-weight: 800; margin-bottom: 20px; line-height: 1.1; }
-        .hero p { font-size: 1.25rem; opacity: 0.8; max-width: 800px; margin: 0 auto; }
-
-        /* Service Cards & ISO Section */
-        .section-padding { padding: 80px 0; }
-        .service-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 40px; }
-        .service-card { background: white; padding: 40px; border-radius: var(--radius); border: 1px solid #eee; transition: 0.3s; position: relative; overflow: hidden; }
-        .service-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.05); border-color: var(--bee-orange); }
-        .service-card i { font-size: 2.5rem; color: var(--bee-orange); margin-bottom: 20px; display: block; }
-        .service-card h3 { font-size: 1.5rem; margin-bottom: 15px; color: var(--bee-dark); }
         
-        .iso-badge { background: var(--bee-orange); color: white; padding: 5px 15px; border-radius: 50px; font-size: 0.8rem; font-weight: bold; position: absolute; top: 20px; right: 20px; }
+        header { padding: 40px 0; border-bottom: 1px solid #eee; background: white; }
+        .back-link { display: inline-flex; align-items: center; gap: 8px; font-weight: 600; color: var(--bee-dark); text-decoration: none; margin-bottom: 20px; }
+        
+        .section-title { font-size: 2.5rem; margin-bottom: 1rem; letter-spacing: -1px; }
+        .section-subtitle { font-size: 1.2rem; color: #666; max-width: 800px; margin-bottom: 40px; }
 
-        /* Footer */
-        footer { background: var(--bee-dark); color: white; padding: 40px 0; text-align: center; }
-        .footer-logo { font-weight: 800; color: var(--bee-orange); font-size: 1.2rem; margin-bottom: 20px; display: block; }
+        /* USP Section */
+        .usp-box { background: var(--bee-dark); color: white; padding: 40px; border-radius: var(--radius); margin-bottom: 60px; display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
+        .usp-content h3 { color: var(--bee-orange); font-size: 1.8rem; margin-top: 0; }
+        .usp-list { list-style: none; padding: 0; }
+        .usp-list li { margin-bottom: 15px; display: flex; gap: 10px; align-items: flex-start; }
+        .usp-list i { color: var(--lama-gold); margin-top: 5px; }
+
+        /* Grid */
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-bottom: 80px; }
+        .feature { background: white; padding: 30px; border-radius: var(--radius); border: 1px solid #eee; }
+        .feature h3 { margin-top: 0; color: var(--bee-orange); }
+
+        /* Matrix Table */
+        .matrix-container { overflow-x: auto; background: white; border-radius: var(--radius); padding: 20px; box-shadow: 0 5px 20px rgba(0,0,0,0.05); }
+        table { width: 100%; border-collapse: collapse; min-width: 800px; }
+        th, td { padding: 15px; text-align: left; border-bottom: 1px solid #eee; }
+        th { background: #f9f9f9; color: var(--bee-dark); }
+        .tag { display: inline-block; padding: 4px 12px; border-radius: 50px; font-size: 0.85rem; font-weight: 600; }
+        .tag.iso { background: #e3f2fd; color: #1565c0; }
+        .tag.rec { background: #e8f5e9; color: #2e7d32; }
+
+        footer { text-align: center; padding: 40px; color: #888; border-top: 1px solid #ddd; }
+
+        /* Floating Lang Switch */
+        .floating-lang { position: fixed; bottom: 20px; right: 20px; background: white; padding: 10px 20px; border-radius: 50px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); z-index: 100; display: flex; gap: 15px; }
+        .floating-lang i { cursor: pointer; transition: 0.2s; font-size: 1.2rem; }
+        .floating-lang i.active { transform: scale(1.2); }
     </style>
 </head>
 <body>
 
-<nav>
-    <div class="container nav-content">
-        <a href="index.html" class="logo">beeNEO<span style="color:var(--bee-orange)">.</span></a>
-        <div class="lang-switch">
-            <span class="lang-btn fi fi-tr" onclick="setLang('tr')"></span>
-            <span class="lang-btn fi fi-de" onclick="setLang('de')"></span>
-            <span class="lang-btn fi fi-gb" onclick="setLang('en')"></span>
-            <span class="lang-btn fi fi-cn" onclick="setLang('zh')"></span>
-        </div>
-    </div>
-</nav>
-
-<section class="hero">
+<header>
     <div class="container">
-        <h1 data-i18n="head_title">Smart. Lean. Agile.</h1>
-        <p data-i18n="head_sub">Professionelles Engineering auf System-Ebene. 0€ Lizenzkosten. Volle Compliance.</p>
+        <a href="index.html" class="back-link" data-i18n="back">← Zurück</a>
+        <h1 class="section-title" data-i18n="head_title">Smart Lean Agile</h1>
+        <p class="section-subtitle" data-i18n="head_sub">Auf Systemebene. Ohne Lizenzkosten. Vollständig Konform.</p>
     </div>
-</section>
+</header>
 
-<section class="container section-padding">
-    <div id="iso29110" style="padding: 50px; background: white; border-radius: var(--radius); box-shadow: 0 5px 30px rgba(0,0,0,0.03); border: 1px solid #eee;">
-        <h2 style="border-left: 5px solid var(--bee-orange); padding-left: 15px; margin-bottom: 20px;" data-i18n="iso_title">ISO/IEC 29110: KMU & Kleine Teams</h2>
-        <p style="font-size: 1.15rem; color: #555; margin-bottom: 30px;" data-i18n="iso_desc">
-            Wir unterstützen KMU und kleine agile Teams dabei, internationale Qualitätsstandards zu erfüllen – ohne die Bürokratie von Großkonzern-Normen wie IATF 16949 oder AS9100.
-        </p>
+<div class="container" style="margin-top: 40px;">
 
-        <div class="service-grid">
-            <div class="service-card">
-                <span class="iso-badge">VSE Profile</span>
-                <i class="fas fa-lightbulb"></i>
-                <h3 data-i18n="iso_s1_title">Lean Consulting</h3>
-                <p data-i18n="iso_s1_desc">Prozessdefinition ohne Overhead. Wir machen Ihr Team fit für OEM-Anforderungen durch wertschöpfungsorientierte Methoden.</p>
-            </div>
-            <div class="service-card">
-                <i class="fas fa-tools"></i>
-                <h3 data-i18n="iso_s2_title">Digital Toolchain</h3>
-                <p data-i18n="iso_s2_desc">Implementierung von ALM/PLM-Tools wie Siemens Polarion oder Teamcenter, vorkonfiguriert für kleine Einheiten.</p>
-            </div>
-            <div class="service-card">
-                <i class="fas fa-users-cog"></i>
-                <h3 data-i18n="iso_s3_title">Senior Coaching</h3>
-                <p data-i18n="iso_s3_desc">Begleitung durch Experten wie Ayhan Önal (Compliance) und Ulli Schmehl (Prozesse/CMII-P).</p>
-            </div>
+    <!-- USP / Compliance Section -->
+    <div class="usp-box">
+        <div class="usp-content">
+            <h3 data-i18n="usp_title">Disciplined Agile & Compliance</h3>
+            <p data-i18n="usp_text">Wir integrieren die Anforderungen der Internationalen Organisation für Normung direkt in Ihren Arbeitsablauf.</p>
+        </div>
+        <ul class="usp-list">
+            <li><i class="fa-solid fa-check"></i> <span data-i18n="usp_l1">Individueller Weg der Zusammenarbeit (Way of Working).</span></li>
+            <li><i class="fa-solid fa-check"></i> <span data-i18n="usp_l2">Audit-Sicherheit ohne bürokratische Hürden.</span></li>
+            <li><i class="fa-solid fa-check"></i> <span data-i18n="usp_l3">Geführte Kontinuierliche Verbesserung.</span></li>
+        </ul>
+    </div>
+
+    <!-- Toolchain Grid -->
+    <h2 data-i18n="tool_title">Die „Null Kosten“ Werkzeugkette</h2>
+    <p style="margin-bottom: 30px; color: #666;" data-i18n="tool_desc">Wir integrieren Linux, Odoo Community Edition und Google Workspace in eine nahtlose Umgebung.</p>
+    
+    <div class="grid">
+        <div class="feature">
+            <h3 data-i18n="t1_title">1. Open Source Rückgrat</h3>
+            <p>Debian/Ubuntu Linux für Stabilität. Keine Windows-Lizenzgebühren. Docker für Containerisierung.</p>
+        </div>
+        <div class="feature">
+            <h3 data-i18n="t2_title">2. Zusammenarbeit</h3>
+            <p>Google Workspace oder Nextcloud für Dokumente. Integration mit Odoo für Projektmanagement.</p>
+        </div>
+        <div class="feature">
+            <h3 data-i18n="s3_title">Werkzeug-Implementierung</h3>
+            <p data-i18n="s3_desc">Einrichtung der Infrastruktur ohne Lizenzkosten.</p>
         </div>
     </div>
-</section>
+
+    <!-- Scaling Matrix -->
+    <h2 data-i18n="scale_title">Taktische Skalierungsmatrix</h2>
+    <p style="margin-bottom: 20px;" data-i18n="scale_desc">Maßgeschneiderte Prozesse für Ihre Teamgröße.</p>
+    
+    <div class="matrix-container">
+        <table>
+            <thead>
+                <tr>
+                    <th data-i18n="th_size">Teamgröße</th>
+                    <th data-i18n="th_cat">Kategorie</th>
+                    <th data-i18n="th_rec">Empfehlung</th>
+                    <th data-i18n="th_iso">Normen-Konformität</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1-5</td>
+                    <td data-i18n="td_sim">Einfach</td>
+                    <td><span class="tag rec">Kanban / Scrum</span></td>
+                    <td><span class="tag iso">Grundlegende Profile</span></td>
+                </tr>
+                <tr>
+                    <td>5-20</td>
+                    <td data-i18n="td_phys">Hardware / Eingebettet</td>
+                    <td><span class="tag rec">Disciplined Agile Delivery</span></td>
+                    <td><span class="tag iso">Internationale Organisation für Normung 29110</span></td>
+                </tr>
+                <tr>
+                    <td>20-50+</td>
+                    <td data-i18n="td_comp">Komplexes System</td>
+                    <td><span class="tag rec">SAFe / LeSS</span></td>
+                    <td><span class="tag iso">Automotive SPICE (ASPICE)</span></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="floating-lang">
+    <i class="fi fi-tr" onclick="setLang('tr')"></i>
+    <i class="fi fi-de active" onclick="setLang('de')"></i>
+    <i class="fi fi-gb" onclick="setLang('en')"></i>
+    <i class="fi fi-cn" onclick="setLang('zh')"></i>
+</div>
 
 <footer>
-    <div class="container">
-        <span class="footer-logo">beeNEO</span>
-        <p>&copy; 2025 beeNEO Business Hub | <a href="impressum.html" data-i18n="imprint">Impressum</a></p>
-    </div>
+    <p>&copy; 2026 beeNEO.biz - <a href="impressum.html" data-i18n="imprint">Rechtliches & Datenschutz</a></p>
 </footer>
 
 <script>
     const translations = {
-        tr: {
-            head_title: "Akıllı. Yalın. Çevik.",
-            head_sub: "Sistem seviyesinde profesyonel mühendislik. 0€ Lisans maliyeti. Tam uyumluluk.",
-            iso_title: "KOBİ'ler ve Küçük Ekipler İçin ISO/IEC 29110",
-            iso_desc: "IATF 16949 veya AS9100 gibi ağır standartların yükü olmadan profesyonel mühendislik. KOBİ'lerin uluslararası kalite standartlarını verimli bir şekilde karşılamasını sağlıyoruz.",
-            iso_s1_title: "Yalın Danışmanlık",
-            iso_s1_desc: "Bürokrasi olmadan süreç tanımlama. Değer yaratmaya odaklanarak ekibinizi OEM gereksinimlerine hazırlıyoruz.",
-            iso_s2_title: "Dijital Araç Zinciri",
-            iso_s2_desc: "Siemens Polarion veya Teamcenter gibi ALM/PLM araçlarının küçük birimler için optimize edilmiş kurulumu.",
-            iso_s3_title: "Kıdemli Koçluk",
-            iso_s3_desc: "Ayhan Önal (Uyumluluk) ve Ulli Schmehl (Süreçler/CMII-P) gibi uzmanlar eşliğinde profesyonel destek.",
-            imprint: "Yasal Bilgiler"
-        },
         de: {
-            head_title: "Smart. Lean. Agile.",
-            head_sub: "Professionelles Engineering auf System-Ebene. 0€ Lizenzkosten. Volle Compliance.",
-            iso_title: "ISO/IEC 29110: KMU & Kleine Teams",
-            iso_desc: "Professionelles Engineering ohne den Overhead von IATF 16949 oder AS9100. Wir unterstützen KMU dabei, internationale Standards schlank zu erfüllen.",
-            iso_s1_title: "Schlanke Beratung",
-            iso_s1_desc: "Prozessdefinition ohne Overhead. Fokus auf das Wesentliche, um Ihre Marktfähigkeit bei OEMs zu sichern.",
-            iso_s2_title: "Digitale Toolchain",
-            iso_s2_desc: "Implementierung von Siemens Polarion oder Teamcenter, vorkonfiguriert für kleine Einheiten.",
-            iso_s3_title: "Senior Coaching",
-            iso_s3_desc: "Begleitung durch Experten wie Ayhan Önal (Compliance) und Ulli Schmehl (Prozesse/CMII-P).",
-            imprint: "Impressum & Datenschutz"
+            back: "← Zurück",
+            head_title: "Smart Lean Agile", head_sub: "Auf Systemebene. Ohne Lizenzkosten. Vollständig Konform.",
+            usp_title: "Disciplined Agile & Compliance", usp_text: "Wir integrieren die Anforderungen der Internationalen Organisation für Normung direkt in Ihren Arbeitsablauf.",
+            usp_l1: "Individueller Weg der Zusammenarbeit (Way of Working)", usp_l2: "Audit-Sicherheit ohne bürokratische Hürden", usp_l3: "Geführte Kontinuierliche Verbesserung",
+            tool_title: "Die „Null Kosten“ Werkzeugkette", tool_desc: "Wir integrieren Linux, Odoo Community Edition und Google Workspace in eine nahtlose Umgebung für das Lebenszyklusmanagement von Anwendungen und Produkten.",
+            t1_title: "1. Open Source Rückgrat", t2_title: "2. Zusammenarbeit",
+            s3_title: "Werkzeug-Implementierung", s3_desc: "Einrichtung der Infrastruktur ohne Lizenzkosten.",
+            scale_title: "Taktische Skalierungsmatrix", scale_desc: "Maßgeschneiderte Prozesse für Ihre Teamgröße.",
+            th_size: "Teamgröße", th_cat: "Kategorie", th_rec: "Empfehlung", th_iso: "Normen-Konformität",
+            td_sim: "Einfach", td_phys: "Hardware", td_comp: "Komplex", td_crit: "Kritisch", imprint: "Rechtliches & Datenschutz"
         },
         en: {
-            head_title: "Smart. Lean. Agile.",
-            head_sub: "Professional Engineering on System Level. 0€ License Costs. Full Compliance.",
-            iso_title: "ISO/IEC 29110 for SMEs & Small Teams",
-            iso_desc: "Professional engineering without the overhead of heavy standards. We help small teams meet international quality standards in a lean way.",
-            iso_s1_title: "Lean Consulting",
-            iso_s1_desc: "Process definition without bureaucracy. We focus on value creation to meet OEM requirements.",
-            iso_s2_title: "Digital Toolchain",
-            iso_s2_desc: "Implementation of ALM/PLM tools like Siemens Polarion, pre-configured for small-scale operations.",
-            iso_s3_title: "Senior Coaching",
-            iso_s3_desc: "Led by experts Ayhan Önal (Compliance) and Ulli Schmehl (Processes/CMII-P).",
-            imprint: "Legal & Privacy"
+            back: "← Back",
+            head_title: "Smart Lean Agile", head_sub: "System Level. Zero License Cost. Fully Compliant.",
+            usp_title: "Disciplined Agile & Compliance", usp_text: "We integrate International Organization for Standardization requirements directly into your workflow.",
+            usp_l1: "Individual Way of Working", usp_l2: "Audit security without bureaucratic hurdles", usp_l3: "Guided Continuous Improvement",
+            tool_title: "The “Zero Cost” Enterprise Toolchain", tool_desc: "We integrate Linux, Odoo Community Edition, and Google Workspace into a seamless Application and Product Lifecycle Management environment.",
+            t1_title: "1. Open Source Backbone", t2_title: "2. Collaboration",
+            s3_title: "Tool Implementation", s3_desc: "Setup of infrastructure with zero license costs.",
+            scale_title: "Tactical Scaling Matrix", scale_desc: "Processes tailored to your team size.",
+            th_size: "Team Size", th_cat: "Category", th_rec: "Recommendation", th_iso: "Standard Compliance",
+            td_sim: "Simple", td_phys: "Hardware", td_comp: "Complex", td_crit: "Critical", imprint: "Legal & Privacy"
+        },
+        tr: {
+            back: "← Geri",
+            head_title: "Akıllı Yalın Çevik", head_sub: "Sistem Seviyesi. Sıfır Lisans Maliyeti. Tam Uyumlu.",
+            usp_title: "Disciplined Agile & Uyumluluk", usp_text: "Uluslararası Standartlar Teşkilatı gereksinimlerini doğrudan iş akışınıza entegre ediyoruz.",
+            usp_l1: "Bireysel Çalışma Yolu (Way of Working)", usp_l2: "Bürokratik engeller olmadan denetim güvenliği", usp_l3: "Rehberli Sürekli İyileştirme",
+            tool_title: "“Sıfır Maliyet” Kurumsal Araç Zinciri", tool_desc: "Linux, Odoo Topluluk Sürümü ve Google Workspace'i kesintisiz bir Uygulama ve Ürün Yaşam Döngüsü Yönetimi ortamına entegre ediyoruz.",
+            t1_title: "1. Açık Kaynak Omurga", t2_title: "2. İşbirliği",
+            s3_title: "Araç Uygulama", s3_desc: "Sıfır lisans maliyeti ile altyapı kurulumu.",
+            scale_title: "Taktik Ölçeklendirme Matrisi", scale_desc: "Ekip büyüklüğünüze göre uyarlanmış süreçler.",
+            th_size: "Ekip Büyüklüğü", th_cat: "Kategori", th_rec: "Öneri", th_iso: "Standart Uyumluluğu",
+            td_sim: "Basit", td_phys: "Donanım", td_comp: "Karmaşık", td_crit: "Kritik", imprint: "Yasal & Gizlilik"
         },
         zh: {
-            head_title: "智能. 精益. 敏捷.",
-            head_sub: "系统级专业工程。0€ 许可成本。完全合规。",
-            iso_title: "面向中小企业和小型团队的 ISO/IEC 29110",
-            iso_desc: "无需 IATF 16949 或 AS9100 等繁重标准。我们帮助小型团队以精益的方式满足国际质量标准。",
-            iso_s1_title: "精益咨询",
-            iso_s1_desc: "摒弃官僚主义的过程定义。专注于核心价值，助您满足 OEM 厂商的需求。",
-            iso_s2_title: "数字化工具链",
-            iso_s2_desc: "实施 Siemens Polarion 或 Teamcenter 等工具，专为小型团队优化配置。",
-            iso_s3_title: "资深辅导",
-            iso_s3_desc: "由专家 Ayhan Önal（合规）和 Ulli Schmehl（流程/CMII-P）提供专业支持。",
-            imprint: "法律与隐私"
+            back: "← 返回",
+            head_title: "智能精益敏捷", head_sub: "系统级别。零许可成本。完全合规。",
+            usp_title: "规范敏捷 (Disciplined Agile) 与合规性", usp_text: "我们将国际标准化组织的要求直接整合到您的工作流程中。",
+            usp_l1: "独特的“工作方式” (Way of Working)", usp_l2: "没有官僚障碍的审计安全性", usp_l3: "引导式持续改进",
+            tool_title: "“零成本”企业工具链", tool_desc: "我们将 Linux、Odoo 社区版和 Google Workspace 集成到一个无缝的应用程序和产品生命周期管理环境中。",
+            t1_title: "1. 开源骨干", t2_title: "2. 协作",
+            s3_title: "工具实施", s3_desc: "零许可成本的基础设施设置。",
+            scale_title: "战术扩展矩阵", scale_desc: "针对您的团队规模量身定制的流程。",
+            th_size: "团队规模", th_cat: "类别", th_rec: "推荐", th_iso: "标准合规性",
+            td_sim: "简单", td_phys: "硬件", td_comp: "复杂", td_crit: "关键", imprint: "法律与隐私"
         }
     };
 
     function setLang(lang) {
-        document.body.className = lang === 'zh' ? 'lang-zh' : '';
         document.querySelectorAll('[data-i18n]').forEach(el => {
             const key = el.getAttribute('data-i18n');
             if (translations[lang][key]) {
-                el.innerText = translations[lang][key];
+                el.innerHTML = translations[lang][key];
             }
         });
-        document.querySelectorAll('.lang-btn').forEach(btn => {
-            btn.classList.remove('active');
-            if (btn.classList.contains('fi-' + (lang === 'en' ? 'gb' : lang))) {
-                btn.classList.add('active');
-            }
-        });
-        localStorage.setItem('preferredLang', lang);
+        document.body.className = lang === 'zh' ? 'lang-zh' : '';
+        document.querySelectorAll('.fi').forEach(i => i.classList.remove('active'));
+        document.querySelector(`.fi-${lang === 'en' ? 'gb' : (lang === 'zh' ? 'cn' : lang)}`).classList.add('active');
+        document.documentElement.lang = lang;
     }
-
-    // Initialize
-    window.onload = () => {
-        const savedLang = localStorage.getItem('preferredLang') || 'tr';
-        setLang(savedLang);
-    };
 </script>
 
 </body>
