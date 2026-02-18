@@ -11,91 +11,85 @@
         :root {
             --bee-red: #D9232E; --bee-blue: #2B3D50; --bee-dark: #0F1214; --bee-light: #F8F9FA;
             --white: #ffffff; --text-main: #333333; --radius: 12px; --shadow: 0 10px 30px rgba(0,0,0,0.08);
-            --lvkon-orange: #FF6600; /* Spezifisches Orange für Produkt-Highlights */
+            --lvkon-orange: #FF6600;
         }
         * { box-sizing: border-box; margin: 0; padding: 0; outline: none; }
         html { scroll-behavior: smooth; }
         body { font-family: 'Manrope', 'Noto Sans SC', sans-serif; color: var(--text-main); line-height: 1.6; background: var(--white); overflow-x: hidden; }
         
-        /* Header (Identisch zu Index) */
-        header { position: fixed; top: 0; width: 100%; height: 90px; background: rgba(255,255,255,0.9); backdrop-filter: blur(12px); z-index: 1000; border-bottom: 1px solid rgba(0,0,0,0.05); }
-        .nav-container { max-width: 1300px; margin: 0 auto; padding: 0 25px; height: 100%; display: flex; justify-content: space-between; align-items: center; }
-        .logo-wrapper { display: flex; align-items: center; gap: 25px; }
-        .logo-img { height: 45px; transition: transform 0.3s; }
-        .logo-img:hover { transform: scale(1.05); }
+        /* --- HEADER --- */
+        header { position: fixed; top: 0; width: 100%; height: 90px; background: rgba(255,255,255,0.95); backdrop-filter: blur(12px); z-index: 1000; border-bottom: 1px solid rgba(0,0,0,0.05); }
+        .nav-container { max-width: 1400px; margin: 0 auto; padding: 0 25px; height: 100%; display: flex; justify-content: space-between; align-items: center; }
+        .logo-wrapper { display: flex; align-items: center; gap: 20px; }
+        .logo-img { height: 45px; transition: transform 0.3s; cursor: pointer; }
         .divider { height: 30px; width: 1px; background: #ddd; }
         .nav-menu { display: flex; gap: 30px; align-items: center; }
-        .nav-item { position: relative; padding: 10px 0; }
         .nav-link { text-decoration: none; color: var(--bee-blue); font-weight: 600; font-size: 0.95rem; transition: 0.3s; }
         .nav-link:hover { color: var(--bee-red); }
-        .dropdown { position: absolute; top: 100%; left: -20px; background: var(--white); min-width: 260px; border-radius: var(--radius); box-shadow: var(--shadow); opacity: 0; visibility: hidden; transform: translateY(10px); transition: 0.3s ease; padding: 10px 0; border-top: 3px solid var(--bee-red); }
-        .nav-item:hover .dropdown { opacity: 1; visibility: visible; transform: translateY(0); }
-        .dropdown a { display: block; padding: 12px 25px; color: var(--text-main); text-decoration: none; font-size: 0.9rem; transition: 0.2s; }
-        .dropdown a:hover { background: var(--bee-light); color: var(--bee-red); padding-left: 30px; }
-        .lang-switch { display: flex; gap: 12px; margin-left: 20px; padding-left: 20px; border-left: 1px solid #eee; }
-        .fi { font-size: 1.2rem; cursor: pointer; filter: grayscale(100%); opacity: 0.5; transition: 0.3s; }
-        .fi:hover, .fi.active { filter: grayscale(0%); opacity: 1; transform: scale(1.1); }
 
-        /* Hero Product Page */
-        .hero-prod { padding: 160px 0 80px; background: var(--bee-light); text-align: center; border-bottom: 1px solid #eee; }
-        .container { max-width: 1300px; margin: 0 auto; padding: 0 25px; }
-        .hero-prod h1 { font-size: 3rem; color: var(--bee-blue); margin-bottom: 15px; font-weight: 800; }
-        .hero-prod p { font-size: 1.2rem; color: #666; max-width: 800px; margin: 0 auto 40px; }
-        
-        /* Quick Nav */
-        .quick-nav { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
-        .qn-btn { background: white; border: 1px solid #ddd; padding: 12px 25px; border-radius: 50px; font-size: 0.95rem; font-weight: 700; color: var(--bee-blue); transition: 0.3s; text-decoration: none; display: flex; align-items: center; gap: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
-        .qn-btn:hover { border-color: var(--bee-red); color: var(--bee-red); transform: translateY(-3px); box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
-        
-        /* Target Group Section */
-        .target-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin: 60px 0; }
-        .target-card { background: white; padding: 40px; border-radius: var(--radius); border: 1px solid #eee; transition: 0.3s; position: relative; overflow: hidden; }
-        .target-card:hover { transform: translateY(-5px); box-shadow: var(--shadow); border-color: var(--bee-red); }
-        .target-card h3 { color: var(--bee-blue); font-size: 1.5rem; margin-bottom: 20px; display: flex; align-items: center; gap: 15px; }
-        .target-card ul { padding-left: 20px; color: #555; }
-        .target-card li { margin-bottom: 10px; }
-        .icon-bg { position: absolute; right: -20px; bottom: -20px; font-size: 8rem; color: rgba(0,0,0,0.03); z-index: 0; }
+        /* --- LANGUAGE SWITCHER --- */
+        .lang-switch { position: relative; display: flex; align-items: center; gap: 10px; margin-left: 20px; padding-left: 20px; border-left: 1px solid #eee; }
+        .lang-current { display: flex; align-items: center; gap: 8px; cursor: pointer; font-weight: 700; color: var(--bee-blue); font-size: 0.9rem; }
+        .lang-dropdown { position: absolute; top: 100%; right: 0; background: var(--white); min-width: 160px; border-radius: 8px; box-shadow: var(--shadow); opacity: 0; visibility: hidden; transform: translateY(10px); transition: 0.3s ease; padding: 10px 0; list-style: none; border: 1px solid #eee; }
+        .lang-switch:hover .lang-dropdown { opacity: 1; visibility: visible; transform: translateY(5px); }
+        .lang-option { display: flex; align-items: center; gap: 12px; padding: 10px 20px; cursor: pointer; transition: 0.2s; }
+        .lang-option:hover { background: var(--bee-light); color: var(--bee-red); }
 
-        /* Product Sections */
-        .prod-section { padding: 100px 0; border-bottom: 1px solid #eee; }
-        .sec-header { margin-bottom: 40px; max-width: 900px; }
-        .sec-title { font-size: 2.2rem; color: var(--bee-blue); margin-bottom: 15px; border-left: 5px solid var(--bee-red); padding-left: 20px; }
-        .sec-desc { font-size: 1.1rem; color: #555; line-height: 1.7; }
+        /* --- MARQUEE --- */
+        .marquee-container { overflow: hidden; white-space: nowrap; position: relative; padding: 25px 0; background: var(--white); border-bottom: 1px solid #eee; margin-top: 90px; }
+        .marquee-content { display: inline-block; animation: marquee 50s linear infinite; }
+        .ref-item { display: inline-block; margin: 0 40px; font-size: 1.1rem; font-weight: 700; color: #bbb; text-transform: uppercase; }
+        @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
-        /* Benefits Box */
-        .benefits-box { background: #fff5f5; padding: 30px; border-radius: var(--radius); margin-top: 30px; border: 1px solid #ffcccc; }
-        .benefits-box h4 { margin-bottom: 20px; color: var(--bee-red); text-transform: uppercase; font-size: 0.9rem; letter-spacing: 1px; }
-        .benefits-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; }
-        .benefit-item { display: flex; align-items: center; gap: 12px; font-weight: 600; color: var(--bee-blue); }
-        .benefit-item i { color: var(--bee-red); font-size: 1.2rem; }
+        /* --- HERO --- */
+        .hero-main { padding: 80px 0; text-align: center; background: radial-gradient(circle at 50% 50%, rgba(217, 35, 46, 0.03), transparent 70%); }
+        .hero-main h1 { font-size: 3.2rem; color: var(--bee-blue); font-weight: 800; margin-bottom: 20px; }
+        .hero-main p { font-size: 1.2rem; color: #555; max-width: 900px; margin: 0 auto 50px; }
 
-        /* Tech Specs Table */
-        .table-wrapper { margin-top: 40px; overflow-x: auto; border-radius: var(--radius); box-shadow: 0 5px 20px rgba(0,0,0,0.05); border: 1px solid #eee; }
-        .spec-table { width: 100%; border-collapse: collapse; min-width: 800px; background: white; }
-        .spec-table th { background: var(--bee-blue); color: white; padding: 15px 20px; text-align: left; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; }
-        .spec-table td { padding: 15px 20px; border-bottom: 1px solid #eee; color: #555; font-size: 0.95rem; }
-        .spec-table tr:last-child td { border-bottom: none; }
-        .spec-table tr:hover { background-color: #f9f9f9; }
-        .model-col { font-weight: 800; color: var(--bee-red); }
+        /* --- STATS SECTION --- */
+        .stats-banner { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-bottom: 60px; background: var(--bee-blue); padding: 40px; border-radius: var(--radius); color: white; text-align: center; }
+        .stat-card h2 { color: var(--bee-red); font-size: 2.5rem; margin-bottom: 5px; }
+        .stat-card p { color: rgba(255,255,255,0.8); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; font-weight: 700; }
 
-        /* About & Footer */
-        .about-lvkon { background: var(--bee-blue); color: white; padding: 60px; border-radius: var(--radius); margin: 80px 0; text-align: center; }
-        .about-lvkon h2 { color: white; margin-bottom: 20px; }
-        
+        /* --- VALUE PROPOSITION --- */
+        .value-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-bottom: 80px; }
+        .value-card { background: var(--white); padding: 40px; border-radius: var(--radius); box-shadow: var(--shadow); border-top: 4px solid var(--bee-red); transition: 0.3s; }
+        .value-card:hover { transform: translateY(-5px); }
+        .value-card i { font-size: 2.5rem; color: var(--bee-red); margin-bottom: 20px; }
+        .value-card h3 { color: var(--bee-blue); margin-bottom: 15px; }
+
+        /* --- HUB SELECTION --- */
+        .hub-title { text-align: center; margin-bottom: 40px; font-size: 2rem; color: var(--bee-blue); font-weight: 800; }
+        .category-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; margin-bottom: 80px; }
+        .cat-card { background: var(--white); border: 2px solid #eee; border-radius: var(--radius); padding: 35px; text-align: center; cursor: pointer; transition: 0.3s; }
+        .cat-card:hover { border-color: var(--bee-red); box-shadow: var(--shadow); transform: scale(1.02); }
+        .cat-card i { font-size: 3rem; color: var(--bee-blue); margin-bottom: 20px; }
+        .cat-card:hover i { color: var(--bee-red); }
+        .cat-card h4 { font-size: 1.3rem; font-weight: 800; margin-bottom: 10px; }
+
+        /* --- DETAIL VIEW (DYNAMIC) --- */
+        #detail-view { display: none; padding: 60px 0; }
+        .back-btn { display: inline-flex; align-items: center; gap: 10px; padding: 12px 25px; background: var(--bee-light); border-radius: 5px; font-weight: 700; cursor: pointer; margin-bottom: 40px; transition: 0.2s; }
+        .back-btn:hover { background: #eee; color: var(--bee-red); }
+
+        .spec-table { width: 100%; border-collapse: collapse; margin-top: 30px; background: white; border-radius: 8px; overflow: hidden; box-shadow: var(--shadow); }
+        .spec-table th { background: var(--bee-blue); color: white; padding: 15px; text-align: left; text-transform: uppercase; font-size: 0.8rem; }
+        .spec-table td { padding: 15px; border-bottom: 1px solid #eee; font-size: 0.95rem; }
+        .model-name { font-weight: 800; color: var(--bee-red); }
+
+        /* --- FOOTER --- */
         footer { background: var(--bee-blue); color: #ccc; padding: 80px 0 30px; }
-        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; margin-bottom: 60px; }
-        .footer h4 { color: white; margin-bottom: 25px; font-size: 1.1rem; }
-        .footer a { color: #ccc; text-decoration: none; display: block; margin-bottom: 12px; transition: 0.3s; }
-        .footer a:hover { color: var(--bee-red); padding-left: 5px; }
-        .copyright { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 30px; text-align: center; font-size: 0.9rem; }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; }
+        .copyright { border-top: 1px solid rgba(255,255,255,0.1); margin-top: 60px; padding-top: 30px; text-align: center; font-size: 0.9rem; }
 
         @media (max-width: 1024px) {
             .nav-menu { display: none; }
-            .target-grid { grid-template-columns: 1fr; }
+            .stats-banner { grid-template-columns: 1fr 1fr; }
+            .hero-main h1 { font-size: 2.5rem; }
         }
     </style>
 </head>
-<body class="lang-de">
+<body>
 
     <header>
         <div class="nav-container">
@@ -104,462 +98,260 @@
                 <div class="divider"></div>
                 <a href="products.html"><img src="lvkonlogo.png" alt="Lvkon" class="logo-img"></a>
             </div>
-            
             <nav class="nav-menu">
-                <div class="nav-item">
-                    <a href="engineering.html" class="nav-link" data-i18n="menu_eng">Engineering</a>
-                    <div class="dropdown">
-                        <a href="engineering-solutions.html" data-i18n="sub_sol">Solutions & Processes</a>
-                        <a href="digital-toolchain.html" data-i18n="sub_tool">Digital Toolchain</a>
-                        <a href="senior-coaching.html" data-i18n="sub_coach">Senior Coaching</a>
-                        <a href="lean-consulting.html" data-i18n="sub_lean">Lean Consulting</a>
-                    </div>
-                </div>
-                <div class="nav-item">
-                    <a href="products.html" class="nav-link" style="color:var(--bee-red);" data-i18n="menu_prod">Produkte</a>
-                    <div class="dropdown">
-                        <a href="#hybrid">Hybrid Systems</a>
-                        <a href="#electric">Pure Electric (TED)</a>
-                        <a href="#mining">Heavy Duty & Mining</a>
-                        <a href="#axle">E-Axles</a>
-                    </div>
-                </div>
+                <div class="nav-item"><a href="engineering.html" class="nav-link" data-i18n="menu_eng">Engineering</a></div>
+                <div class="nav-item"><a href="#" onclick="showHome()" class="nav-link" style="color:var(--bee-red);" data-i18n="menu_prod">Produkte</a></div>
                 <div class="nav-item"><a href="hub.html" class="nav-link" data-i18n="menu_hub">Hub & R&D</a></div>
                 <div class="nav-item"><a href="about.html" class="nav-link" data-i18n="menu_about">Über Uns</a></div>
                 <div class="nav-item"><a href="contact.html" class="nav-link" data-i18n="menu_contact">Kontakt</a></div>
-                
                 <div class="lang-switch">
-                    <i class="fi fi-de active" onclick="changeLang('de')"></i>
-                    <i class="fi fi-gb" onclick="changeLang('en')"></i>
-                    <i class="fi fi-tr" onclick="changeLang('tr')"></i>
-                    <i class="fi fi-cn" onclick="changeLang('zh')"></i>
+                    <div class="lang-current" id="current-lang">
+                        <span class="fi fi-de"></span> DE <i class="fas fa-chevron-down" style="font-size: 0.7rem;"></i>
+                    </div>
+                    <ul class="lang-dropdown">
+                        <li class="lang-option" onclick="changeLang('de')"><span class="fi fi-de"></span> Deutsch</li>
+                        <li class="lang-option" onclick="changeLang('en')"><span class="fi fi-gb"></span> English</li>
+                        <li class="lang-option" onclick="changeLang('tr')"><span class="fi fi-tr"></span> Türkçe</li>
+                        <li class="lang-option" onclick="changeLang('zh')"><span class="fi fi-cn"></span> 中文</li>
+                    </ul>
                 </div>
             </nav>
         </div>
     </header>
 
-    <div class="hero-prod">
-        <div class="container">
-            <h1 data-i18n="page_title">Lvkon Produktkatalog</h1>
-            <p data-i18n="page_sub">Weltweit führende Antriebssysteme für Nutzfahrzeuge: Hybrid, Elektrisch, AMT & E-Achsen.</p>
-            
-            <div class="quick-nav">
-                <a href="#hybrid" class="qn-btn"><i class="fa-solid fa-leaf"></i> <span data-i18n="cat_hybrid">Hybrid (PHD/MHD)</span></a>
-                <a href="#electric" class="qn-btn"><i class="fa-solid fa-bolt"></i> <span data-i18n="cat_bev">Vollelektrisch (TED)</span></a>
-                <a href="#mining" class="qn-btn"><i class="fa-solid fa-mountain"></i> <span data-i18n="cat_mining">Bergbau (CED)</span></a>
-                <a href="#axle" class="qn-btn"><i class="fa-solid fa-truck-moving"></i> <span data-i18n="cat_axle">E-Achsen (STEA)</span></a>
-            </div>
+    <div class="marquee-container">
+        <div class="marquee-content">
+            <span class="ref-item">SANY Group</span> <span class="ref-item">XCMG</span> <span class="ref-item">China FAW</span>
+            <span class="ref-item">Dongfeng Motor</span> <span class="ref-item">Shaanxi Automobile</span> <span class="ref-item">King Long</span>
+            <span class="ref-item">Golden Dragon</span> <span class="ref-item">Zhongtong Bus</span> <span class="ref-item">Higer Bus</span>
+            <span class="ref-item">Foton</span> <span class="ref-item">Tonly Heavy Industries</span> <span class="ref-item">Liugong</span>
+            <span class="ref-item">DeepWay</span> <span class="ref-item">Geely</span> <span class="ref-item">Dayun</span>
         </div>
     </div>
 
-    <div class="container">
-        <!-- Target Groups -->
-        <div class="target-grid">
-            <div class="target-card">
-                <i class="fa-solid fa-industry icon-bg"></i>
-                <h3 data-i18n="tg_oem_title"><i class="fa-solid fa-city"></i> Für OEMs (Hersteller)</h3>
-                <p data-i18n="tg_oem_desc">Schlüsselfertige Integration für neue Fahrzeugplattformen.</p>
-                <ul>
-                    <li data-i18n="tg_oem_l1">Vollständige VCU-Softwareanpassung & Kalibrierung.</li>
-                    <li data-i18n="tg_oem_l2">ISO 26262 Funktionale Sicherheit (ASIL C/D).</li>
-                    <li data-i18n="tg_oem_l3">Skalierbare Serienproduktion (>50k Einheiten/Jahr).</li>
-                    <li data-i18n="tg_oem_l4">Leichtbau-Design für maximale Reichweite.</li>
-                </ul>
-            </div>
-            <div class="target-card">
-                <i class="fa-solid fa-wrench icon-bg"></i>
-                <h3 data-i18n="tg_retro_title"><i class="fa-solid fa-tools"></i> Für Retrofit (Umrüstung)</h3>
-                <p data-i18n="tg_retro_desc">Revitalisierung bestehender Flotten (Diesel zu Elektro/Hybrid).</p>
-                <ul>
-                    <li data-i18n="tg_retro_l1">Modulare "AMT-Box" ersetzt altes Getriebe 1:1.</li>
-                    <li data-i18n="tg_retro_l2">Keine Änderung an Achsen/Antriebswelle nötig.</li>
-                    <li data-i18n="tg_retro_l3">Kosteneffizientes Upgrade für Umweltzonen.</li>
-                    <li data-i18n="tg_retro_l4">Massive Kraftstoffeinsparung bei Hybrid-Upgrade.</li>
-                </ul>
-            </div>
-        </div>
-
-        <!-- 1. HYBRID SYSTEMS -->
-        <section id="hybrid" class="prod-section">
-            <div class="sec-header">
-                <h2 class="sec-title" data-i18n="sec_hybrid_title">Parallele Hybrid-Systeme (PHD/MHD)</h2>
-                <p class="sec-desc" data-i18n="sec_hybrid_desc">Hocheffiziente AMT-basierte Hybridsysteme. Durch die intelligente Kopplung von Diesel- und E-Motor werden Lastspitzen geglättet und Bremsenergie rekuperiert.</p>
-                
-                <div class="benefits-box">
-                    <h4 data-i18n="lbl_benefits">Vorteile bei Nutzfahrzeugen</h4>
-                    <div class="benefits-grid">
-                        <div class="benefit-item"><i class="fa-solid fa-gas-pump"></i> <span data-i18n="ben_fuel">Bis zu 60% Kraftstoffersparnis</span></div>
-                        <div class="benefit-item"><i class="fa-solid fa-stopwatch"></i> <span data-i18n="ben_life">Verlängerte Bremslebensdauer durch Rekuperation</span></div>
-                        <div class="benefit-item"><i class="fa-solid fa-cogs"></i> <span data-i18n="ben_trans">Sanftes Schalten durch AMT (Fahrkomfort)</span></div>
-                        <div class="benefit-item"><i class="fa-solid fa-screwdriver-wrench"></i> <span data-i18n="ben_install">Einfache Retrofit-Installation ohne Achsmodifikation</span></div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="table-wrapper">
-                <table class="spec-table">
-                    <thead>
-                        <tr>
-                            <th data-i18n="th_model">Modell</th>
-                            <th data-i18n="th_app">Referenzfahrzeug / Anwendung</th>
-                            <th data-i18n="th_trans">Getriebe</th>
-                            <th data-i18n="th_motor">Motor (Nenn/Peak)</th>
-                            <th data-i18n="th_torque">Max. Ausgang (Nm)</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr><td class="model-col">PHD3300</td><td>4.5t Truck / Pickup (z.B. Ford Transit, Isuzu N-Series)</td><td>6-Gang AMT</td><td>65 kW / 115 kW</td><td>3280 Nm</td></tr>
-                        <tr><td class="model-col">PHD4600</td><td>6t - 8t Light Truck (Verteilerverkehr)</td><td>6-Gang AMT</td><td>65 kW / 120 kW</td><td>4600 Nm</td></tr>
-                        <tr><td class="model-col">PHD6300</td><td>16t - 25t Truck / 12m Bus (z.B. Mercedes Atego, MAN TGL)</td><td>6-Gang AMT</td><td>100 kW / 185 kW</td><td>6300 Nm</td></tr>
-                        <tr><td class="model-col">MHD3500</td><td>10.5m City Bus (ÖPNV)</td><td>2-Gang AMT</td><td>ISG 75kW / TM 135kW</td><td>3500 Nm</td></tr>
-                        <tr><td class="model-col">MHD3700</td><td>12m Coach / Reisebus</td><td>2-Gang AMT</td><td>ISG 100kW / TM 160kW</td><td>3700 Nm</td></tr>
-                        <tr><td class="model-col">CHD16000</td><td>31t Dump Truck (Baustellenfahrzeug)</td><td>12-Gang AMT</td><td>ISG 120kW / TM 200kW</td><td>16500 Nm</td></tr>
-                        <tr><td class="model-col">CHD24000</td><td>60t Mining Truck (Tagebau)</td><td>12-Gang AMT</td><td>ISG 120kW / TM 255kW</td><td>24150 Nm</td></tr>
-                    </tbody>
-                </table>
+    <!-- MAIN HUB VIEW -->
+    <div id="home-view">
+        <section class="hero-main">
+            <div class="container">
+                <h1 data-i18n="hero_h1">Lvkon Transmission: Das Rückgrat der E-Mobilität</h1>
+                <p data-i18n="hero_p">Lvkon Transmission (Suzhou Lvkon Transmission Technology Co., Ltd.) ist ein globaler Innovationsführer für Antriebslösungen in der Nutzfahrzeugindustrie. Mit beeNEO als strategischem Partner liefern wir schlüsselfertige Antriebssysteme für die anspruchsvollsten Bedingungen weltweit.</p>
             </div>
         </section>
 
-        <!-- 2. PURE ELECTRIC -->
-        <section id="electric" class="prod-section">
-            <div class="sec-header">
-                <h2 class="sec-title" data-i18n="sec_bev_title">Vollelektrische AMT-Systeme (TED)</h2>
-                <p class="sec-desc" data-i18n="sec_bev_desc">Das "Transmission Electric Drive" (TED) Konzept nutzt ein automatisiertes Schaltgetriebe, um den E-Motor im optimalen Effizienzbereich zu halten. Dies ist bei Nutzfahrzeugen entscheidend, da sie oft zwischen Leerfahrt und Volllast wechseln.</p>
-                
-                <div class="benefits-box">
-                    <h4 data-i18n="lbl_benefits">Vorteile gegenüber Direktantrieb</h4>
-                    <div class="benefits-grid">
-                        <div class="benefit-item"><i class="fa-solid fa-arrow-trend-up"></i> <span data-i18n="ben_climb">Überlegene Steigfähigkeit (>30%) auch bei voller Beladung</span></div>
-                        <div class="benefit-item"><i class="fa-solid fa-battery-full"></i> <span data-i18n="ben_eff">Höhere Effizienz = Mehr Reichweite pro kWh</span></div>
-                        <div class="benefit-item"><i class="fa-solid fa-weight-hanging"></i> <span data-i18n="ben_weight">Leichterer Motor durch Getriebeübersetzung</span></div>
-                        <div class="benefit-item"><i class="fa-solid fa-puzzle-piece"></i> <span data-i18n="ben_mod">Passt in Standard-Chassis ohne große Umbauten</span></div>
-                    </div>
+        <section class="container">
+            <div class="stats-banner">
+                <div class="stat-card"><h2>160.000+</h2><p data-i18n="stat_1">Systeme installiert</p></div>
+                <div class="stat-card"><h2>29 Mrd.</h2><p data-i18n="stat_2">Kilometer Laufleistung</p></div>
+                <div class="stat-card"><h2>>35%</h2><p data-i18n="stat_3">Marktanteil Hybrid</p></div>
+                <div class="stat-card"><h2>>55%</h2><p data-i18n="stat_4">Marktanteil Mining</p></div>
+            </div>
+
+            <div class="value-grid">
+                <div class="value-card">
+                    <i class="fas fa-chart-line"></i>
+                    <h3 data-i18n="val_h1">Höchste Effizienz</h3>
+                    <p data-i18n="val_p1">Dank intelligenter VCU-Steuerung und AMT-Technologie erreichen unsere Systeme bis zu 60% Kraftstoffersparnis und signifikante Reichweitensteigerungen.</p>
+                </div>
+                <div class="value-card">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3 data-i18n="val_h2">Erprobte Robustheit</h3>
+                    <p data-i18n="val_p2">Entwickelt für Mining, Schwerlast und Fernverkehr. Unsere Antriebe meistern steilste Rampen und extremste Lastzyklen ohne Ausfall.</p>
+                </div>
+                <div class="value-card">
+                    <i class="fas fa-cogs"></i>
+                    <h3 data-i18n="val_h3">Engineering-Support</h3>
+                    <p data-i18n="val_p3">beeNEO begleitet die vollständige Integration (Software, HW, VCU) nach ASPICE und ISO 26262 Standards für OEMs und Retrofit-Kunden.</p>
                 </div>
             </div>
 
-            <div class="table-wrapper">
-                <table class="spec-table">
-                    <thead>
-                        <tr>
-                            <th data-i18n="th_model">Modell</th>
-                            <th data-i18n="th_app">Referenzfahrzeug / Anwendung</th>
-                            <th data-i18n="th_trans">Getriebe</th>
-                            <th data-i18n="th_motor">Motor (Nenn/Peak)</th>
-                            <th data-i18n="th_torque">Max. Ausgang (Nm)</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr><td class="model-col">TED1020</td><td>3.5t - 4.5t Logistik (Letzte Meile)</td><td>2-Gang AMT</td><td>55 kW / 120 kW</td><td>1026 Nm</td></tr>
-                        <tr><td class="model-col">TED1900</td><td>6t - 8t Truck (Kühltransporter, Müllsammler)</td><td>2-Gang AMT</td><td>65 kW / 135 kW</td><td>1900 Nm</td></tr>
-                        <tr><td class="model-col">TED2800</td><td>8t - 10t Truck (Kommunalfahrzeuge)</td><td>4-Gang AMT</td><td>80 kW / 160 kW</td><td>2800 Nm</td></tr>
-                        <tr><td class="model-col">TED3010S</td><td>10m Bus / 14t Kehrmaschine</td><td>2-Gang AMT</td><td>80 kW / 160 kW</td><td>3015 Nm</td></tr>
-                        <tr><td class="model-col">TED6500</td><td>18t Truck / 12m Stadtbus</td><td>4-Gang AMT</td><td>160 kW / 250 kW</td><td>6500 Nm</td></tr>
-                        <tr><td class="model-col">HTED16000</td><td>31t Betonmischer / Kipper</td><td>4-Gang AMT</td><td>180 kW / 300 kW</td><td>16360 Nm</td></tr>
-                        <tr><td class="model-col">HTED20000L</td><td>49t Sattelzugmaschine (Fernverkehr)</td><td>4-Gang AMT</td><td>270 kW / 405 kW</td><td>20136 Nm</td></tr>
-                        <tr><td class="model-col">HTED24000</td><td>60t Heavy Haulage / Spezialtransport</td><td>4-Gang AMT</td><td>360 kW / 450 kW</td><td>24000 Nm</td></tr>
-                    </tbody>
-                </table>
-            </div>
-        </section>
-
-        <!-- 3. MINING & HEAVY DUTY -->
-        <section id="mining" class="prod-section">
-            <div class="sec-header">
-                <h2 class="sec-title" data-i18n="sec_mining_title">Schwerlast & Bergbau (CED)</h2>
-                <p class="sec-desc" data-i18n="sec_mining_desc">Doppelmotor-Systeme für Anwendungen, bei denen Ausfall keine Option ist. Die CED-Serie bietet kontinuierliche Kraftübertragung ohne Zugkraftunterbrechung – essenziell für schwer beladene Fahrzeuge an steilen Rampen im Tagebau.</p>
-                
-                <div class="benefits-box">
-                    <h4 data-i18n="lbl_benefits">Vorteile im Bergbau & Schwerlast</h4>
-                    <div class="benefits-grid">
-                        <div class="benefit-item"><i class="fa-solid fa-gauge-high"></i> <span data-i18n="ben_torque">Extremes Drehmoment (>34k Nm) für steilste Anstiege</span></div>
-                        <div class="benefit-item"><i class="fa-solid fa-shield-halved"></i> <span data-i18n="ben_fail">Redundanz: Fährt auch bei Ausfall eines Motors weiter</span></div>
-                        <div class="benefit-item"><i class="fa-solid fa-link"></i> <span data-i18n="ben_shift">Schalten ohne Zugkraftunterbrechung (Sicherheit am Hang)</span></div>
-                    </div>
+            <h2 class="hub-title" data-i18n="hub_title">Spezialisierte Produktgruppen</h2>
+            <div class="category-grid">
+                <div class="cat-card" onclick="showCategory('drive')">
+                    <i class="fas fa-gears"></i>
+                    <h4 data-i18n="cat_h1">Drive Assembly</h4>
+                    <p data-i18n="cat_p1">Integrierte Hybrid- und Pure Electric Systeme mit AMT.</p>
+                </div>
+                <div class="cat-card" onclick="showCategory('axle')">
+                    <i class="fas fa-truck-pickup"></i>
+                    <h4 data-i18n="cat_h2">Electric Drive Axle</h4>
+                    <p data-i18n="cat_p2">Integrated E-Achsen für Heavy-, Medium- und Light-Duty.</p>
+                </div>
+                <div class="cat-card" onclick="showCategory('motor')">
+                    <i class="fas fa-magnet"></i>
+                    <h4 data-i18n="cat_h3">Drive Motor</h4>
+                    <p data-i18n="cat_p3">Hochleistungs-PMSM Motoren und integrierte Generatoren.</p>
+                </div>
+                <div class="cat-card" onclick="showCategory('transmission')">
+                    <i class="fas fa-cog"></i>
+                    <h4 data-i18n="cat_h4">Transmission</h4>
+                    <p data-i18n="cat_p4">Spezialisierte Getriebe für Mining, Schwerlast und Busse.</p>
                 </div>
             </div>
 
-            <div class="table-wrapper">
-                <table class="spec-table">
-                    <thead>
-                        <tr>
-                            <th data-i18n="th_model">Modell</th>
-                            <th data-i18n="th_app">Referenzfahrzeug / Anwendung</th>
-                            <th data-i18n="th_config">Konfiguration</th>
-                            <th data-i18n="th_power">Systemleistung (Peak)</th>
-                            <th data-i18n="th_torque">Max. Ausgang (Nm)</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr><td class="model-col">CED20000</td><td>70t Wide Body Truck (Bergbau)</td><td>Dual Motor + AMT</td><td>270 kW</td><td>20136 Nm</td></tr>
-                        <tr><td class="model-col">CED21000</td><td>90t Mining Truck</td><td>Dual Motor + AMT</td><td>350 kW</td><td>21420 Nm</td></tr>
-                        <tr><td class="model-col">CED24000</td><td>105t Mining Truck</td><td>Dual Motor + AMT</td><td>400 kW</td><td>24000 Nm</td></tr>
-                        <tr><td class="model-col">CED34000</td><td>130t Mining Truck (Ultra-Class)</td><td>Dual Motor + AMT</td><td>500 kW</td><td>34632 Nm</td></tr>
-                        <tr><td class="model-col">CED-Ultra</td><td>180t+ Custom Mining Solution</td><td>Quad Motor + AMT</td><td>800 kW+</td><td>Custom Spec</td></tr>
-                    </tbody>
-                </table>
+            <div class="quote-section">
+                <p class="quote-text" data-i18n="quote">"Die Integration von Lvkon-Technologie ermöglicht es unseren Kunden, die Brücke zwischen ökologischer Verantwortung und ökonomischer Performance zu schlagen. Mit Antriebssystemen, die für härteste Bedingungen entwickelt wurden, bieten wir Sicherheit und Zukunftsfähigkeit."</p>
+                <p class="quote-author">beeNEO Strategic Partner Statement</p>
             </div>
         </section>
+    </div>
 
-        <!-- 4. E-AXLES -->
-        <section id="axle" class="prod-section">
-            <div class="sec-header">
-                <h2 class="sec-title" data-i18n="sec_axle_title">Elektrische Achsen (STEA)</h2>
-                <p class="sec-desc" data-i18n="sec_axle_desc">Die ultimative Integration. Motor, Getriebe und Achse in einer Einheit. Ideal für Neufahrzeuge (OEM) mit flachem Boden, wie Niederflurbusse oder optimierte Lieferfahrzeuge.</p>
-                
-                <div class="benefits-box">
-                    <h4 data-i18n="lbl_benefits">Vorteile der E-Achse</h4>
-                    <div class="benefits-grid">
-                        <div class="benefit-item"><i class="fa-solid fa-expand"></i> <span data-i18n="ben_space">Maximiert Platz für Batterien zwischen den Achsen</span></div>
-                        <div class="benefit-item"><i class="fa-solid fa-feather"></i> <span data-i18n="ben_weight_low">Geringeres Systemgewicht durch Bauteilintegration</span></div>
-                        <div class="benefit-item"><i class="fa-solid fa-percent"></i> <span data-i18n="ben_eff_high">Höchste Systemeffizienz durch Wegfall der Kardanwelle</span></div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="table-wrapper">
-                <table class="spec-table">
-                    <thead>
-                        <tr>
-                            <th data-i18n="th_model">Modell</th>
-                            <th data-i18n="th_app">Referenzfahrzeug / Anwendung</th>
-                            <th data-i18n="th_trans">Typ</th>
-                            <th data-i18n="th_motor">Motorleistung</th>
-                            <th data-i18n="th_torque">Achsdrehmoment</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr><td class="model-col">STEA5300Z</td><td>4.5t Van / Transporter</td><td>Integrated Starrachse</td><td>70 kW / 130 kW</td><td>5300 Nm</td></tr>
-                        <tr><td class="model-col">STEA6800Z</td><td>6t Light Truck</td><td>Integrated Starrachse</td><td>80 kW / 160 kW</td><td>6800 Nm</td></tr>
-                        <tr><td class="model-col">STEA9000Z</td><td>8t - 10t Truck</td><td>2-Gang E-Achse</td><td>80 kW / 185 kW</td><td>9000 Nm</td></tr>
-                        <tr><td class="model-col">STEA13000Z</td><td>18t Truck / 12m Bus</td><td>2-Gang E-Achse</td><td>120 kW / 220 kW</td><td>13000 Nm</td></tr>
-                        <tr><td class="model-col">STEA16000</td><td>25t Heavy Truck / 3-Achs Bus</td><td>2-Gang Dual Motor Axle</td><td>200 kW / 360 kW</td><td>16000 Nm</td></tr>
-                        <tr><td class="model-col">DM3500</td><td>10.5m Niederflurbus</td><td>Direct Drive (Radnabennah)</td><td>100 kW / 200 kW</td><td>3500 Nm</td></tr>
-                        <tr><td class="model-col">DM2800</td><td>8m Midi-Bus</td><td>Direct Drive (Radnabennah)</td><td>80 kW / 150 kW</td><td>2800 Nm</td></tr>
-                    </tbody>
-                </table>
-            </div>
-        </section>
-
-        <div class="about-lvkon">
-            <h2 data-i18n="about_title">Über Lvkon & beeNEO</h2>
-            <p data-i18n="about_full">Lvkon ist ein weltweit führender Anbieter von Antriebssystemen für Neue-Energie-Nutzfahrzeuge mit über 160.000 installierten Systemen weltweit. beeNEO agiert als exklusiver strategischer Partner für Engineering, Integration und Vertrieb in Europa und der Türkei.</p>
+    <!-- DYNAMIC DETAIL VIEW -->
+    <div id="detail-view">
+        <div class="container">
+            <div class="back-btn" onclick="showHome()"><i class="fas fa-arrow-left"></i> <span data-i18n="btn_back">Zurück zum Überblick</span></div>
+            <div id="category-content"></div>
         </div>
     </div>
 
     <footer>
         <div class="container">
             <div class="footer-grid">
-                <div class="footer">
+                <div class="footer-col">
                     <h3 style="color:white; margin-bottom:20px;">bee<span style="color:var(--bee-red);">NEO</span></h3>
-                    <p data-i18n="footer_desc">Engineering Excellence & E-Mobility Solutions.</p>
-                    <div style="margin-top:20px;">
-                        <p><i class="fas fa-envelope" style="color:var(--bee-red);"></i> info@beeneo.biz</p>
-                        <p><i class="fas fa-phone" style="color:var(--bee-red);"></i> +49 211 9629 160-11</p>
-                    </div>
+                    <p>Engineering Excellence & E-Mobility Solutions.</p>
                 </div>
-                <div class="footer">
-                    <h4 data-i18n="nav_eng">Engineering</h4>
-                    <a href="engineering-solutions.html">Solutions</a>
-                    <a href="digital-toolchain.html">Toolchain</a>
-                    <a href="senior-coaching.html">Coaching</a>
+                <div class="footer-col">
+                    <h4 data-i18n="f_h1">Expansion</h4>
+                    <p data-i18n="f_p1">Globale Expansion mit Partnern wie Tsuyo (Indien) und Mingteng International.</p>
                 </div>
-                <div class="footer">
-                    <h4 data-i18n="nav_prod">Produkte</h4>
-                    <a href="#hybrid">Hybrid</a>
-                    <a href="#electric">Electric (TED)</a>
-                    <a href="#mining">Mining</a>
+                <div class="footer-col">
+                    <h4 data-i18n="f_h2">Standorte</h4>
+                    <p>Düsseldorf, Deutschland</p>
+                    <p>Gebze/Kocaeli, Türkei</p>
                 </div>
-                <div class="footer">
-                    <h4 data-i18n="legal">Rechtliches</h4>
-                    <a href="impressum.html">Impressum</a>
-                    <a href="contact.html">Kontakt</a>
+                <div class="footer-col">
+                    <h4>Kontakt</h4>
+                    <p>info@beeneo.biz</p>
+                    <p>+49 211 9629 160-11</p>
                 </div>
             </div>
-            <div class="copyright">
-                &copy; 2026 beeNEO & Lvkon. All Rights Reserved. | Managing Director: Ayhan Önal
-            </div>
+            <div class="copyright">&copy; 2026 beeNEO & Lvkon. All Rights Reserved.</div>
         </div>
     </footer>
 
-    <!-- Translations & JS -->
     <script>
         const i18n = {
             de: {
-                nav_home: "Startseite", nav_eng: "Ingenieurwesen", nav_prod: "Produkte", nav_hub: "Hub", nav_imp: "Kontakt",
-                page_title: "Lvkon Produktkatalog",
-                page_sub: "Führende Antriebssysteme für Nutzfahrzeuge: Hybrid, Elektrisch, AMT & E-Achsen.",
-                cat_hybrid: "Hybrid", cat_bev: "Vollelektrisch", cat_mining: "Bergbau", cat_axle: "E-Achsen",
-                
-                // OEM vs Retrofit
-                tg_oem_title: "Für OEMs (Hersteller)", tg_oem_desc: "Schlüsselfertige Integration für neue Fahrzeugplattformen.",
-                tg_oem_l1: "Vollständige VCU-Softwareanpassung.", tg_oem_l2: "ISO 26262 Funktionale Sicherheit.",
-                tg_oem_l3: "Skalierbare Serienproduktion (>50k Einheiten/Jahr).", tg_oem_l4: "Leichtbau-Design für maximale Reichweite.",
-                
-                tg_retro_title: "Für Retrofit (Umrüstung)", tg_retro_desc: "Revitalisierung bestehender Flotten (Diesel zu Elektro/Hybrid).",
-                tg_retro_l1: "Modulare 'AMT-Box' ersetzt altes Getriebe.", tg_retro_l2: "Keine Änderung an Achsen/Antriebswelle nötig.",
-                tg_retro_l3: "Kosteneffizientes Upgrade für Umweltzonen.", tg_retro_l4: "Massive Kraftstoffeinsparung (Hybrid-Upgrade).",
-
-                // Benefits Labels
-                lbl_benefits: "Vorteile bei Nutzfahrzeugen",
-                ben_fuel: "Bis zu 60% Kraftstoffersparnis", ben_life: "Verlängerte Bremslebensdauer durch Rekuperation", 
-                ben_trans: "Sanftes Schalten durch AMT (Fahrkomfort)", ben_install: "Einfache Retrofit-Installation ohne Achsmodifikation",
-                ben_climb: "Überlegene Steigfähigkeit (>30%) auch bei voller Beladung", ben_eff: "Höhere Effizienz = Mehr Reichweite pro kWh",
-                ben_weight: "Leichterer Motor durch Getriebeübersetzung", ben_mod: "Passt in Standard-Chassis ohne große Umbauten",
-                ben_torque: "Extremes Drehmoment (>34k Nm) für steilste Anstiege", ben_fail: "Redundanz: Fährt auch bei Ausfall eines Motors weiter",
-                ben_shift: "Schalten ohne Zugkraftunterbrechung (Sicherheit am Hang)",
-                ben_space: "Maximiert Platz für Batterien zwischen den Achsen", ben_weight_low: "Geringeres Systemgewicht durch Bauteilintegration", ben_eff_high: "Höchste Systemeffizienz durch Wegfall der Kardanwelle",
-
-                // Sections
-                sec_hybrid_title: "Parallele Hybrid-Systeme (PHD/MHD)",
-                sec_hybrid_desc: "Hocheffiziente AMT-basierte Hybridsysteme. Durch die intelligente Kopplung von Diesel- und E-Motor werden Lastspitzen geglättet und Energie rekuperiert.",
-                sec_bev_title: "Vollelektrische AMT-Systeme (TED)",
-                sec_bev_desc: "Das 'Transmission Electric Drive' (TED) Konzept nutzt ein automatisiertes Schaltgetriebe, um den E-Motor im optimalen Effizienzbereich zu halten.",
-                sec_mining_title: "Schwerlast & Bergbau (CED)",
-                sec_mining_desc: "Doppelmotor-Systeme für Anwendungen, bei denen Ausfall keine Option ist. Kontinuierliche Kraftübertragung ohne Zugkraftunterbrechung.",
-                sec_axle_title: "Elektrische Achsen (STEA)",
-                sec_axle_desc: "Die ultimative Integration. Motor, Getriebe und Achse in einer Einheit. Ideal für Neufahrzeuge (OEM) mit flachem Boden.",
-
-                th_model: "Modell", th_app: "Referenzfahrzeug / Anwendung", th_trans: "Getriebe / Typ", th_motor: "Motor (Nenn/Peak)", th_torque: "Max. Ausgang", th_config: "Konfiguration", th_power: "Sistem Leistung",
-                
-                about_title: "Über Lvkon & beeNEO",
-                about_full: "Lvkon ist ein weltweit führender Anbieter von Antriebssystemen für Neue-Energie-Nutzfahrzeuge mit über 160.000 installierten Systemen weltweit. beeNEO agiert als exklusiver strategischer Partner für Engineering, Integration und Vertrieb in Europa und der Türkei.",
-                imprint: "Rechtliche Informationen",
                 menu_eng: "Engineering", menu_prod: "Produkte", menu_hub: "Hub & R&D", menu_about: "Über Uns", menu_contact: "Kontakt",
-                sub_sol: "Lösungen & Prozesse", sub_tool: "Digital Toolchain", sub_coach: "Senior Coaching", sub_lean: "Lean Consulting",
-                footer_desc: "Engineering Excellence & E-Mobility Solutions.", legal: "Rechtliches"
+                hero_h1: "Lvkon Transmission: Das Rückgrat der E-Mobilität",
+                hero_p: "Lvkon Transmission ist ein globaler Innovationsführer für Antriebslösungen in der Nutzfahrzeugindustrie. Mit beeNEO als strategischem Partner liefern wir schlüsselfertige Antriebssysteme für anspruchsvollste Bedingungen.",
+                stat_1: "Systeme installiert", stat_2: "Kilometer Laufleistung", stat_3: "Marktanteil Hybrid", stat_4: "Marktanteil Mining",
+                val_h1: "Höchste Effizienz", val_p1: "Bis zu 60% Kraftstoffersparnis und Reichweitensteigerung durch intelligente Steuerung.",
+                val_h2: "Erprobte Robustheit", val_p2: "Entwickelt für Mining und Schwerlast. Zuverlässigkeit unter extremsten Lastzyklen.",
+                val_h3: "Engineering-Support", val_p3: "Vollständige Integration nach ASPICE und ISO 26262 Standards.",
+                hub_title: "Spezialisierte Produktgruppen",
+                cat_h1: "Drive Assembly", cat_p1: "Hybrid & Pure Electric Systeme mit AMT.",
+                cat_h2: "Electric Drive Axle", cat_p2: "Integrierte E-Achsen für alle Nutzfahrzeugklassen.",
+                cat_h3: "Drive Motor", cat_p3: "PMSM Motoren und Generatoren.",
+                cat_h4: "Transmission", cat_p4: "Spezialgetriebe für Mining und Schwerlast.",
+                quote: "\"Die Integration von Lvkon-Technologie ermöglicht es unseren Kunden, die Brücke zwischen ökologischer Verantwortung und ökonomischer Performance zu schlagen.\"",
+                btn_back: "Zurück zum Überblick", f_h1: "Expansion", f_h2: "Standorte", f_p1: "Globale Kooperationen mit Partnern wie Tsuyo (Indien)."
             },
             en: {
-                nav_home: "Home", nav_eng: "Engineering", nav_prod: "Products", nav_hub: "Hub", nav_imp: "Contact",
-                page_title: "Lvkon Product Catalog",
-                page_sub: "Leading powertrain systems for commercial vehicles: Hybrid, Electric, AMT & E-Axles.",
-                cat_hybrid: "Hybrid", cat_bev: "Pure Electric", cat_mining: "Mining", cat_axle: "E-Axles",
-                
-                tg_oem_title: "For OEMs", tg_oem_desc: "Turnkey integration for new vehicle platforms.",
-                tg_oem_l1: "Full VCU software customization.", tg_oem_l2: "ISO 26262 Functional Safety.",
-                tg_oem_l3: "Scalable serial production (>50k units/year).", tg_oem_l4: "Lightweight design for max range.",
-                
-                tg_retro_title: "For Retrofit", tg_retro_desc: "Revitalizing existing fleets (Diesel to Electric/Hybrid).",
-                tg_retro_l1: "Modular 'AMT Box' replaces old transmission.", tg_retro_l2: "No changes to axles/propshaft needed.",
-                tg_retro_l3: "Cost-efficient upgrade for LEZ compliance.", tg_retro_l4: "Massive fuel savings (Hybrid upgrade).",
-
-                lbl_benefits: "Key Benefits for CVs",
-                ben_fuel: "Up to 60% fuel savings", ben_life: "Extended brake life via recuperation", 
-                ben_trans: "Smooth shifting via AMT (Driver Comfort)", ben_install: "Easy retrofit without axle modification",
-                ben_climb: "Superior gradeability (>30%) even fully loaded", ben_eff: "Higher efficiency = More range per kWh",
-                ben_weight: "Lighter motor due to gearing ratio", ben_mod: "Fits standard chassis without major mods",
-                ben_torque: "Extreme torque (>34k Nm) for steepest gradients", ben_fail: "Redundancy: Continues if one motor fails",
-                ben_shift: "Shifting without power interruption (Safety on slopes)",
-                ben_space: "Maximizes space for batteries between axles", ben_weight_low: "Lower system weight via integration", ben_eff_high: "Highest system efficiency (no prop shaft)",
-
-                sec_hybrid_title: "Parallel Hybrid Systems (PHD/MHD)",
-                sec_hybrid_desc: "High-efficiency AMT-based hybrid systems. Intelligent coupling of diesel and e-motor smooths load peaks and recuperates energy.",
-                sec_bev_title: "Pure Electric AMT Systems (TED)",
-                sec_bev_desc: "The 'Transmission Electric Drive' (TED) concept uses an automated manual transmission to keep the e-motor in its optimal efficiency range.",
-                sec_mining_title: "Heavy Duty & Mining (CED)",
-                sec_mining_desc: "Dual-motor systems for applications where failure is not an option. Continuous power delivery without traction interruption.",
-                sec_axle_title: "Electric Axles (STEA)",
-                sec_axle_desc: "The ultimate integration. Motor, transmission, and axle in one unit. Ideal for new vehicles (OEM) with flat floors.",
-
-                th_model: "Model", th_app: "Reference Vehicle / Application", th_trans: "Transmission / Type", th_motor: "Motor (Rated/Peak)", th_torque: "Max Output", th_config: "Config", th_power: "System Power",
-
-                about_title: "About Lvkon & beeNEO",
-                about_full: "Lvkon is a global leader in powertrain systems for new energy commercial vehicles with over 160,000 systems installed worldwide. beeNEO serves as the exclusive strategic partner for engineering, integration, and sales in Europe and Turkey.",
-                imprint: "Legal Information",
                 menu_eng: "Engineering", menu_prod: "Products", menu_hub: "Hub & R&D", menu_about: "About Us", menu_contact: "Contact",
-                sub_sol: "Solutions & Processes", sub_tool: "Digital Toolchain", sub_coach: "Senior Coaching", sub_lean: "Lean Consulting",
-                footer_desc: "Engineering Excellence & E-Mobility Solutions.", legal: "Legal"
+                hero_h1: "Lvkon Transmission: The Backbone of E-Mobility",
+                hero_p: "Lvkon Transmission is a global innovation leader for drive solutions in the commercial vehicle industry. With beeNEO as a strategic partner, we deliver turnkey drive systems for the world's most demanding conditions.",
+                stat_1: "Systems installed", stat_2: "Cumulative Mileage", stat_3: "Hybrid Market Share", stat_4: "Mining Market Share",
+                val_h1: "Maximum Efficiency", val_p1: "Up to 60% fuel savings and range increase through intelligent control systems.",
+                val_h2: "Proven Robustness", val_p2: "Developed for mining and heavy loads. Reliability under extreme duty cycles.",
+                val_h3: "Engineering Support", val_p3: "Full integration according to ASPICE and ISO 26262 standards.",
+                hub_title: "Specialized Product Groups",
+                btn_back: "Back to Overview", f_h1: "Expansion", f_h2: "Locations", f_p1: "Global cooperation with partners like Tsuyo (India)."
             },
             tr: {
-                nav_home: "Ana Sayfa", nav_eng: "Mühendislik", nav_prod: "Ürünler", nav_hub: "Ofis/Hub", nav_imp: "İletişim",
-                page_title: "Lvkon Ürün Kataloğu",
-                page_sub: "Ticari araçlar için lider güç aktarma sistemleri: Hibrit, Elektrikli, AMT & E-Akslar.",
-                cat_hybrid: "Hibrit", cat_bev: "Tam Elektrikli", cat_mining: "Madencilik", cat_axle: "E-Akslar",
-                
-                tg_oem_title: "OEM'ler İçin", tg_oem_desc: "Yeni araç platformları için anahtar teslim entegrasyon.",
-                tg_oem_l1: "Tam VCU yazılım özelleştirmesi.", tg_oem_l2: "ISO 26262 Fonksiyonel Güvenlik.",
-                tg_oem_l3: "Ölçeklenebilir seri üretim (>50k adet/yıl).", tg_oem_l4: "Maksimum menzil için hafif tasarım.",
-                
-                tg_retro_title: "Dönüşüm (Retrofit) İçin", tg_retro_desc: "Mevcut filoların canlandırılması (Dizel'den Elektrik/Hibrit'e).",
-                tg_retro_l1: "Modüler 'AMT Kutusu' eski şanzımanın yerini alır.", tg_retro_l2: "Aks/şaft değişikliği gerekmez.",
-                tg_retro_l3: "Düşük Emisyon Bölgeleri için uygun maliyetli.", tg_retro_l4: "Devasa yakıt tasarrufu.",
-
-                lbl_benefits: "Ticari Araç Avantajları",
-                ben_fuel: "%60'a varan yakıt tasarrufu", ben_life: "Rejenerasyon ile uzatılmış fren ömrü", 
-                ben_trans: "AMT ile pürüzsüz vites geçişi (Sürüş Konforu)", ben_install: "Aks modifikasyonu gerektirmeyen kolay montaj",
-                ben_climb: "Tam yükte bile üstün tırmanma kabiliyeti (>%30)", ben_eff: "Daha yüksek verim = kWh başına daha fazla menzil",
-                ben_weight: "Dişli oranı sayesinde daha hafif motor", ben_mod: "Büyük tadilat gerektirmeden standart şasiye uyar",
-                ben_torque: "En dik yokuşlar için ekstrem tork (>34k Nm)", ben_fail: "Yedekleme: Tek motor arızalansa bile devam eder",
-                ben_shift: "Güç kesintisi olmadan vites geçişi (Eğimde Güvenlik)",
-                ben_space: "Akslar arası batarya alanını maksimize eder", ben_weight_low: "Entegrasyon sayesinde daha düşük sistem ağırlığı", ben_eff_high: "En yüksek sistem verimliliği (şaft yok)",
-
-                sec_hybrid_title: "Paralel Hibrit Sistemler (PHD/MHD)",
-                sec_hybrid_desc: "Yüksek verimli AMT tabanlı hibrit sistemler. Dizel ve e-motorun akıllı eşleşmesi yük tepe noktalarını yumuşatır ve enerji geri kazanır.",
-                sec_bev_title: "Tam Elektrikli AMT Sistemler (TED)",
-                sec_bev_desc: "'Transmission Electric Drive' (TED) konsepti, e-motoru optimum verimlilik aralığında tutmak için otomatikleştirilmiş manuel şanzıman kullanır.",
-                sec_mining_title: "Ağır Hizmet & Madencilik (CED)",
-                sec_mining_desc: "Arızanın seçenek olmadığı uygulamalar için çift motorlu sistemler. Çekiş kesintisi olmadan sürekli güç aktarımı.",
-                sec_axle_title: "Elektrikli Akslar (STEA)",
-                sec_axle_desc: "Nihai entegrasyon. Motor, şanzıman ve aks tek bir ünitede. Düz tabanlı yeni araçlar (OEM) için ideal.",
-
-                th_model: "Model", th_app: "Referans Araç / Uygulama", th_trans: "Şanzıman / Tip", th_motor: "Motor (Nominal/Tepe)", th_torque: "Maks. Çıkış", th_config: "Konfigürasyon", th_power: "Sistem Gücü",
-
-                about_title: "Lvkon & beeNEO Hakkında",
-                about_full: "Lvkon, dünya çapında 160.000'den fazla kurulu sistemle yeni enerji ticari araçları için güç aktarma sistemlerinde küresel bir liderdir. beeNEO, Avrupa ve Türkiye'de mühendislik, entegrasyon ve satış için tek yetkili stratejik ortaktır.",
-                imprint: "Yasal Bilgiler",
                 menu_eng: "Mühendislik", menu_prod: "Ürünler", menu_hub: "Hub & Ar-Ge", menu_about: "Hakkımızda", menu_contact: "İletişim",
-                sub_sol: "Çözümler & Süreçler", sub_tool: "Dijital Araç Zinciri", sub_coach: "Kıdemli Koçluk", sub_lean: "Yalın Danışmanlık",
-                footer_desc: "Mühendislik Mükemmelliği & E-Mobilite Çözümleri.", legal: "Yasal"
+                hero_h1: "Lvkon Transmission: E-Mobilite'nin Omurgası",
+                hero_p: "Lvkon Transmission, ticari araç endüstrisinde güç aktarma çözümleri için küresel bir inovasyon lideridir. beeNEO stratejik ortağı olarak, dünyanın en zorlu koşulları için anahtar teslim sistemler sunuyoruz.",
+                stat_1: "Kurulu Sistem", stat_2: "Kilometre Yol", stat_3: "Hibrit Pazar Payı", stat_4: "Madencilik Pazar Payı",
+                btn_back: "Özete Dön", f_h1: "Genişleme", f_h2: "Lokasyonlar", f_p1: "Tsuyo (Hindistan) gibi ortaklarla küresel işbirlikleri."
             },
             zh: {
-                nav_home: "首页", nav_eng: "工程", nav_prod: "产品", nav_hub: "Hub", nav_imp: "联系",
-                page_title: "Lvkon 产品目录",
-                page_sub: "领先的商用车动力总成系统：混合动力、纯电动、AMT 和电驱动桥。",
-                cat_hybrid: "混合动力", cat_bev: "纯电动", cat_mining: "矿卡", cat_axle: "电驱动桥",
-                
-                tg_oem_title: "致 OEM (主机厂)", tg_oem_desc: "新车平台的交钥匙集成方案。",
-                tg_oem_l1: "完整的 VCU 软件定制。", tg_oem_l2: "ISO 26262 功能安全。",
-                tg_oem_l3: "可扩展的批量生产 (>5万台/年)。", tg_oem_l4: "轻量化设计实现最大续航。",
-                
-                tg_retro_title: "致 Retrofit (改装)", tg_retro_desc: "现有车队的焕新 (柴油转电动/混动)。",
-                tg_retro_l1: "模块化 'AMT 盒' 取代旧变速箱。", tg_retro_l2: "无需更改车桥/传动轴。",
-                tg_retro_l3: "具有成本效益的低排放区升级。", tg_retro_l4: "巨大的燃油节省 (混动升级)。",
-
-                lbl_benefits: "商用车核心优势",
-                ben_fuel: "高达 60% 的燃油节省", ben_life: "通过能量回收延长刹车寿命", 
-                ben_trans: "AMT 平滑换挡 (驾驶舒适性)", ben_install: "易于改装安装，无需修改车桥",
-                ben_climb: "满载情况下卓越的爬坡能力 (>30%)", ben_eff: "更高效率 = 每千瓦时更多续航",
-                ben_weight: "通过齿轮减速减轻电机重量", ben_mod: "适配标准底盘，无需重大改装",
-                ben_torque: "极端扭矩 (>34k Nm) 应对最陡坡度", ben_fail: "冗余设计：单电机故障仍可行驶",
-                ben_shift: "无动力中断换挡 (坡道安全)",
-                ben_space: "最大化车桥间的电池空间", ben_weight_low: "通过集成降低系统重量", ben_eff_high: "最高的系统效率 (无传动轴)",
-
-                sec_hybrid_title: "并联混合动力系统 (PHD/MHD)",
-                sec_hybrid_desc: "高效的 AMT 混合动力系统。柴油机与电机的智能耦合平滑了负载峰值并回收能量。",
-                sec_bev_title: "纯电动 AMT 系统 (TED)",
-                sec_bev_desc: "'变速箱电驱动' (TED) 概念利用自动机械变速箱使电机保持在最佳效率范围内。",
-                sec_mining_title: "重型与矿用 (CED)",
-                sec_mining_desc: "适用于故障不可接受的应用的双电机系统。无牵引力中断的连续动力传递。",
-                sec_axle_title: "电驱动桥 (STEA)",
-                sec_axle_desc: "终极集成。电机、变速箱和车桥合二为一。非常适合平地板的新能源车辆 (OEM)。",
-
-                th_model: "型号", th_app: "参考车辆 / 应用", th_trans: "变速箱 / 类型", th_motor: "电机 (额定/峰值)", th_torque: "最大输出", th_config: "配置", th_power: "系统功率",
-
-                about_title: "关于绿控 & beeNEO",
-                about_full: "绿控是全球新能源商用车动力总成系统的领导者，全球安装系统超过 160,000 套。beeNEO 是欧洲和土耳其工程、集成和销售的独家战略合作伙伴。",
-                imprint: "法律信息",
                 menu_eng: "工程", menu_prod: "产品", menu_hub: "研发中心", menu_about: "关于我们", menu_contact: "联系",
-                sub_sol: "解决方案与流程", sub_tool: "数字工具链", sub_coach: "高级辅导", sub_lean: "精益咨询",
-                footer_desc: "工程卓越与电动出行解决方案。", legal: "法律信息"
+                hero_h1: "绿控传动：电动出行的中坚力量",
+                hero_p: "绿控传动是商用车行业驱动解决方案的全球创新领导者。作为 beeNEO 的战略合作伙伴，我们为全球最严苛的工况提供交钥匙驱动系统。",
+                stat_1: "系统安装量", stat_2: "累计里程", stat_3: "混合动力市场份额", stat_4: "矿用市场份额",
+                btn_back: "返回概览", f_h1: "全球扩张", f_h2: "地点", f_p1: "与 Tsuyo (印度) 等伙伴开展全球合作。"
             }
         };
+
+        const categoryData = {
+            drive: `
+                <h2>Drive Assembly (Antriebsbaugruppen)</h2>
+                <p>Hochintegrierte Systeme für Elektro- und Hybrid-Nutzfahrzeuge.</p>
+                <table class="spec-table">
+                    <thead><tr><th>Serie</th><th>Anwendung</th><th>Referenzfahrzeug</th></tr></thead>
+                    <tbody>
+                        <tr><td class="model-name">TED Series</td><td>Pure Electric AMT</td><td>8t - 18t Logistics Truck</td></tr>
+                        <tr><td class="model-name">PHD Series</td><td>Parallel Hybrid</td><td>Logistics & Urban Delivery</td></tr>
+                        <tr><td class="model-name">CED Series</td><td>Dual Motor System</td><td>70t - 130t Mining Dump Truck</td></tr>
+                        <tr><td class="model-name">MHD Series</td><td>Series-Parallel Hybrid</td><td>10.5m - 12m City Bus</td></tr>
+                    </tbody>
+                </table>
+                <div style="margin-top:30px;">
+                    <h4>Vorteile:</h4>
+                    <p>Lvkon hält über 35% Marktanteil bei Hybrid-Systemen in China. Die AMT-Steuerung optimiert den Wirkungsgrad des E-Motors in jedem Lastzustand.</p>
+                </div>
+            `,
+            axle: `
+                <h2>Electric Drive Axle (E-Achsen)</h2>
+                <p>Kompakte Integration von Motor und Getriebe direkt in die Achskonstruktion.</p>
+                <table class="spec-table">
+                    <thead><tr><th>Serie</th><th>Anwendung</th><th>Nutzen</th></tr></thead>
+                    <tbody>
+                        <tr><td class="model-name">STEA (Heavy)</td><td>25t Heavy Duty Truck</td><td>Ersetzt Kardanwelle, maximiert Bauraum</td></tr>
+                        <tr><td class="model-name">STEA (Light)</td><td>4.5t - 6t Van / Truck</td><td>Leichtbauweise für Last Mile Logistics</td></tr>
+                    </tbody>
+                </table>
+            `,
+            motor: `
+                <h2>Drive Motor & Generator</h2>
+                <p>Hocheffiziente PMSM Motoren, top-bewertet in der Abstimmung mit Controllern.</p>
+                <div class="product-grid">
+                    <div class="product-card" style="padding:20px;">
+                        <h4>PMSM Traction Motor</h4>
+                        <p>Range bis 400kW Peak. Erreichte den "Top 1 Award" für die beste Motor-Controller-Abstimmung 2023/2024.</p>
+                    </div>
+                    <div class="product-card" style="padding:20px;">
+                        <h4>ISG Generator</h4>
+                        <p>Integrierte Starter-Generatoren für nahtlose Hybridübergänge und Rekuperation.</p>
+                    </div>
+                </div>
+            `,
+            transmission: `
+                <h2>Specialized Transmissions</h2>
+                <p>Robuste AMT-Getriebe für extremste Anforderungen.</p>
+                <table class="spec-table">
+                    <thead><tr><th>Typ</th><th>Marktanteil</th><th>Hauptkunden</th></tr></thead>
+                    <tbody>
+                        <tr><td class="model-name">Mining Specific</td><td>>55%</td><td>Tonly, Liugong</td></tr>
+                        <tr><td class="model-name">Heavy Duty Truck</td><td>Führend</td><td>SANY, FAW, XCMG</td></tr>
+                        <tr><td class="model-name">Bus Transmission</td><td>Führend</td><td>King Long, Higer, Foton</td></tr>
+                    </tbody>
+                </table>
+            `
+        };
+
+        function showCategory(catId) {
+            document.getElementById('home-view').style.display = 'none';
+            document.getElementById('detail-view').style.display = 'block';
+            document.getElementById('category-content').innerHTML = categoryData[catId];
+            window.scrollTo(0,0);
+        }
+
+        function showHome() {
+            document.getElementById('home-view').style.display = 'block';
+            document.getElementById('detail-view').style.display = 'none';
+            window.scrollTo(0,0);
+        }
 
         function changeLang(lang) {
             document.querySelectorAll('[data-i18n]').forEach(el => {
                 const k = el.getAttribute('data-i18n');
-                if(i18n[lang][k]) el.innerHTML = i18n[lang][k];
+                if(i18n[lang] && i18n[lang][k]) el.innerHTML = i18n[lang][k];
             });
-            document.querySelectorAll('.fi').forEach(f => f.classList.remove('active'));
-            document.querySelector(`.fi-${lang==='en'?'gb':lang==='zh'?'cn':lang}`).classList.add('active');
+            const flags = { de: 'fi-de', en: 'fi-gb', tr: 'fi-tr', zh: 'fi-cn' };
+            const names = { de: 'DE', en: 'EN', tr: 'TR', zh: 'CN' };
+            document.getElementById('current-lang').innerHTML = `<span class="fi ${flags[lang]}"></span> ${names[lang]} <i class="fas fa-chevron-down" style="font-size: 0.7rem;"></i>`;
             document.body.className = `lang-${lang}`;
         }
     </script>
