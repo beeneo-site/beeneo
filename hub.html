@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="de">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,304 +8,273 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/6.6.6/css/flag-icons.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Noto+Sans+SC:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        :root { --bee-orange: #FF6600; --bee-dark: #0F1214; --hub-blue: #2c3e50; --radius: 12px; --light-bg: #f9fafb; }
+        :root { --bee-orange: #FF6600; --bee-dark: #0F1214; --hub-blue: #2c3e50; --radius: 16px; --light-bg: #f9fafb; --border: #e9ecef; }
         body { font-family: 'Inter', sans-serif; margin: 0; background: #fff; color: #333; }
         body.lang-zh { font-family: 'Noto Sans SC', sans-serif; }
         .container { width: 92%; max-width: 1280px; margin: 0 auto; padding: 0 20px; }
-        a { text-decoration: none; color: inherit; transition: 0.3s; }
-
-        /* Header */
-        header { background: rgba(255,255,255,0.98); position: sticky; top: 0; z-index: 1000; padding: 15px 0; border-bottom: 1px solid #eee; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
-        nav { display: flex; justify-content: space-between; align-items: center; }
-        .logo-img { height: 40px; }
-        .nav-link { font-weight: 600; margin: 0 15px; color: var(--bee-dark); font-size: 0.95rem; }
-        .nav-link:hover { color: var(--bee-orange); }
-        .lang-btn { cursor: pointer; opacity: 0.5; margin-left:5px; font-size:1.1rem; } .lang-btn.active{opacity:1;}
-
-        /* Image Placeholders */
-        .img-place {
-            width: 100%; height: 400px; background-color: #eef2f5; border-radius: var(--radius);
-            display: flex; flex-direction: column; align-items: center; justify-content: center;
-            border: 2px dashed #cbd5e1; color: #64748b; font-weight: 600; margin-bottom: 30px;
-            text-align: center; transition: 0.3s;
-        }
-        .img-place:hover { border-color: var(--bee-orange); color: var(--bee-orange); background: #fff; }
-        .img-place i { font-size: 3rem; margin-bottom: 10px; }
-        .img-place-small { height: 250px; }
-
-        /* Hero */
-        .hub-hero { text-align: center; padding: 80px 0 60px; background: var(--light-bg); }
-        .hub-hero h1 { font-size: 3.5rem; margin-bottom: 15px; color: var(--bee-dark); letter-spacing: -1px; }
-        .hub-hero p { max-width: 800px; margin: 0 auto; color: #555; font-size: 1.25rem; line-height: 1.6; }
-
-        /* Sections */
-        .section { padding: 80px 0; }
-        .section-title { font-size: 2.2rem; color: var(--bee-dark); margin-bottom: 20px; position: relative; display: inline-block; }
-        .section-title::after { content: ''; display: block; width: 60px; height: 4px; background: var(--bee-orange); margin-top: 10px; border-radius: 2px; }
         
-        /* Grid Layouts */
-        .split-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; }
-        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 40px; }
+        .hero-hub { background: var(--hub-blue); color: white; padding: 100px 20px 120px; text-align: center; border-radius: 0 0 40px 40px; position: relative; overflow: hidden; }
+        .hero-hub h1 { font-size: 3.5rem; margin-bottom: 20px; letter-spacing: -1px; }
+        .hero-hub p { font-size: 1.3rem; opacity: 0.9; max-width: 800px; margin: 0 auto; line-height: 1.6; }
+        
+        /* Membership Cards */
+        .membership-section { margin-top: -80px; padding-bottom: 60px; }
+        .membership-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .mem-card { background: white; padding: 40px; border-radius: var(--radius); box-shadow: 0 20px 40px rgba(0,0,0,0.1); transition: 0.3s; border: 1px solid white; position: relative; overflow: hidden; }
+        .mem-card:hover { transform: translateY(-10px); border-color: var(--bee-orange); }
+        .mem-icon { font-size: 2.5rem; color: var(--bee-orange); margin-bottom: 20px; }
+        .mem-title { font-size: 1.5rem; font-weight: 800; margin: 0 0 15px; color: var(--bee-dark); }
+        .mem-desc { color: #666; margin-bottom: 25px; min-height: 60px; }
+        .mem-features { list-style: none; padding: 0; margin-bottom: 30px; }
+        .mem-features li { margin-bottom: 10px; display: flex; align-items: center; gap: 10px; font-size: 0.95rem; color: #444; }
+        .mem-features i { color: #2ecc71; }
 
-        /* Service Cards */
-        .svc-card { 
-            background: white; padding: 35px; border-radius: var(--radius); 
-            border: 1px solid #eee; box-shadow: 0 10px 30px rgba(0,0,0,0.03); 
-            transition: 0.3s; position: relative; overflow: hidden;
-        }
-        .svc-card:hover { transform: translateY(-7px); box-shadow: 0 20px 40px rgba(0,0,0,0.08); border-color: var(--bee-orange); }
-        .svc-card::before { content:''; position: absolute; top:0; left:0; width: 4px; height: 100%; background: var(--bee-orange); }
-        .svc-icon { font-size: 2.5rem; color: var(--hub-blue); margin-bottom: 20px; }
-        .svc-title { font-size: 1.4rem; font-weight: 700; margin-bottom: 15px; color: var(--bee-dark); }
-        .svc-list { list-style: none; padding: 0; color: #666; font-size: 0.95rem; line-height: 1.8; }
-        .svc-list li { margin-bottom: 8px; display: flex; align-items: flex-start; }
-        .svc-list li i { color: var(--bee-orange); margin-right: 10px; margin-top: 5px; font-size: 0.8rem; }
+        /* Amenities Grid */
+        .amenities-section { padding: 80px 0; background: var(--light-bg); }
+        .am-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; margin-top: 40px; }
+        .am-item { text-align: center; padding: 20px; }
+        .am-item i { font-size: 2.5rem; color: var(--hub-blue); margin-bottom: 15px; opacity: 0.8; }
+        .am-item h4 { margin: 0; font-size: 1.1rem; }
 
-        /* Security Box */
-        .security-box { 
-            background: #1e293b; color: white; padding: 50px; border-radius: var(--radius); 
-            display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center;
-        }
-        .sec-features { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-        .sec-item { background: rgba(255,255,255,0.1); padding: 20px; border-radius: 8px; text-align: center; }
-        .sec-item i { font-size: 2rem; color: var(--bee-orange); margin-bottom: 10px; display: block; }
+        /* Ecosystem List */
+        .content-section { padding: 80px 0; }
+        .services-list { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; }
+        .services-list li { background: white; padding: 35px; border-radius: var(--radius); border: 1px solid var(--border); }
+        .services-list h3 { color: var(--bee-orange); margin-top: 0; font-size: 1.3rem; margin-bottom: 15px; }
+        .services-list p { color: #666; line-height: 1.6; margin: 0; }
 
-        .btn { background: var(--bee-orange); color: white; padding: 15px 40px; text-decoration: none; border-radius: 8px; display: inline-block; font-weight: bold; margin-top: 20px; transition: 0.3s;}
-        .btn:hover { background: #e55b00; transform: scale(1.02); box-shadow: 0 5px 15px rgba(255, 102, 0, 0.3); }
+        .floating-lang { position: fixed; bottom: 20px; right: 20px; background: white; padding: 10px 20px; border-radius: 50px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); z-index: 100; display: flex; gap: 15px; }
+        .floating-lang i { cursor: pointer; transition: 0.2s; font-size: 1.2rem; }
+        .floating-lang i.active { transform: scale(1.2); }
+        
+        .back-nav { position: absolute; top: 20px; left: 20px; color: white; text-decoration: none; font-weight: bold; background: rgba(255,255,255,0.1); padding: 8px 16px; border-radius: 50px; backdrop-filter: blur(5px); }
 
-        @media(max-width:900px){ .split-grid, .security-box { grid-template-columns: 1fr; } .nav-link { display: none; } }
+        .sec-header { text-align: center; max-width: 700px; margin: 0 auto 50px; }
+        .sec-header h2 { font-size: 2.5rem; margin-bottom: 15px; color: var(--bee-dark); }
+        .sec-header p { font-size: 1.1rem; color: #666; }
     </style>
 </head>
-<body class="lang-tr">
+<body>
 
-<header>
-    <div class="container">
-        <nav>
-            <div class="logo-container">
-                <a href="index.html"><img src="beeNEO_Logo2026beebgd.png" alt="beeNEO" class="logo-img"></a>
-            </div>
-            <div>
-                <a href="index.html" class="nav-link" data-i18n="nav_home">Ana Sayfa</a>
-                <a href="engineering.html" class="nav-link" data-i18n="nav_eng">Mühendislik</a>
-                <a href="products.html" class="nav-link" data-i18n="nav_prod">Lvkon Donanım</a>
-            </div>
-            <div>
-                <span class="lang-btn active" onclick="setLang('tr')"><span class="fi fi-tr"></span></span>
-                <span class="lang-btn" onclick="setLang('de')"><span class="fi fi-de"></span></span>
-                <span class="lang-btn" onclick="setLang('en')"><span class="fi fi-gb"></span></span>
-                <span class="lang-btn" onclick="setLang('zh')"><span class="fi fi-cn"></span></span>
-            </div>
-        </nav>
-    </div>
-</header>
+<a href="index.html" class="back-nav">← beeNEO.biz</a>
 
-<div class="hub-hero">
+<div class="hero-hub">
     <div class="container">
-        <h1 data-i18n="hero_title">Çengelköy Butik Çalışma Üssü</h1>
-        <p data-i18n="hero_sub">Sadece bir ofis değil; Lvkon partnerliği ve Ar-Ge kültürü ile harmanlanmış, güvenli ve prestijli bir "Living Showroom" ekosistemi.</p>
+        <h1 data-i18n="hero_title">Çengelköy Boutique Workspace</h1>
+        <p data-i18n="hero_sub">Ein lebendiger "Showroom" für Ingenieure. Mehr als nur ein Büro: Ein Ökosystem, das Arbeit, Kunst und Innovation im Herzen von Istanbul verbindet.</p>
     </div>
 </div>
 
-<div class="container">
-    
-    <div class="section split-grid">
-        <div class="img-place">
-            <i class="fa-solid fa-image"></i>
-            <span>[GÖRSEL 1: Çengelköy Ofis İç Mekan / Atmosfer]</span>
+<div class="container membership-section">
+    <div class="membership-grid">
+        <!-- Virtual Office -->
+        <div class="mem-card">
+            <div class="mem-icon"><i class="fa-solid fa-location-dot"></i></div>
+            <h3 class="mem-title" data-i18n="m1_title">Sanal Ofis</h3>
+            <p class="mem-desc" data-i18n="m1_desc">Prestijli yasal adres ve profesyonel posta yönetimi. Fiziksel ofise ihtiyaç duymayanlar için.</p>
+            <ul class="mem-features">
+                <li><i class="fa-solid fa-check"></i> <span data-i18n="f1_addr">Yasal İş Adresi</span></li>
+                <li><i class="fa-solid fa-check"></i> <span data-i18n="f1_mail">Kargo & Posta Karşılama</span></li>
+                <li><i class="fa-solid fa-check"></i> <span data-i18n="f1_meet">Toplantı Odası İndirimi</span></li>
+            </ul>
         </div>
-        <div>
-            <h2 class="section-title" data-i18n="conc_title">Butik & Huzurlu</h2>
-            <p data-i18n="conc_desc" style="line-height: 1.8; color: #555; margin-bottom: 20px;">
-                İstanbul'un en köklü semtlerinden Çengelköy'de, şehir gürültüsünden uzak ama şehrin merkezinde. 
-                Kalabalık plazaların aksine, <strong>butik ve seçkin</strong> bir toplulukla çalışma imkanı sunuyoruz.
-            </p>
-            <ul class="svc-list">
-                <li><i class="fa-solid fa-leaf"></i> <span data-i18n="feat_quiet">Sessiz ve Odaklanmaya Uygun</span></li>
-                <li><i class="fa-solid fa-users"></i> <span data-i18n="feat_net">Seçkin Mühendislik Topluluğu</span></li>
-                <li><i class="fa-solid fa-coffee"></i> <span data-i18n="feat_cafe">Sınırsız Premium Kahve & Çay</span></li>
+
+        <!-- Fixed Desk -->
+        <div class="mem-card">
+            <div class="mem-icon"><i class="fa-solid fa-chair"></i></div>
+            <h3 class="mem-title" data-i18n="m2_title">Sabit Masa</h3>
+            <p class="mem-desc" data-i18n="m2_desc">Size özel ayrılmış masanızda, ortak alanın dinamizmiyle çalışın. Eşyalarınızı bırakın, 7/24 erişin.</p>
+            <ul class="mem-features">
+                <li><i class="fa-solid fa-check"></i> <span data-i18n="f2_desk">Kişiye Özel Masa</span></li>
+                <li><i class="fa-solid fa-check"></i> <span data-i18n="f2_247">7/24 Ofis Erişimi</span></li>
+                <li><i class="fa-solid fa-check"></i> <span data-i18n="f2_storage">Kilitli Dolap</span></li>
+                <li><i class="fa-solid fa-check"></i> <span data-i18n="f2_tea">Sınırsız Çay/Kahve</span></li>
+            </ul>
+        </div>
+
+        <!-- Private Office -->
+        <div class="mem-card">
+            <div class="mem-icon"><i class="fa-solid fa-door-closed"></i></div>
+            <h3 class="mem-title" data-i18n="m3_title">Hazır Ofis</h3>
+            <p class="mem-desc" data-i18n="m3_desc">Tam donanımlı, kapalı özel ofisler. Ekibiniz için anahtar teslim çözüm. Sadece bilgisayarınızı alıp gelin.</p>
+            <ul class="mem-features">
+                <li><i class="fa-solid fa-check"></i> <span data-i18n="f3_priv">Mobilyalı Özel Oda</span></li>
+                <li><i class="fa-solid fa-check"></i> <span data-i18n="f3_guest">Sınırsız Misafir Hakkı</span></li>
+                <li><i class="fa-solid fa-check"></i> <span data-i18n="f3_print">Yazıcı & Sekreterya</span></li>
+                <li><i class="fa-solid fa-check"></i> <span data-i18n="f3_clean">Günlük Temizlik</span></li>
             </ul>
         </div>
     </div>
-
-    <div class="section">
-        <div class="security-box">
-            <div>
-                <h2 style="font-size:2rem; margin-bottom:15px;" data-i18n="access_title">Esnek Erişim Modelleri</h2>
-                <p data-i18n="access_desc" style="color:#cbd5e1; margin-bottom:30px;">İşinizin temposuna siz karar verin. İster mesai saatlerinde, ister 7/24 proje yetiştirirken.</p>
-                
-                <div style="background:rgba(255,255,255,0.05); padding:20px; border-radius:8px; margin-bottom:15px; border-left:4px solid #aaa;">
-                    <h4 style="color:#fff; margin-bottom:5px;" data-i18n="acc_std">Standart Erişim</h4>
-                    <p style="margin:0; font-size:0.9rem; color:#ccc;">Hafta İçi: 08:00 - 18:00</p>
-                </div>
-                <div style="background:rgba(255,255,255,0.1); padding:20px; border-radius:8px; border-left:4px solid var(--bee-orange);">
-                    <h4 style="color:var(--bee-orange); margin-bottom:5px;" data-i18n="acc_ext">Extended (Genişletilmiş) Erişim</h4>
-                    <p style="margin:0; font-size:0.9rem; color:#fff;">7 Gün / 24 Saat • Tam Yetki</p>
-                </div>
-            </div>
-            
-            <div>
-                <div class="img-place img-place-small" style="background:rgba(255,255,255,0.05); border-color:#475569; color:#94a3b8;">
-                    <i class="fa-solid fa-shield-halved"></i>
-                    <span>[GÖRSEL 2: Güvenlik / Teknoloji]</span>
-                </div>
-                <div class="sec-features">
-                    <div class="sec-item">
-                        <i class="fa-solid fa-video"></i>
-                        <span data-i18n="sec_cctv">7/24 CCTV Kayıt</span>
-                    </div>
-                    <div class="sec-item">
-                        <i class="fa-solid fa-fingerprint"></i>
-                        <span data-i18n="sec_bio">Biyometrik Geçiş</span>
-                    </div>
-                    <div class="sec-item">
-                        <i class="fa-solid fa-user-shield"></i>
-                        <span data-i18n="sec_alarm">Alarm Merkezi</span>
-                    </div>
-                    <div class="sec-item">
-                        <i class="fa-solid fa-server"></i>
-                        <span data-i18n="sec_infra">Yedekli Altyapı</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="section">
-        <div style="text-align:center; margin-bottom:40px;">
-            <h2 class="section-title" data-i18n="serv_head">360° İşletme Ekosistemi</h2>
-            <p data-i18n="serv_sub" style="color:#666;">Bir ofisten fazlası: Muhasebeden pazarlamaya, işinizi büyütmek için gereken her şey.</p>
-        </div>
-
-        <div class="services-grid">
-            <div class="svc-card">
-                <i class="fa-solid fa-file-invoice-dollar svc-icon"></i>
-                <h3 class="svc-title" data-i18n="s1_title">Finans & Muhasebe</h3>
-                <ul class="svc-list">
-                    <li><i class="fa-solid fa-check"></i> <span data-i18n="s1_l1">Şirket Kurulumu (LTD/AŞ)</span></li>
-                    <li><i class="fa-solid fa-check"></i> <span data-i18n="s1_l2">Mali Müşavirlik Desteği</span></li>
-                    <li><i class="fa-solid fa-check"></i> <span data-i18n="s1_l3">Vergi & Bordro Yönetimi</span></li>
-                    <li><i class="fa-solid fa-check"></i> <span data-i18n="s1_l4">Sanal Ofis Yasal Adres</span></li>
-                </ul>
-            </div>
-
-            <div class="svc-card">
-                <i class="fa-solid fa-bullhorn svc-icon" style="color:var(--bee-orange)"></i>
-                <h3 class="svc-title" data-i18n="s2_title">Reklam & Pazarlama</h3>
-                <ul class="svc-list">
-                    <li><i class="fa-solid fa-check"></i> <span data-i18n="s2_l1">Dijital Pazarlama Stratejisi</span></li>
-                    <li><i class="fa-solid fa-check"></i> <span data-i18n="s2_l2">Sosyal Medya Yönetimi</span></li>
-                    <li><i class="fa-solid fa-check"></i> <span data-i18n="s2_l3">Web Tasarım & SEO</span></li>
-                    <li><i class="fa-solid fa-check"></i> <span data-i18n="s2_l4">Kurumsal Kimlik</span></li>
-                </ul>
-            </div>
-
-            <div class="svc-card">
-                <i class="fa-solid fa-headset svc-icon"></i>
-                <h3 class="svc-title" data-i18n="s3_title">Sekreterya & Call Center</h3>
-                <ul class="svc-list">
-                    <li><i class="fa-solid fa-check"></i> <span data-i18n="s3_l1">Şirket Adıyla Karşılama</span></li>
-                    <li><i class="fa-solid fa-check"></i> <span data-i18n="s3_l2">Çağrı Yönlendirme</span></li>
-                    <li><i class="fa-solid fa-check"></i> <span data-i18n="s3_l3">Kargo & Posta Takibi</span></li>
-                    <li><i class="fa-solid fa-check"></i> <span data-i18n="s3_l4">Misafir Ağırlama</span></li>
-                </ul>
-            </div>
-        </div>
-        
-        <div class="img-place" style="margin-top:40px;">
-            <i class="fa-solid fa-handshake"></i>
-            <span>[GÖRSEL 3: Toplantı Odası / Etkinlik Alanı]</span>
-        </div>
-    </div>
-
-    <div style="text-align:center; padding:60px; background:#f1f5f9; border-radius:20px;">
-        <h2 data-i18n="cta_title">Living Showroom'a Katılın</h2>
-        <p data-i18n="cta_text">beeNEO Hub, sadece bir çalışma alanı değil; mühendislik ve inovasyonun kalbinin attığı yerdir.</p>
-        <a href="impressum.html" class="btn" data-i18n="btn_contact">İletişime Geçin</a>
-    </div>
-
 </div>
 
-<footer style="text-align: center; padding: 20px; color: #888; margin-top: 50px; background:#111;">
-    &copy; 2026 beeNEO Hub. | <a href="impressum.html" style="color:inherit;" data-i18n="imprint">Yasal Bilgiler</a>
-</footer>
+<div class="amenities-section">
+    <div class="container">
+        <div class="sec-header">
+            <h2 data-i18n="am_head">İlham Veren Olanaklar</h2>
+            <p data-i18n="am_sub">Verimli çalışmanız ve sosyalleşmeniz için gereken her şey tek bir çatı altında.</p>
+        </div>
+        <div class="am-grid">
+            <div class="am-item">
+                <i class="fa-solid fa-mug-hot"></i>
+                <h4 data-i18n="am_cafe">Sınırsız İkramlar</h4>
+            </div>
+            <div class="am-item">
+                <i class="fa-solid fa-wifi"></i>
+                <h4 data-i18n="am_net">Fiber İnternet</h4>
+            </div>
+            <div class="am-item">
+                <i class="fa-solid fa-users-viewfinder"></i>
+                <h4 data-i18n="am_meet">Toplantı Odaları</h4>
+            </div>
+            <div class="am-item">
+                <i class="fa-solid fa-couch"></i>
+                <h4 data-i18n="am_lounge">Lounge Alanları</h4>
+            </div>
+            <div class="am-item">
+                <i class="fa-solid fa-calendar-check"></i>
+                <h4 data-i18n="am_events">Etkinlikler</h4>
+            </div>
+            <div class="am-item">
+                <i class="fa-solid fa-shield-halved"></i>
+                <h4 data-i18n="am_sec">Güvenlik & Resepsiyon</h4>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container content-section">
+    <div class="sec-header">
+        <h2 data-i18n="serv_head">360° İş Ekosistemi</h2>
+        <p data-i18n="serv_sub">Sadece bir ofis değil, işinizi büyüten stratejik bir ortak.</p>
+    </div>
+    <ul class="services-list">
+        <li>
+            <h3 data-i18n="s1_title">Finans & Muhasebe</h3>
+            <p data-i18n="s1_desc">Şirket kuruluşu, mali müşavirlik, vergi planlaması ve bordrolama hizmetleri ile finansal süreçlerinizi yönetiyoruz.</p>
+        </li>
+        <li>
+            <h3 data-i18n="s2_title">Pazarlama & Tasarım</h3>
+            <p data-i18n="s2_desc">Dijital strateji, sosyal medya yönetimi, web tasarımı ve kurumsal kimlik çalışmalarıyla markanızı güçlendiriyoruz.</p>
+        </li>
+        <li>
+            <h3 data-i18n="s3_title">IT & Sekreterya</h3>
+            <p data-i18n="s3_desc">Telefon karşılama, kargo takibi ve IT altyapı desteği ile operasyonel yükünüzü hafifletiyoruz.</p>
+        </li>
+    </ul>
+</div>
+
+<div class="floating-lang">
+    <i class="fi fi-tr" onclick="setLang('tr')"></i>
+    <i class="fi fi-de active" onclick="setLang('de')"></i>
+    <i class="fi fi-gb" onclick="setLang('en')"></i>
+    <i class="fi fi-cn" onclick="setLang('zh')"></i>
+</div>
 
 <script>
     const translations = {
-        tr: {
-            nav_home: "Ana Sayfa", nav_eng: "Mühendislik", nav_prod: "Lvkon Donanım",
-            hero_title: "Çengelköy Butik Çalışma Üssü", 
-            hero_sub: "Sadece bir ofis değil; Lvkon partnerliği ve Ar-Ge kültürü ile harmanlanmış, güvenli ve prestijli bir \"Living Showroom\" ekosistemi.",
-            conc_title: "Butik & Huzurlu", conc_desc: "İstanbul'un en köklü semtlerinden Çengelköy'de, şehir gürültüsünden uzak ama şehrin merkezinde. Kalabalık plazaların aksine, butik ve seçkin bir toplulukla çalışma imkanı sunuyoruz.",
-            feat_quiet: "Sessiz ve Odaklanmaya Uygun", feat_net: "Seçkin Mühendislik Topluluğu", feat_cafe: "Sınırsız Premium Kahve & Çay",
-            access_title: "Esnek Erişim Modelleri", access_desc: "İşinizin temposuna siz karar verin. İster mesai saatlerinde, ister 7/24 proje yetiştirirken.",
-            acc_std: "Standart Erişim", acc_ext: "Extended (Genişletilmiş) Erişim",
-            sec_cctv: "7/24 CCTV Kayıt", sec_bio: "Biyometrik Geçiş", sec_alarm: "Alarm Merkezi", sec_infra: "Yedekli Altyapı (UPS/Jeneratör)",
-            serv_head: "360° İşletme Ekosistemi", serv_sub: "Bir ofisten fazlası: Muhasebeden pazarlamaya, işinizi büyütmek için gereken her şey.",
-            s1_title: "Finans & Muhasebe", s1_l1: "Şirket Kurulumu", s1_l2: "Mali Müşavirlik Desteği", s1_l3: "Vergi & Bordro Yönetimi", s1_l4: "Sanal Ofis Yasal Adres",
-            s2_title: "Reklam & Pazarlama", s2_l1: "Dijital Pazarlama Stratejisi", s2_l2: "Sosyal Medya Yönetimi", s2_l3: "Web Tasarım & SEO", s2_l4: "Kurumsal Kimlik",
-            s3_title: "Sekreterya & Call Center", s3_l1: "Şirket Adıyla Karşılama", s3_l2: "Çağrı Yönlendirme", s3_l3: "Kargo & Posta Takibi", s3_l4: "Misafir Ağırlama",
-            cta_title: "Living Showroom'a Katılın", cta_text: "beeNEO Hub, sadece bir çalışma alanı değil; mühendislik ve inovasyonun kalbinin attığı yerdir.",
-            btn_contact: "İletişime Geçin", imprint: "Yasal Bilgiler"
-        },
         de: {
-            nav_home: "Startseite", nav_eng: "Engineering", nav_prod: "Lvkon Hardware",
-            hero_title: "Boutique Workspace in Çengelköy", 
-            hero_sub: "Nicht nur ein Büro; ein 'Living Showroom' Ökosystem mit Sicherheit und Prestige.",
-            conc_title: "Boutique & Friedlich", conc_desc: "Im historischen Çengelköy, fernab vom Lärm, aber zentral. Eine exklusive Gemeinschaft statt überfüllter Plätze.",
-            feat_quiet: "Ruhig & Fokussiert", feat_net: "Exklusive Ingenieurs-Community", feat_cafe: "Unbegrenzt Kaffee & Tee",
-            access_title: "Flexible Zugangsmodelle", access_desc: "Sie entscheiden das Tempo. Ob zu Bürozeiten oder 24/7.",
-            acc_std: "Standard Zugang", acc_ext: "Extended (Erweiterter) Zugang",
-            sec_cctv: "24/7 CCTV", sec_bio: "Biometrischer Zugang", sec_alarm: "Alarmsystem", sec_infra: "Redundante Infrastruktur",
-            serv_head: "360° Business Ökosystem", serv_sub: "Mehr als ein Büro: Von Buchhaltung bis Marketing.",
-            s1_title: "Finanzen & Buchhaltung", s1_l1: "Firmengründung", s1_l2: "Steuerberatung", s1_l3: "Lohnbuchhaltung", s1_l4: "Legale Adresse (Virtual Office)",
-            s2_title: "Werbung & Marketing", s2_l1: "Digitale Strategie", s2_l2: "Social Media", s2_l3: "Web & SEO", s2_l4: "Corporate Identity",
-            s3_title: "Sekretariat & Call Center", s3_l1: "Anrufannahme im Firmennamen", s3_l2: "Weiterleitung", s3_l3: "Postmanagement", s3_l4: "Gästeempfang",
-            cta_title: "Werden Sie Teil des Living Showrooms", cta_text: "beeNEO Hub ist der Ort, an dem Engineering und Innovation leben.",
-            btn_contact: "Kontaktieren Sie uns", imprint: "Impressum"
+            hero_title: "Çengelköy Boutique Workspace",
+            hero_sub: "Nicht nur ein Büro; ein lebendiges 'Living Showroom' Ökosystem, das Ingenieurskunst mit Kultur verbindet.",
+            
+            m1_title: "Virtual Office", m1_desc: "Prestigeträchtige Geschäftsadresse ohne physisches Büro.",
+            f1_addr: "Rechtsgültige Adresse", f1_mail: "Postservice", f1_meet: "Meetingraum-Rabatt",
+            
+            m2_title: "Fixed Desk", m2_desc: "Ihr persönlicher Schreibtisch im Coworking-Bereich. 24/7 Zugang.",
+            f2_desk: "Eigener Schreibtisch", f2_247: "24/7 Zugang", f2_storage: "Abschließbarer Schrank", f2_tea: "Kaffee/Tee Flatrate",
+            
+            m3_title: "Private Office", m3_desc: "Schlüsselfertige, möblierte Büros für Ihr Team. Privatsphäre trifft Community.",
+            f3_priv: "Möbliertes Büro", f3_guest: "Gästeempfang", f3_print: "Drucker & Service", f3_clean: "Tägliche Reinigung",
+
+            am_head: "Inspirierende Ausstattung", am_sub: "Alles, was Sie für Fokus und Networking brauchen.",
+            am_cafe: "Unbegrenzte Getränke", am_net: "Highspeed Fiber", am_meet: "Meetingräume",
+            am_lounge: "Lounge Bereiche", am_events: "Events & Networking", am_sec: "Sicherheit & Empfang",
+
+            serv_head: "360° Business Ökosystem", serv_sub: "Mehr als Workspace: Ihr strategischer Wachstumspartner.",
+            s1_title: "Finanzen & Buchhaltung", s1_desc: "Firmengründung, Steuerberatung und Lohnbuchhaltung.",
+            s2_title: "Marketing & Design", s2_desc: "Digitale Strategie, Webdesign und Corporate Identity.",
+            s3_title: "IT & Sekretariat", s3_desc: "Telefonservice, Postbearbeitung und technischer Support."
         },
         en: {
-            nav_home: "Home", nav_eng: "Engineering", nav_prod: "Lvkon Hardware",
-            hero_title: "Boutique Workspace in Çengelköy", 
-            hero_sub: "Not just an office; a secure and prestigious 'Living Showroom' ecosystem blended with R&D culture.",
-            conc_title: "Boutique & Peaceful", conc_desc: "Located in historic Çengelköy, away from noise but central. An exclusive community instead of crowded plazas.",
-            feat_quiet: "Quiet & Focused", feat_net: "Exclusive Engineering Community", feat_cafe: "Unlimited Premium Coffee/Tea",
-            access_title: "Flexible Access Models", access_desc: "You decide the pace. Whether standard hours or 24/7.",
-            acc_std: "Standard Access", acc_ext: "Extended Access",
-            sec_cctv: "24/7 CCTV", sec_bio: "Biometric Access", sec_alarm: "Alarm System", sec_infra: "Redundant Infrastructure",
-            serv_head: "360° Business Ecosystem", serv_sub: "More than an office: From accounting to marketing.",
-            s1_title: "Finance & Accounting", s1_l1: "Company Formation", s1_l2: "Financial Consulting", s1_l3: "Tax & Payroll", s1_l4: "Virtual Office Legal Address",
-            s2_title: "Advertising & Marketing", s2_l1: "Digital Strategy", s2_l2: "Social Media Mgmt", s2_l3: "Web Design & SEO", s2_l4: "Corporate Identity",
-            s3_title: "Secretary & Call Center", s3_l1: "Answering in Company Name", s3_l2: "Call Forwarding", s3_l3: "Mail Handling", s3_l4: "Guest Reception",
-            cta_title: "Join the Living Showroom", cta_text: "beeNEO Hub is where engineering and innovation heartbeat.",
-            btn_contact: "Contact Us", imprint: "Legal"
+            hero_title: "Çengelköy Boutique Workspace",
+            hero_sub: "Not just an office; a vibrant 'Living Showroom' ecosystem blending engineering culture with comfort.",
+            
+            m1_title: "Virtual Office", m1_desc: "Prestigious legal address without the need for a physical office.",
+            f1_addr: "Legal Address", f1_mail: "Mail Handling", f1_meet: "Meeting Room Discount",
+            
+            m2_title: "Fixed Desk", m2_desc: "Your dedicated desk in a dynamic coworking space. 24/7 access included.",
+            f2_desk: "Dedicated Desk", f2_247: "24/7 Access", f2_storage: "Lockable Storage", f2_tea: "Unlimited Coffee/Tea",
+            
+            m3_title: "Private Office", m3_desc: "Turnkey, fully furnished private offices for your team. Privacy meets community.",
+            f3_priv: "Furnished Office", f3_guest: "Guest Reception", f3_print: "Printing & Admin", f3_clean: "Daily Cleaning",
+
+            am_head: "Inspiring Amenities", am_sub: "Everything you need to focus, collaborate, and socialize.",
+            am_cafe: "Unlimited Treats", am_net: "Fiber Internet", am_meet: "Meeting Rooms",
+            am_lounge: "Lounge Areas", am_events: "Events & Networking", am_sec: "Security & Reception",
+
+            serv_head: "360° Business Ecosystem", serv_sub: "More than workspace: Your strategic growth partner.",
+            s1_title: "Finance & Accounting", s1_desc: "Company formation, tax consultancy, and payroll services.",
+            s2_title: "Marketing & Design", s2_desc: "Digital strategy, web design, and corporate identity.",
+            s3_title: "IT & Secretariat", s3_desc: "Call answering, mail handling, and IT infrastructure support."
+        },
+        tr: {
+            hero_title: "Çengelköy Butik Çalışma Alanı",
+            hero_sub: "Sadece bir ofis değil; mühendislik kültürünü konforla harmanlayan canlı bir 'Yaşam Showroom' ekosistemi.",
+            
+            m1_title: "Sanal Ofis", m1_desc: "Fiziksel ofise ihtiyaç duymayanlar için prestijli yasal adres ve posta yönetimi.",
+            f1_addr: "Yasal İş Adresi", f1_mail: "Kargo & Posta Karşılama", f1_meet: "Toplantı Odası İndirimi",
+            
+            m2_title: "Sabit Masa", m2_desc: "Size özel ayrılmış masanızda, ortak alanın dinamizmiyle çalışın. 7/24 erişim.",
+            f2_desk: "Kişiye Özel Masa", f2_247: "7/24 Ofis Erişimi", f2_storage: "Kilitli Dolap", f2_tea: "Sınırsız Çay/Kahve",
+            
+            m3_title: "Hazır Ofis", m3_desc: "Tam donanımlı, mobilyalı özel ofisler. Ekibiniz için anahtar teslim çözüm.",
+            f3_priv: "Mobilyalı Özel Oda", f3_guest: "Sınırsız Misafir Hakkı", f3_print: "Yazıcı & Sekreterya", f3_clean: "Günlük Temizlik",
+
+            am_head: "İlham Veren Olanaklar", am_sub: "Verimli çalışmanız ve sosyalleşmeniz için gereken her şey.",
+            am_cafe: "Sınırsız İkramlar", am_net: "Fiber İnternet", am_meet: "Toplantı Odaları",
+            am_lounge: "Lounge Alanları", am_events: "Etkinlikler & Networking", am_sec: "Güvenlik & Resepsiyon",
+
+            serv_head: "360° İş Ekosistemi", serv_sub: "Sadece bir ofis değil, işinizi büyüten stratejik bir ortak.",
+            s1_title: "Finans & Muhasebe", s1_desc: "Şirket kuruluşu, mali müşavirlik, vergi planlaması ve bordrolama.",
+            s2_title: "Pazarlama & Tasarım", s2_desc: "Dijital strateji, sosyal medya, web tasarım ve kurumsal kimlik.",
+            s3_title: "IT & Sekreterya", s3_desc: "Telefon karşılama, kargo takibi ve IT altyapı desteği."
         },
         zh: {
-            nav_home: "首页", nav_eng: "工程", nav_prod: "Lvkon 硬件",
-            hero_title: "琴格尔柯伊精品工作空间", 
-            hero_sub: "不仅仅是办公室；一个融合了研发文化的安全、尊贵的“生活展厅”生态系统。",
-            conc_title: "精品与宁静", conc_desc: "位于历史悠久的琴格尔柯伊，远离喧嚣但交通便利。提供专属社区而非拥挤的广场。",
-            feat_quiet: "安静专注", feat_net: "独家工程师社区", feat_cafe: "无限畅饮优质咖啡/茶",
-            access_title: "灵活的访问模式", access_desc: "您决定节奏。无论是标准时间还是 7/24。",
-            acc_std: "标准访问", acc_ext: "扩展访问",
-            sec_cctv: "24/7 监控", sec_bio: "生物识别访问", sec_alarm: "报警系统", sec_infra: "冗余基础设施",
-            serv_head: "360° 商业生态系统", serv_sub: "不仅仅是办公室：从会计到营销。",
-            s1_title: "财务与会计", s1_l1: "公司注册", s1_l2: "财务咨询", s1_l3: "税务与薪资", s1_l4: "虚拟办公室法定地址",
-            s2_title: "广告与营销", s2_l1: "数字战略", s2_l2: "社交媒体管理", s2_l3: "网页设计与SEO", s2_l4: "企业形象",
-            s3_title: "秘书与呼叫中心", s3_l1: "以公司名义接听", s3_l2: "呼叫转移", s3_l3: "邮件处理", s3_l4: "接待客人",
-            cta_title: "加入生活展厅", cta_text: "beeNEO Hub 是工程和创新跳动的地方。",
-            btn_contact: "联系我们", imprint: "法律信息"
+            hero_title: "Çengelköy 精品工作空间",
+            hero_sub: "不仅仅是办公室；一个融合了工程文化与舒适感的充满活力的“生活展厅”生态系统。",
+            
+            m1_title: "虚拟办公室", m1_desc: "无需实体办公室即可拥有尊贵的法定商业地址。",
+            f1_addr: "法定地址", f1_mail: "邮件处理", f1_meet: "会议室折扣",
+            
+            m2_title: "固定办公桌", m2_desc: "充满活力的联合办公空间中的专属办公桌。包含 24/7 全天候访问权限。",
+            f2_desk: "专属办公桌", f2_247: "24/7 访问", f2_storage: "带锁储物柜", f2_tea: "无限茶水/咖啡",
+            
+            m3_title: "私人办公室", m3_desc: "适合您团队的交钥匙全配私人办公室。隐私与社区的完美结合。",
+            f3_priv: "全配办公室", f3_guest: "访客接待", f3_print: "打印与行政", f3_clean: "每日清洁",
+
+            am_head: "灵感设施", am_sub: "专注、协作和社交所需的一切。",
+            am_cafe: "无限茶点", am_net: "光纤网络", am_meet: "会议室",
+            am_lounge: "休息区", am_events: "活动与社交", am_sec: "安保与前台",
+
+            serv_head: "360° 商业生态系统", serv_sub: "不仅仅是工作空间：您的战略增长合作伙伴。",
+            s1_title: "财务与会计", s1_desc: "公司注册、税务咨询和薪资服务。",
+            s2_title: "营销与设计", s2_desc: "数字战略、网页设计和企业形象。",
+            s3_title: "IT 与秘书服务", s3_desc: "电话接听、邮件处理和 IT 基础设施支持。"
         }
     };
 
     function setLang(lang) {
         document.querySelectorAll('[data-i18n]').forEach(el => {
             const key = el.getAttribute('data-i18n');
-            if (translations[lang][key]) el.innerHTML = translations[lang][key];
+            if (translations[lang][key]) {
+                el.innerHTML = translations[lang][key];
+            }
         });
-        document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
-        event.target.closest('.lang-btn').classList.add('active');
-        if(lang === 'zh') document.body.className = "lang-zh"; else document.body.className = "";
+        document.body.className = lang === 'zh' ? 'lang-zh' : '';
+        document.querySelectorAll('.fi').forEach(i => i.classList.remove('active'));
+        document.querySelector(`.fi-${lang === 'en' ? 'gb' : (lang === 'zh' ? 'cn' : lang)}`).classList.add('active');
+        document.documentElement.lang = lang;
     }
 </script>
+
 </body>
 </html>
